@@ -5,7 +5,7 @@ import Skill from "../skill";
 
 const HeroSection = () => {
     return(
-        <section id="hero" className="w-[80%] flex items-center justify-between self-center relative">
+        <section id="hero" className="w-full flex items-center justify-between self-center relative">
             <div className="w-[50%] h-full flex items-center justify-center relative">
                 <div className="w-full h-full absolute blur-3xl backdrop-blur-3xl z-0">
                     <Image
