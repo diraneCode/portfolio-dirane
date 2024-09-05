@@ -9,8 +9,8 @@ const SectionProject = () => {
                 <CardProject />
             </div>
 
-            <div className="w-[80%] bg-[#0e0e0d] absolute -bottom-14 px-5 py-12 rounded flex items-center justify-between">
-                <span className="text-xl">
+            <div className="w-[80%] h-20 bg-[#0e0e0d] absolute -bottom-14 px-5 py-12 rounded flex items-center justify-between">
+                <span className="text-xl max-sm:text-sm">
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                 </span>
                 <button className="p-2 bg-primary rounded">

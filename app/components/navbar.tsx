@@ -15,7 +15,7 @@ const Navbar = () => {
             <a href='#hero' className="size-10 rounded-full bg-primary flex items-center justify-center">
                 <Icon.FaChessRook size={25} />
             </a>
-            <ul className="flex items-center space-x-5">
+            <ul className="flex items-center space-x-5 max-sm:hidden">
                 {
                     navLink.map((link, index) => (
                         link.name == 'Home' ? 

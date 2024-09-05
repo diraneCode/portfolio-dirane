@@ -10,7 +10,7 @@ export default function TypeWriter(){
     })
     return(
         <div>
-            <span className="text-5xl font-bold">{text}</span>
+            <span className="text-5xl font-bold max-sm:text-xl">{text}</span>
             <Cursor cursorColor="green" />
         </div>
     );
