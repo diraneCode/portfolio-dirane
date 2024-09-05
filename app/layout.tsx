@@ -21,10 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <head>
-        <link rel="icon" href="icon.png" sizes="any" />
-      </head>
-      <body className={`${roboto.className} w-screen h-fit bg-[#141414] text-white overflow-x-hidden`}>
+      <body className={`${roboto.className} min-w-screen h-fit bg-[#141414] text-white overflow-x-hidden`}>
         {children}
       </body>
     </html>
