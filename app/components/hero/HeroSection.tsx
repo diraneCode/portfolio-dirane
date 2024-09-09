@@ -32,13 +32,13 @@ const HeroSection = () => {
                     <TypeWriter />
                 </div>
                 <span className="text-gray-300 max-sm:hidden">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur repellendus ex cupiditate, quis labore excepturi, assumenda iure officia eos eveniet dolorem minus sint perferendis voluptas voluptatum, quasi magnam odio voluptatem.
+                    Je suis développeur web et mobile passionné, spécialisé en UI/UX design. Mon objectif est de transformer vos idées en expériences numériques intuitives et captivantes. Explorez mes projets et découvrez comment je peux apporter une valeur ajoutée à vos besoins technologiques
                 </span>
-                <button className="w-fit p-2 relative">
+                <a href="#contact" className="w-fit p-2 relative mb-20">
                     <div className="w-full h-full bg-green/40 absolute top-0 left-0 -rotate-6"></div>
                     <div className="w-full h-full bg-green/40 absolute top-0 left-0 rotate-6"></div>
-                    ABOUT ME
-                </button>
+                    Me contacter
+                </a>
             </div>
             <Skill />
         </section>

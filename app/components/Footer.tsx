@@ -10,7 +10,7 @@ const Footer = () => {
                 <a href="https://facebook.com" target='_blank'>
                     <Icon.FaFacebook size={25} color='#1877F2' />
                 </a>
-                <a href="https://www.tiktok.com/@dirane_joker" target='_blank'>
+                <a href="https://www.tiktok.com/@diranecode" target='_blank'>
                     <Icon.FaTiktok size={25} stroke='#ff0050' />                    
                 </a>
                 <a href="https://api.whatsapp.com/send?phone=237697609387" target='_blank'>
@@ -19,7 +19,7 @@ const Footer = () => {
                 <a href="https://instagram.com" target='_blank'>
                     <Icon.FaInstagram size={25} color='pink' />                    
                 </a>
-                <a href="https://www.linkedin.com/in/dirane_mekem" target='_blank'>
+                <a href="https://www.linkedin.com/in/dirane-mekem-63b588273" target='_blank'>
                     <Icon.FaLinkedin size={25} color='#0e76a8' />                    
                 </a>
                 <a href="https://github.com/diranecode" target='_blank'>

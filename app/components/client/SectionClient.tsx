@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { clients } from "@/app/lib/clients";
 
 const SectionClient = () => {
     return(
@@ -20,21 +21,14 @@ const SectionClient = () => {
                 slidesPerGroup={1}  
                 className="w-full flex flex-row space-x-4 overflow-scroll"
             >
-                <SwiperSlide>
-                    <CardClient />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <CardClient />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <CardClient />
-                </SwiperSlide>
+                {
+                    clients.map((client, key) => (
+                        <SwiperSlide key={key}>
+                            <CardClient nom={client.nom} description={client.description} stars={client.stars} link={client.link} />
+                        </SwiperSlide>
+                    ))
+                }
             </Swiper>
-            {/* <div className="w-full flex space-x-4 overflow-scroll">
-                <CardClient />
-                <CardClient />
-                <CardClient />
-            </div> */}
         </section>
     )
 }
