@@ -28,7 +28,7 @@ const HeroSection = () => {
             </div>
             <div className="w-[50%] h-full flex flex-col space-y-5">
                 <div>
-                    <span className="text-primary">Hello je suis dirane code👋!</span>
+                    <span className="text-primary">Hello je suis dirane👋!</span>
                     <TypeWriter />
                 </div>
                 <span className="text-gray-300 max-sm:hidden">
