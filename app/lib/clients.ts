@@ -13,7 +13,7 @@ export const clients = [
         description: '“Professionnel, réactif et à l’écoute, il a su transformer notre vision en réalité. Un vrai plaisir de travailler avec lui.”',
         stars: 4,
         photo: '',
-        link: 'https://promo-store.vercel.app'
+        link: 'https://multi-techs.github.io/multi-tech-engineering'
     },
     {
         id: 3,

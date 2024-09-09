@@ -14,7 +14,7 @@ const SectionProject = () => {
                     Inscrivez vous a notre newsLetter
                 </span>
                 <button className="p-2 bg-primary rounded">
-                    S'inscrire
+                    S`inscrire
                 </button>
             </div>
         </section>
