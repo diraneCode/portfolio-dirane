@@ -7,7 +7,7 @@ const Footer = () => {
                 <Icon.FaChessRook size={25} />
             </div>
             <div className='flex space-x-4'>
-                <a href="https://facebook.com" target='_blank'>
+                <a href="https://www.facebook.com/diranecode33" target='_blank'>
                     <Icon.FaFacebook size={25} color='#1877F2' />
                 </a>
                 <a href="https://www.tiktok.com/@diranecode" target='_blank'>
