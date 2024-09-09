@@ -16,7 +16,7 @@ const Footer = () => {
                 <a href="https://api.whatsapp.com/send?phone=237697609387" target='_blank'>
                     <Icon.FaWhatsapp size={25} color='#075e54' />                    
                 </a>
-                <a href="https://instagram.com" target='_blank'>
+                <a href="https://www.instagram.com/diranejoker33" target='_blank'>
                     <Icon.FaInstagram size={25} color='pink' />                    
                 </a>
                 <a href="https://www.linkedin.com/in/dirane-mekem-63b588273" target='_blank'>

@@ -3,7 +3,7 @@ import { useTypewriter, Cursor } from "react-simple-typewriter";
 
 export default function TypeWriter(){
     const [text] = useTypewriter({
-        words: ['UX/UI Designer', 'Developpeur web', 'Web Designer'],
+        words: ['UX/UI Designer', 'Developpeur Web', 'Developpeur Mobile', 'Web Designer'],
         loop: 0,
         typeSpeed: 120,
         deleteSpeed: 80
