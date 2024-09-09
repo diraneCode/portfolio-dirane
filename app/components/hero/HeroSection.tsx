@@ -18,7 +18,7 @@ const HeroSection = () => {
                 </div>
                 <div className="w-1/2 h-full z-10 max-sm:w-full">
                     <Image
-                    src='/person.png'
+                    src='/portf.png'
                     alt="guy"
                     width={1000}
                     height={1000}

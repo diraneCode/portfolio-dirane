@@ -8,7 +8,7 @@ const CardCode = () => {
                 <Icon.FaCode size={50} color='#859a02' />
                 <h1 className="text-xl">Web developper</h1>
                 <span className="text-sm text-gray-500">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam voluptatibus sed eos dolor voluptatum molestias non nobis in deserunt ullam tempora ipsa et sunt earum, nam voluptatem unde quod quo.
+                    Passionné par le développement web mon expérience inclut également l’utilisation de frameworks comme React et Angular, ainsi que des compétences en backend avec Node.js et Express. Toujours à l’affût des dernières tendances, je m’efforce de concevoir des solutions innovantes et performantes.
                 </span>
             </div>
         </div>

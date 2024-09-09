@@ -6,7 +6,7 @@ const CardGithub = () => {
             <Icon.FaGithub size={50} color='#859a02' />
             <h1 className="text-xl">Github</h1>
             <span className="text-sm text-gray-500">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam voluptatibus sed eos dolor voluptatum molestias non nobis in deserunt ullam tempora ipsa et sunt earum, nam voluptatem unde quod quo.
+                Je maîtrise GitHub pour la gestion de versions et la collaboration sur des projets. J’utilise régulièrement des branches pour organiser le développement et GitHub Actions pour automatiser les workflows. Mon expérience inclut également la gestion des pull requests et la résolution des conflits de code.
             </span>
         </div>
     )

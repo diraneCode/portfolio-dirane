@@ -7,25 +7,25 @@ const Footer = () => {
                 <Icon.FaChessRook size={25} />
             </div>
             <div className='flex space-x-4'>
-                <a href="#" target='_blank'>
+                <a href="https://facebook.com" target='_blank'>
                     <Icon.FaFacebook size={25} color='#1877F2' />
                 </a>
-                <a href="#" target='_blank'>
+                <a href="https://www.tiktok.com/@dirane_joker" target='_blank'>
                     <Icon.FaTiktok size={25} stroke='#ff0050' />                    
                 </a>
-                <a href="#" target='_blank'>
+                <a href="https://api.whatsapp.com/send?phone=237697609387" target='_blank'>
                     <Icon.FaWhatsapp size={25} color='#075e54' />                    
                 </a>
-                <a href="#" target='_blank'>
+                <a href="https://instagram.com" target='_blank'>
                     <Icon.FaInstagram size={25} color='pink' />                    
                 </a>
-                <a href="#" target='_blank'>
+                <a href="https://www.linkedin.com/in/dirane_mekem" target='_blank'>
                     <Icon.FaLinkedin size={25} color='#0e76a8' />                    
                 </a>
-                <a href="#" target='_blank'>
+                <a href="https://github.com/diranecode" target='_blank'>
                     <Icon.FaGithub size={25} color='#24292e' />                    
                 </a>
-                <a href="#" target='_blank'>
+                <a href="https://x.com/dirane_mekem" target='_blank'>
                     <Icon.FaXTwitter size={25} color='#657786' />                    
                 </a>
             </div>
