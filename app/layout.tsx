@@ -11,7 +11,7 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: "DiraneCode",
   description: "Portfolio Developpeur web",
-  icons: 'icon.png'
+  icons: 'Favicon.ico'
 };
 
 export default function RootLayout({
