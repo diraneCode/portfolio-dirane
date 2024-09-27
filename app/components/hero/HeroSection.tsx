@@ -2,6 +2,7 @@
 import TypeWriter from "@/app/ui/typeWriter";
 import Image from "next/image";
 import Skill from "../skill";
+import BtnContact from "../BtnContact";
 
 const HeroSection = () => {
     return(
@@ -34,11 +35,7 @@ const HeroSection = () => {
                 <span className="text-gray-300 max-sm:hidden">
                     Je suis développeur web et mobile passionné, spécialisé en UI/UX design. Mon objectif est de transformer vos idées en expériences numériques intuitives et captivantes. Explorez mes projets et découvrez comment je peux apporter une valeur ajoutée à vos besoins technologiques
                 </span>
-                <a href="#contact" className="w-fit p-2 relative mb-20">
-                    <div className="w-full h-full bg-green/40 absolute top-0 left-0 -rotate-6"></div>
-                    <div className="w-full h-full bg-green/40 absolute top-0 left-0 rotate-6"></div>
-                    Me contacter
-                </a>
+                <BtnContact />
             </div>
             <Skill />
         </section>
