@@ -22,7 +22,7 @@ import InputEmail from "./InputEmail";
                 S`inscrire
             </button>
             </AlertDialogTrigger>
-            <AlertDialogContent className="bg-dark border-none">
+            <AlertDialogContent className="bg-dark border-none max-sm:w-[90%]">
                 <AlertDialogHeader>
                 <AlertDialogTitle>Inscription</AlertDialogTitle>
                 <AlertDialogDescription className="space-y-5">
