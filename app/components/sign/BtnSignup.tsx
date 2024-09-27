@@ -29,12 +29,13 @@ import InputEmail from "./InputEmail";
                     <InputUserName />
                     <InputEmail />
                     <DatePicker />
+                    <input type="range" min={0} max="100" value="70" className="range range-xs bg-[#141414]" />
                     <input type="file" className="file-input file-input-bordered  w-full bg-[#141414] text-white" />
                 </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                 <AlertDialogCancel className="bg-red-500 hover:bg-red-500/80 hover:text-white border-none">Fermer</AlertDialogCancel>
-                <AlertDialogAction className="bg-green hover:bg-green/80">S'inscrire</AlertDialogAction>
+                <AlertDialogAction className="bg-green hover:bg-green/80">S`inscrire</AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>

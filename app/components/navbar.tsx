@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import * as Icon from 'react-icons/fa6'
 import { navLink } from '../lib/navLink';
+import MenuDropDown from './MenuDropDown';
 
 const Navbar = () => {
     const [activeLink, setActiveLink] = useState<string>();
@@ -31,6 +32,7 @@ const Navbar = () => {
                     ))
                 }
             </ul>
+            <MenuDropDown />
         </div>
     )
 }
