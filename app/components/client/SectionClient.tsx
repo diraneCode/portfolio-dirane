@@ -1,7 +1,7 @@
 import CardClient from "./CardClient";
 
 // Swiper components, modules and styles
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";

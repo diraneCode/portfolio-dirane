@@ -2,7 +2,7 @@ import { FaBars, FaX } from "react-icons/fa6";
 import { navLink } from "../lib/navLink";
 import { useState, useEffect } from "react";
 
-export default function MenuDropDown(){
+export default function BtnDropdown(){
     const [activeLink, setActiveLink] = useState<string>();
     useEffect(() => {
         const hash = window.location.hash

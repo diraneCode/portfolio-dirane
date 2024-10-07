@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import * as Icon from 'react-icons/fa6'
 import { navLink } from '../lib/navLink';
-import MenuDropDown from './MenuDropDown';
+import BtnDropdown from './BtnDropdown';
 
 const Navbar = () => {
     const [activeLink, setActiveLink] = useState<string>();
@@ -16,7 +16,7 @@ const Navbar = () => {
             <a href='#hero' className="size-10 rounded-full bg-primary flex items-center justify-center">
                 <Icon.FaChessRook size={25} />
             </a>
-            <ul className="flex items-center space-x-5 max-sm:hidden">
+            <ol className="flex items-center space-x-5 max-sm:hidden">
                 {
                     navLink.map((link, index) => (
                         link.name == 'Home' ? 
@@ -31,8 +31,8 @@ const Navbar = () => {
                         </li>
                     ))
                 }
-            </ul>
-            <MenuDropDown />
+            </ol>
+            <BtnDropdown/>
         </div>
     )
 }

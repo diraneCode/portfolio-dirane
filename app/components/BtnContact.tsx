@@ -9,9 +9,14 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
+import { CheckCircledIcon } from "@radix-ui/react-icons";
+import { FaCheck } from "react-icons/fa6";
+  import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
   
   const BtnContact = () => {
+    const notify = () => toast("Message envoyé 👍🎉 !");
     return(
         <AlertDialog>
             <AlertDialogTrigger>
@@ -29,14 +34,18 @@ import {
                         Email
                         <input type="text" className="grow" placeholder="dirane@portfolio.com" />
                     </label>
-                    <textarea placeholder="Votre message" className="mt-5 textarea textarea-bordered textarea-sm w-full  bg-[#141414]"></textarea>
+                    <textarea placeholder="Votre message" className="mt-5 textarea textarea-bordered textarea-sm w-full text-white bg-[#141414]"></textarea>
                 </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                 <AlertDialogCancel className="bg-red-500 hover:bg-red-500/80 hover:text-white border-none">Fermer</AlertDialogCancel>
-                <AlertDialogAction className="bg-green hover:bg-green/80">Continue</AlertDialogAction>
+                <AlertDialogAction onClick={notify} className="bg-green hover:bg-green/80">Envoyer</AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>
+            <ToastContainer 
+                closeButton={true}
+                icon={<CheckCircledIcon color="green" width={20} height={20} />}
+            />
         </AlertDialog>
     )
   }
