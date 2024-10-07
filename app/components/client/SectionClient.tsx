@@ -24,7 +24,13 @@ const SectionClient = () => {
                 {
                     clients.map((client, key) => (
                         <SwiperSlide key={key}>
-                            <CardClient nom={client.nom} description={client.description} stars={client.stars} link={client.link} />
+                            <CardClient 
+                                nom={client.nom} 
+                                description={client.description} 
+                                stars={client.stars} 
+                                link={client.link} 
+                                photo={client.photo}
+                            />
                         </SwiperSlide>
                     ))
                 }

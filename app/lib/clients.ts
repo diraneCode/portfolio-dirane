@@ -4,7 +4,7 @@ export const clients = [
         nom: 'promo store',
         description: '“Professionnel, réactif et à l’écoute, il a su transformer notre vision en réalité. Un vrai plaisir de travailler avec lui.”',
         stars: 4,
-        photo: '',
+        photo: '/promo.png',
         link: 'https://promo-store.vercel.app'
     },
     {
@@ -12,7 +12,7 @@ export const clients = [
         nom: 'Multitech',
         description: '“Professionnel, réactif et à l’écoute, il a su transformer notre vision en réalité. Un vrai plaisir de travailler avec lui.”',
         stars: 4,
-        photo: '',
+        photo: '/multi-tech.jpeg',
         link: 'https://multi-techs.github.io/multi-tech-engineering'
     },
     {
@@ -20,7 +20,7 @@ export const clients = [
         nom: 'Incontournable store',
         description: '“Professionnel, réactif et à l’écoute, il a su transformer notre vision en réalité. Un vrai plaisir de travailler avec lui.”',
         stars: 4,
-        photo: '',
+        photo: '/promo.png',
         link: 'https://promo-store.vercel.app'
     },
 ]

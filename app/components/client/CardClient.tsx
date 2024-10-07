@@ -6,18 +6,19 @@ type props = {
     description: string
     stars: number
     link: string
+    photo: string
 }
 
-const CardClient = ({nom, description, stars, link}: props) => {
+const CardClient = ({nom, description, stars, link, photo}: props) => {
     return(
         <div className="w-full p-5 bg-dark rounded flex flex-col items-center space-y-2">
             <div className="size-16 bg-gray-500 rounded-full overflow-hidden">
                 <Image
-                    src='/folio.jpeg'
-                    alt='person'
+                    src={photo}
+                    alt={nom}
                     width={1000}
                     height={1000}
-                    className='w-full h-full object-contain'
+                    className='w-full h-full object-cover'
                 />
             </div>
             <h1>{nom}</h1>
