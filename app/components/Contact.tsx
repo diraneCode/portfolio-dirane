@@ -4,6 +4,8 @@ import { motion } from "framer-motion"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { ToastContainer, toast,  } from 'react-toastify';
+
 
 export default function Contact() {
   const [email, setEmail] = useState("")
@@ -15,6 +17,13 @@ export default function Contact() {
 
     // Simuler une soumission de formulaire
     await new Promise((resolve) => setTimeout(resolve, 1500))
+    toast(`${email}, vous avez bien été enregistré 🎉`, {
+      position: "bottom-left",
+      type: "success",
+      theme: "dark",
+      closeButton: true,
+      draggable: true
+    })
 
     setEmail("")
     setIsSubmitting(false)
@@ -45,7 +54,7 @@ export default function Contact() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full bg-white/20 text-white placeholder-gray-300 border-gray-500 focus:border-blue-300 transition-all duration-300"
+                  className="w-full bg-white/20 text-white placeholder-white border-gray-500 focus:border-blue-300 transition-all duration-300"
                 />
               </div>
               <Button
@@ -88,12 +97,13 @@ export default function Contact() {
                 )}
               </Button>
             </form>
-            <p className="mt-4 text-sm text-gray-300 text-center">
-              Restez informé de nos dernières actualités et offres spéciales.
+            <p className="mt-4 text-sm text-gray-300 text-center font-mono">
+              Restez informé de mes dernières actualités et offres spéciales.
             </p>
           </div>
         </div>
       </motion.div>
+      <ToastContainer />
     </motion.section>
   )
 }

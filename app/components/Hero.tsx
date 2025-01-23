@@ -60,7 +60,8 @@ export default function Hero() {
             <span className="text-green-500">Came</span><span className="text-red-500">roun</span><span className="text-yellow-500">ais</span> et passionné par developpement web et mobile
           </motion.p>
           <motion.a
-            href="#contact"
+            href="/dirane's-cv.pdf"
+            download={"/dirane's-cv.pdf"}
             className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full inline-flex items-center transition-colors duration-300"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}

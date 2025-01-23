@@ -27,7 +27,7 @@ export default function Footer() {
               <FaGithub size={24} className="text-gray-400 hover:text-white transition-colors" />
             </motion.a>
             <motion.a
-              href="https://linkedin.com"
+              href="https://linkedin.com/in/dirane-mekem-63b588273"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.2 }}
@@ -36,7 +36,7 @@ export default function Footer() {
               <FaLinkedin size={24} className="text-gray-400 hover:text-white transition-colors" />
             </motion.a>
             <motion.a
-              href="https://twitter.com"
+              href="https://wa.me/237697609387"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.2 }}
@@ -45,7 +45,7 @@ export default function Footer() {
               <FaWhatsapp size={24} className="text-gray-400 hover:text-white transition-colors" />
             </motion.a>
             <motion.a
-              href="https://twitter.com"
+              href="https://www.behance.net/diranecode"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.2 }}

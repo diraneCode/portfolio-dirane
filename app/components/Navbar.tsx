@@ -29,7 +29,7 @@ export default function Navbar() {
           </Link>
           <div className="space-x-4">
             <Link href="#competences" className="hover:text-blue-400 transition-colors">
-              Compétences
+              Skills
             </Link>
             <Link href="#projets" className="hover:text-blue-400 transition-colors">
               Projets
