@@ -16,7 +16,7 @@ export default function Navbar() {
   return (
     <motion.nav
       className={`fixed w-full z-50 transition-all duration-300 font-mono ${
-        isScrolled ? "top-0 bg-gray-900/80 backdrop-blur-sm" : "bottom-0 bg-transparent"
+        isScrolled ? "top-0 bg-gray-900/80 backdrop-blur-sm" : "bottom-0 bg-gray-900/10 backdrop-blur-sm"
       }`}
       initial={{ y: 100 }}
       animate={{ y: 0 }}

@@ -5,7 +5,7 @@ import { Orbitron } from "next/font/google"
 const orbitron = Orbitron({subsets:["latin"]})
 
 export const metadata = {
-  title: "Portfolio Futuriste",
+  title: `Dirane • Portfolio`,
   description: "Portfolio de développeur et designer d'applications",
   icons: {
     icon:'/dirane-logo.ico'
