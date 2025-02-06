@@ -12,7 +12,7 @@ import { useSwiper } from 'swiper/react';
 
 
 const tuto = [
-    { name: "promo store", video: "/tuto/1.mp4", },
+    { name: "Google maps", video: "/tuto/1.mp4", },
     { name: "Corrige tes cours", video: "/tuto/2.mp4", },
 ]
 

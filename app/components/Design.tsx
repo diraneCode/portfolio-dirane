@@ -9,9 +9,8 @@ import "swiper/css/navigation"
 import "swiper/css/pagination"
 
 const projects = [
-  { name: "promo store", description: "Boutique de e-commerce", image: "/promo-store.png", link: "/video" },
-  { name: "Corrige tes cours", description: "Application web permettant aux étudiant de réviser", image: "/corrige.png", link: "/video" },
- ]
+  { name: "Maps", description: "Design d'une carte pour une application mobile sous figma", image: "/design/mobile-map.png", link: "/video" }, 
+  { name: "KMC Website", description: "Design d'un site web de restaurant et protypage sous figma", image: "/design/kmc-website.png", link: "/video" }, ]
 
 export default function Design() {
   return (
@@ -23,7 +22,7 @@ export default function Design() {
       transition={{ duration: 0.5 }}
     >
       <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-12">Mes Designs</h2>
+        <h2 className="text-4xl font-bold text-center mb-12">Design UI/UX</h2>
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={30}

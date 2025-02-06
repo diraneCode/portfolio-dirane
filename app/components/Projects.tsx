@@ -9,11 +9,11 @@ import "swiper/css/navigation"
 import "swiper/css/pagination"
 
 const projects = [
-  { name: "promo store", description: "Boutique de e-commerce", image: "/promo-store.png", link: "https://promo-store.vercel.app" },
-  { name: "Corrige tes cours", description: "Application web permettant aux étudiant de réviser", image: "/corrige.png", link: "https://corrigetescours.vercel.app/" },
+  { name: "promo store", description: "Boutique de e-commerce", image: "/projets/promo-store.png", link: "https://promo-store.vercel.app" },
+  { name: "Typer Speed", description: "Création d'un jeu de dactylographie pour tester ta vitesse de saisie", image: "/projets/typer.png", link: "dirane-speed-typer.vercel.app" },
+  { name: "Corrige tes cours", description: "Application web permettant aux étudiant de réviser", image: "/projets/corrige.png", link: "https://corrigetescours.vercel.app/" },
   { name: "Playstation 5", description: "Gaming", image: "/playstation.png", link: "#" },
-  { name: "Rent car", description: "Site vitrine de véhicule", image: "/rent.png", link: "https://location-car.vercel.app/" },
-  { name: "Portail captif", description: "Réalisation d'un portail captif", image: "/portail.png", link: "https://portail-captif-tofc.vercel.app/" },
+  { name: "Portail captif", description: "Réalisation d'un portail captif", image: "/projets/portail.png", link: "https://portail-captif-tofc.vercel.app/" },
 ]
 
 export default function Projects() {
