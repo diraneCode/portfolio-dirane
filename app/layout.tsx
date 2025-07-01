@@ -1,3 +1,4 @@
+import Chatbot from "./components/chatbot"
 import Navbar from "./components/Navbar"
 import "./globals.css"
 import { Orbitron } from "next/font/google"
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body className={`${orbitron.className} bg-gray-900 text-white`}>
         <Navbar />
         {children}
+        <Chatbot />
       </body>
     </html>
   )
