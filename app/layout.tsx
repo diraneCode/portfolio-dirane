@@ -7,7 +7,7 @@ const orbitron = Orbitron({ subsets: ["latin"] })
 
 export const metadata = {
   title: `Dirane • Portfolio`,
-  description: "Portfolio de développeur et designer d'applications",
+  description: "Software Engineer - UI/UX Designer",
   icons: {
     icon: '/dirane-logo.ico'
   }
