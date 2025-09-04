@@ -8,23 +8,27 @@ export default function Skills() {
   const skills = [
     {
       id: 1,
-      title: "React",
-      description: "Maîtrise de la librairie React : Je l'utilise quotidiennement dans mes projets web et mobiles pour développer des applications performantes et interactives. Mon expertise la création de composants réutilisables  pour des expériences utilisateur optimisées. Je suis également à l'aise avec les outils et écosystèmes associés tels que React Router, Hooks, et Next.js.",
-      icon: <Icon.FaReact size={50} color='#254FA' />
+      title: "Développeur Web & Mobile",
+      description:
+        "Expert en développement d’applications web et mobiles performantes avec React, React Native et Next.js. Je conçois des composants réutilisables, optimise l’expérience utilisateur et intègre des solutions modernes pour créer des interfaces fluides et interactives.",
+      icon: <Icon.FaCode size={50} color="#254FA" />,
     },
     {
       id: 2,
-      title: "UI/UX design",
-      description: "Maîtrisant Figma, je crée des interfaces utilisateur intuitives et modernes. Grâce à mon expertise en prototypage interactif et en design collaboratif, je transforme des idées en expériences visuelles captivantes. Mon approche centrée sur l’utilisateur garantit des designs fonctionnels et esthétiques.",
-      icon: <Icon.FaFigma size={50} color='#254FA' />
+      title: "UI/UX Designer",
+      description:
+        "Maîtrisant Figma, je conçois des interfaces intuitives et esthétiques. J’excelle dans le prototypage interactif, la conception centrée utilisateur et la création d’expériences visuelles engageantes. Mon objectif est d’allier design et ergonomie pour offrir une expérience optimale.",
+      icon: <Icon.FaFigma size={50} color="#254FA" />,
     },
     {
       id: 3,
-      title: "Github",
-      description: "Je maîtrise GitHub pour la gestion de versions et la collaboration sur des projets. J’utilise régulièrement des branches pour organiser le développement et GitHub Actions pour automatiser les workflows. Mon expérience inclut également la gestion des pull requests et la résolution des conflits de code.",
-      icon: <Icon.FaGithub size={50} color='#254FA' />
+      title: "DevOps",
+      description:
+        "Passionné par l’automatisation et le déploiement, je maîtrise GitHub, GitHub Actions et les environnements cloud. J’assure l’intégration continue (CI/CD), la gestion des versions et la surveillance des performances pour garantir des applications stables, scalables et sécurisées.",
+      icon: <Icon.FaDocker size={50} color="#254FA" />,
     },
   ]
+  
   return (
     <motion.section
       id="competences"
