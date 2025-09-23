@@ -3,19 +3,19 @@ import Skills from "./components/Skills"
 import Projects from "./components/Projects"
 import Contact from "./components/Contact"
 import Footer from "./components/Footer"
-import AnimatedBackground from "./components/AnimatedBackground"
-import Design from "./components/Design"
+import CVSection from "./components/CVSection"
+import LogoSection from "./components/LogoSection"
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-900 to-blue-900 relative">
-      <AnimatedBackground />
       <div className="relative z-10">
         <Hero />
-        <Skills />
         <Projects />
-        <Design />
+        <Skills />
+        <LogoSection />
         <Contact />
+        <CVSection />
         <Footer />
       </div>
     </main>

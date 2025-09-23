@@ -3,12 +3,17 @@
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { TypeAnimation } from "react-type-animation"
-import { FaDownload } from "react-icons/fa"
+import { useState } from "react"
+import ShinyText from '@/app/components/ShinyText';
+import { FaGithub, FaLinkedin, FaWhatsapp, FaTiktok, FaEnvelope } from "react-icons/fa"
 
 export default function Hero() {
+  const [hovered, setHovered] = useState(false)
+  const phone = "237697609387"
+  const message = "Bonjour, je souhaite discuter avec vous 😊"
   return (
     <motion.section
-      className="min-h-screen flex items-center justify-center py-20"
+      className="min-h-screen w-full bg-[#0f172a] relative flex items-center justify-center py-20"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -20,19 +25,56 @@ export default function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="relative w-64 h-64 mx-auto">
+          {/* <div
+            className="absolute inset-0 z-0"
+            style={{
+              backgroundImage: `radial-gradient(circle 600px at 50% 50%, rgba(59,130,246,0.3), transparent)`,
+            }}
+          /> */}
+          <div
+            className="relative w-64 h-64 mx-auto group cursor-pointer"
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+          >
+            {/* Cercle animé */}
             <motion.div
               className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-blue-600"
               animate={{ rotate: 360 }}
-              transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+              transition={{
+                duration: 10,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "linear",
+              }}
             />
+
+            {/* Image avec effet noir & blanc au hover */}
             <Image
               src="/placeholder2.png"
               alt="Dirane"
               width={256}
               height={256}
-              className="rounded-b-full object-cover absolute bottom-0"
+              className={`rounded-b-full object-cover absolute bottom-0 transition duration-300 ${hovered ? "grayscale" : ""
+                }`}
             />
+
+            {/* Popup style bulle de chat */}
+            {hovered && (
+              <motion.div
+                initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 20, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+                className="absolute -top-10 left-1/2 -translate-x-1/2"
+              >
+                <div className="relative bg-white text-gray-800 px-4 py-2 rounded-2xl shadow-lg text-sm font-medium">
+                  Ravie de vous voir !😊
+                  {/* Petite flèche type bulle de chat */}
+                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 
+                              border-l-8 border-r-8 border-t-8 border-transparent 
+                              border-t-white" />
+                </div>
+              </motion.div>
+            )}
           </div>
         </motion.div>
         <div className="md:w-1/2 text-center md:text-left">
@@ -42,10 +84,16 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Hi 👋, je suis Dirane
+            <ShinyText
+              text="Hi 👋, je suis Dirane"
+              disabled={false}
+              speed={2}
+              className='custom-class'
+            />
+
           </motion.h3>
           <TypeAnimation
-            sequence={["Développeur", 1000, "Web designer", 1000, "Designer UI/UX", 1000]}
+            sequence={["Software Engineer", 1000, "Développeur", 1000, "UI/UX Designer", 1000]}
             wrapper="h2"
             speed={50}
             className="text-xl md:text-5xl font-bold text-blue-400 mb-6"
@@ -57,21 +105,56 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <span className="text-green-500">Came</span><span className="text-red-500">roun</span><span className="text-yellow-500">ais</span> et passionné par developpement web et mobile
+            Jeune <span className="text-green-500">Came</span><span className="text-red-500">roun</span><span className="text-yellow-500">ais</span>, je vous accompagne à chaque étape : du branding créatif aux maquettes finales, pour donner vie à vos idées avec clarté et impact grâce à mon expérience.
           </motion.p>
-          <motion.a
-            href="/dirane's-cv.pdf"
-            download={"/dirane's-cv.pdf"}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full inline-flex items-center transition-colors duration-300"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Télécharger CV
-            <FaDownload />
-          </motion.a>
+          <div className="space-y-4">
+            <div
+              className="flex space-x-6 items-center justify-center md:justify-start"
+            >
+              <a
+                href="https://github.com/diraneCode"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaGithub size={24} className="text-gray-400 hover:text-white transition-colors" />
+              </a>
+              <a
+                href="https://linkedin.com/in/dirane-mekem-63b588273"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaLinkedin size={24} className="text-gray-400 hover:text-white transition-colors" />
+              </a>
+              <a
+                href="https://wa.me/237697609387"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaTiktok size={24} className="text-gray-400 hover:text-white transition-colors" />
+              </a>
+              <a
+                href="https://wa.me/237697609387"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaEnvelope size={24} className="text-gray-400 hover:text-white transition-colors" />
+              </a>
+            </div>
+            <motion.a
+              href={`https://wa.me/${phone}?text=${encodeURIComponent(message)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full inline-flex items-center gap-2 transition-colors duration-300 shadow-md"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaWhatsapp className="text-xl" />
+              Discuter maintenant
+            </motion.a>
+          </div>
         </div>
       </div>
     </motion.section>

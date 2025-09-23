@@ -1,9 +1,10 @@
+import { Toaster } from "sonner"
 import Chatbot from "./components/chatbot"
 import Navbar from "./components/Navbar"
 import "./globals.css"
-import { Orbitron } from "next/font/google"
+import { Nunito } from "next/font/google"
 
-const orbitron = Orbitron({ subsets: ["latin"] })
+const orbitron = Nunito({ subsets: ["latin"] })
 
 export const metadata = {
   title: `Dirane • Portfolio`,
@@ -30,6 +31,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Chatbot />
+        <Toaster />
       </body>
     </html>
   )

@@ -1,75 +1,172 @@
 "use client"
 
 import { motion } from "framer-motion"
-import Image from "next/image"
-import { Swiper, SwiperSlide } from "swiper/react"
-import { Navigation, Pagination, Autoplay } from "swiper/modules"
-import "swiper/css"
-import "swiper/css/navigation"
-import "swiper/css/pagination"
+import { useState } from "react"
+import { Grid3X3, List, LayoutGrid } from "lucide-react"
+import { ProjectCardDetail } from "./ProjectCardDetail"
+import { projectData } from "@/lib/projectData"
 
-const projects = [
-  { name: "promo store", description: "Boutique de e-commerce", image: "/projets/promo-store.png", link: "https://promo-store.vercel.app" },
-  { name: "Typer Speed", description: "Création d'un jeu de dactylographie pour tester ta vitesse de saisie", image: "/projets/typer.png", link: "dirane-speed-typer.vercel.app" },
-  { name: "Corrige tes cours", description: "Application web permettant aux étudiant de réviser", image: "/projets/corrige.png", link: "https://corrigetescours.vercel.app/" },
-  { name: "Playstation 5", description: "Gaming", image: "/playstation.png", link: "#" },
-  { name: "Portail captif", description: "Réalisation d'un portail captif", image: "/projets/portail.png", link: "https://portail-captif-tofc.vercel.app/" },
-]
 
 export default function Projects() {
+  const [viewMode, setViewMode] = useState<"bento" | "vertical">("bento")
+  const [mobileViewMode, setMobileViewMode] = useState<"vertical" | "horizontal">("vertical")
+
   return (
     <motion.section
       id="projets"
-      className="py-20 bg-gradient-to-b from-blue-900 to-gray-900 font-[Roboto]"
+      className="sm:py-20 min-h-screen w-full bg-[#0f172a] relative"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `radial-gradient(circle 600px at 50% 50%, rgba(59,130,246,0.3), transparent)`,
+        }}
+      />
       <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-12">Mes Projets</h2>
-        <Swiper
-          modules={[Navigation, Pagination, Autoplay]}
-          spaceBetween={30}
-          slidesPerView={1}
-          navigation
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 5000 }}
-          breakpoints={{
-            640: {
-              slidesPerView: 2,
-            },
-            1024: {
-              slidesPerView: 3,
-            },
-          }}
-        >
-          {projects.map((project) => (
-            <SwiperSlide key={project.name}>
-              <motion.div
-                className="bg-white/10 backdrop-blur-md rounded-lg overflow-hidden shadow-lg h-full"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Image
-                  src={project.image || "/placeholder.svg"}
-                  alt={project.name}
-                  width={400}
-                  height={200}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{project.name}</h3>
-                  <p className="text-gray-300 mb-4">{project.description}</p>
-                  <a href={project.link} className="text-blue-400 hover:text-blue-300 transition-colors">
-                    Voir le projet
-                  </a>
+        <div className="flex flex-col items-start mb-12">
+          <h2 className="text-4xl font-bold mb-8 text-white">Mes Projets</h2>
+
+          <div className="hidden md:flex bg-white/10 backdrop-blur-md rounded-xl p-1 border border-white/20 mb-4 space-x-1">
+            <button
+              onClick={() => setViewMode("bento")}
+              className={`px-6 py-3 rounded-lg transition-all duration-300 flex items-center gap-2 ${viewMode === "bento"
+                ? "bg-blue-500 text-white shadow-lg"
+                : "text-gray-300 hover:text-white hover:bg-white/10"
+                }`}
+            >
+              <LayoutGrid className="w-4 h-4" />
+              Bento Grid
+            </button>
+            <button
+              onClick={() => setViewMode("vertical")}
+              className={`px-6 py-3 rounded-lg transition-all duration-300 flex items-center gap-2 ${viewMode === "vertical"
+                ? "bg-blue-500 text-white shadow-lg"
+                : "text-gray-300 hover:text-white hover:bg-white/10"
+                }`}
+            >
+              <Grid3X3 className="w-4 h-4" />
+              Grille
+            </button>
+          </div>
+
+          <div className="flex md:hidden bg-white/10 backdrop-blur-md rounded-xl p-1 border border-white/20">
+            <button
+              onClick={() => setMobileViewMode("vertical")}
+              className={`px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2 ${mobileViewMode === "vertical"
+                ? "bg-blue-500 text-white shadow-lg"
+                : "text-gray-300 hover:text-white hover:bg-white/10"
+                }`}
+            >
+              <List className="w-4 h-4" />
+              <span className="text-sm">Vertical</span>
+            </button>
+            <button
+              onClick={() => setMobileViewMode("horizontal")}
+              className={`px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2 ${mobileViewMode === "horizontal"
+                ? "bg-blue-500 text-white shadow-lg"
+                : "text-gray-300 hover:text-white hover:bg-white/10"
+                }`}
+            >
+              <Grid3X3 className="w-4 h-4" />
+              <span className="text-sm">2x2</span>
+            </button>
+          </div>
+        </div>
+
+        <div className="hidden md:block">
+          {viewMode === "bento" ? (
+            <section className="max-w-6xl mx-auto">
+              <div className="w-full h-full flex flex-col gap-6">
+                <div className="flex justify-between space-x-4">
+                  <div className="w-64 h-64">
+                    <ProjectCardDetail
+                      project={projectData[0]}
+                      imageHeight="h-full"
+                      className="w-full h-full"
+                    />
+                  </div>
+                  <div className="w-[27rem] h-64">
+                    <ProjectCardDetail
+                      project={projectData[1]}
+                      imageHeight="h-full"
+                      className="w-full h-full"
+                    />
+                  </div>
+                  <div className="w-64 h-64">
+                    <ProjectCardDetail
+                      project={projectData[2]}
+                      imageHeight="h-full"
+                      className="w-full h-full"
+                    />
+                  </div>
                 </div>
-              </motion.div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+                <div className="flex space-x-4">
+                  <div className="w-full h-96">
+                    <ProjectCardDetail
+                      project={projectData[3]}
+                      imageHeight="h-full"
+                      className="w-full h-full"
+                    />
+                  </div>
+                  <div className="w-full h-96 space-y-4 flex flex-col">
+                    <div className="w-full h-full">
+                      <ProjectCardDetail
+                        project={projectData[4]}
+                        imageHeight="h-full"
+                        className="w-full h-full"
+                      />
+                    </div>
+                    <div className="w-full h-full space-x-4 flex flex-row">
+                      <div className="w-full h-full">
+                        <ProjectCardDetail
+                          project={projectData[3]}
+                          imageHeight="h-full"
+                          className="w-full h-full"
+                        />
+                      </div>
+                      <div className="w-full h-full">
+                        <ProjectCardDetail
+                          project={projectData[1]}
+                          imageHeight="h-full"
+                          className="w-full h-full"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+          ) : (
+            <div className="max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-blue-500/50 scrollbar-track-transparent pr-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {projectData.map((project, index) => (
+                  <ProjectCardDetail key={index} project={project} imageHeight="h-64" />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="block md:hidden">
+          {mobileViewMode === "vertical" ? (
+            <div className="space-y-6">
+              {projectData.map((project, index) => (
+                <ProjectCardDetail key={index} project={project} imageHeight="h-56" className="w-full" />
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 gap-4">
+              {projectData.map((project, index) => (
+                <ProjectCardDetail key={index} project={project} imageHeight="h-40" className="w-full" />
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </motion.section>
   )
 }
-

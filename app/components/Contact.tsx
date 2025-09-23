@@ -1,110 +1,216 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { useState } from "react"
+import { IoLocation, IoMailUnread, IoCall, IoSend, IoCheckmarkDone } from "react-icons/io5"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { toast } from "sonner"
+import { z } from "zod"
 import { Button } from "@/components/ui/button"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { ToastContainer, toast,  } from 'react-toastify';
+import { Textarea } from "@/components/ui/textarea"
 
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 export default function Contact() {
-  const [email, setEmail] = useState("")
-  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+  const FormSchema = z.object({
+    username: z
+      .string()
+      .min(2, { message: "Le nom doit comporter au moins 2 caractères." })
+      .max(50, { message: "Le nom ne doit pas dépasser 50 caractères." }),
 
-    // Simuler une soumission de formulaire
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-    toast(`${email}, vous avez bien été enregistré 🎉`, {
-      position: "bottom-left",
-      type: "success",
-      theme: "dark",
-      closeButton: true,
-      draggable: true
+    email: z
+      .string()
+      .email({ message: "Veuillez entrer une adresse e-mail valide." }),
+
+    phone: z
+      .string()
+      .regex(/^(?:\+?\d{7,15})$/, {
+        message: "Veuillez entrer un numéro de téléphone valide.",
+      }),
+
+    object: z
+      .string()
+      .min(2, { message: "L’objet doit comporter au moins 2 caractères." })
+      .max(100, { message: "L’objet ne doit pas dépasser 100 caractères." }),
+
+    description: z
+      .string()
+      .min(10, { message: "La description doit comporter au moins 10 caractères." })
+      .max(1000, { message: "La description ne doit pas dépasser 1000 caractères." }),
+  })
+
+
+  const form = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
+    defaultValues: {
+      username: "",
+      email: "",
+      phone: "",
+      object: "",
+      description: ""
+
+    },
+  })
+  function onSubmit(data: z.infer<typeof FormSchema>) {
+
+    console.log(data)
+    form.reset()
+    toast.custom((id) => (
+      <div
+        className="relative flex w-[340px] items-center gap-2 rounded-2xl border border-white/10 bg-[#141414]/50 p-4 shadow-lg backdrop-blur-sm animate-in fade-in-0 slide-in-from-bottom-5"
+      >
+        <div className="size-10 shrink-0 rounded-full bg-blue-500 flex items-center justify-center">
+          <IoCheckmarkDone size={20} color="#fff" />
+        </div>
+
+        <p className="flex-1 text-sm text-white break-words whitespace-normal">
+          Merci pour votre message! Nous vous répondrons dans les plus brefs délais. {id}
+        </p>
+      </div>
+    ), {
+      duration: 4000
     })
-
-    setEmail("")
-    setIsSubmitting(false)
   }
   return (
-    <motion.section
+    <section
       id="contact"
       className="py-20 bg-gradient-to-b from-gray-900 to-blue-900 flex items-center justify-center"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
     >
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="w-full max-w-md"
-      >
-        <div className="relative backdrop-blur-lg bg-white/10 rounded-2xl shadow-xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 to-purple-600/30 opacity-50" />
-          <div className="relative p-8">
-            <h2 className="text-3xl font-bold text-white mb-6 text-center">Rejoignez ma Newsletter</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="relative">
-                <Input
-                  type="email"
-                  placeholder="Votre adresse email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="w-full bg-white/20 text-white placeholder-white border-gray-500 focus:border-blue-300 transition-all duration-300"
-                />
-              </div>
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105"
-              >
-                {isSubmitting ? (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="flex items-center justify-center"
-                  >
-                    <svg
-                      className="animate-spin h-5 w-5 mr-3 text-white"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                      ></circle>
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                      ></path>
-                    </svg>
-                    Inscription...
-                  </motion.div>
-                ) : (
-                  "S'inscrire"
-                )}
-              </Button>
-            </form>
-            <p className="mt-4 text-sm text-gray-300 text-center font-mono">
-              Restez informé de mes dernières actualités et offres spéciales.
+      <div className="container mx-auto px-6">
+        <h2 className="text-4xl font-bold mb-12">Contactez-moi</h2>
+        <div className="w-full sm:h-screen h-fit bg-[#1B2062] flex sm:flex-row flex-col-reverse rounded-xl overflow-hidden">
+          <div className="w-full sm:w-3/5 h-full bg-gradient-to-b from-[#1B2062] to-[#050C38] p-10 rounded-xl space-y-7">
+            <h3 className="text-xl font-bold">Vous pouvez me joindre via ce formulaire de contact</h3>
+            <p className="text-sm text-white/50">
+              N’hésitez pas à me laisser un message pour toute collaboration, question ou projet.
+              Je reviendrai vers vous dans les plus brefs délais.
             </p>
+            <div className="space-y-5">
+              <div className="flex items-center gap-x-3">
+                <div className="size-10 bg-blue-500 rounded-full flex items-center justify-center">
+                  <IoCall size={20} className="" />
+                </div>
+                <div className="flex flex-col space-y-2">
+                  <span className="text-sm text-white/50">Téléphone</span>
+                  <span className="font-bold">+237 697 60 93 87</span>
+                </div>
+              </div>
+              <div className="flex items-center gap-x-3">
+                <div className="size-10 bg-blue-500 rounded-full flex items-center justify-center">
+                  <IoMailUnread size={20} className="" />
+                </div>
+                <div className="flex flex-col space-y-2">
+                  <span className="text-sm text-white/50">Email</span>
+                  <span className="font-bold">diranemekem@gmail.com</span>
+                </div>
+              </div>
+              <div className="flex items-center gap-x-3">
+                <div className="size-10 bg-blue-500 rounded-full flex items-center justify-center">
+                  <IoLocation size={20} className="" />
+                </div>
+                <div className="flex flex-col space-y-2">
+                  <span className="text-sm text-white/50">Adresse</span>
+                  <span className="font-bold">Douala, Cameroun</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="w-full h-full p-10">
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="sm:w-2/3 space-y-6">
+                <FormField
+                  control={form.control}
+                  name="username"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Nom et prénom(s)</FormLabel>
+                      <FormControl>
+                        <Input type="text" required placeholder="Ex: John Doe" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input type="email" required placeholder="Ex: john.doe@example.com" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="phone"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>N° de téléphone</FormLabel>
+                      <FormControl>
+                        <PhoneInput
+                          country={'cm'}
+                          inputStyle={{ width: '100%', backgroundColor: "transparent" }}
+                          buttonStyle={{ backgroundColor: 'transparent', color: "#000" }}
+                          containerStyle={{ border: '1px solid grey' }}
+                          containerClass="flex h-9 w-full rounded-md border bg-transparent text-base shadow-sm transition-colors placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-950 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="object"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Objet du message</FormLabel>
+                      <FormControl>
+                        <Input type="text" required placeholder="Ex: Collaboration, Devis, Préocupation..." {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="description"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Message</FormLabel>
+                      <FormControl>
+                        <Textarea required placeholder="Ex: Bonjour, je souhaite discuter avec vous 😊" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button variant={"outline"} type="submit" className="text-black">
+                  <IoSend className="-rotate-45" />
+                  Envoyer
+                </Button>
+              </form>
+            </Form>
           </div>
         </div>
-      </motion.div>
-      <ToastContainer />
-    </motion.section>
+
+      </div>
+    </section>
   )
 }
 
