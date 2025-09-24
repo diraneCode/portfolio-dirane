@@ -25,7 +25,7 @@ export const ProjectCardDetail = ({
                         src={project.image || "/placeholder.svg"}
                         alt={project.name}
                         fill
-                        className="w-full h-full object-contain transition-transform duration-500"
+                        className="w-full h-full object-cover transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="absolute bottom-4 left-4 right-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
@@ -50,7 +50,7 @@ export const ProjectCardDetail = ({
                     <div className="flex flex-col sm:flex-row gap-6">
                         {/* Project Image */}
                         <div className="relative w-full sm:w-80 h-64 sm:h-80 rounded-2xl overflow-hidden shadow-xl bg-gradient-to-br from-gray-100 to-gray-200">
-                            <Image src={project.image || "/placeholder.svg"} alt={project.name} fill className="object-cover" />
+                            <Image src={project.image || "/placeholder.svg"} alt={project.name} fill className="w-full h-full object-cover" />
                             <div className="absolute top-4 right-4">
                                 <Badge variant="secondary" className="bg-white/90 text-gray-800 font-medium">
                                     {project.category}

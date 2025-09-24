@@ -28,11 +28,11 @@ export default function Navbar() {
             <Image src={'/dirane-logo.ico'} alt="logo" width={40} height={40} className="rounded-full" />
           </Link>
           <div className="space-x-4">
-            <Link href="#competences" className="hover:text-blue-400 transition-colors">
-              Skills
-            </Link>
             <Link href="#projets" className="hover:text-blue-400 transition-colors">
               Projets
+            </Link>
+            <Link href="#competences" className="hover:text-blue-400 transition-colors">
+              Compétences
             </Link>
             <Link href="#contact" className="hover:text-blue-400 transition-colors">
               Contact
