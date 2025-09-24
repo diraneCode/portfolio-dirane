@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { FaDownload } from "react-icons/fa";
 
 export default function CVSection() {
@@ -37,10 +38,12 @@ export default function CVSection() {
                             <span>Télécharger la version pdf de mon curriculum vitae pour en savoir plus...</span>
                         </div>
                     </div>
-                    <Button className="p-6 bg-blue-500 w-full sm:w-fit">
-                        <FaDownload size={20} />
-                        Télécharger CV
-                    </Button>
+                    <a href="/dirane's-cv.pdf" download>
+                        <Button className="p-6 bg-blue-500 w-full sm:w-fit">
+                            <FaDownload size={20} />
+                            Télécharger CV
+                        </Button>
+                    </a>
                 </div>
             </motion.section>
         </div>
