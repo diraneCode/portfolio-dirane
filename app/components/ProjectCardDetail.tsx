@@ -2,7 +2,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
-import { ExternalLink, Github, Calendar, User } from "lucide-react"
+import { ExternalLink, Github, Calendar, User, Figma } from "lucide-react"
 import { projectData } from "@/lib/projectData"
 
 
@@ -22,7 +22,7 @@ export const ProjectCardDetail = ({
             >
                 <div className={`relative ${imageHeight}`}>
                     <Image
-                        src={project.image || "/placeholder.svg"}
+                        src={project.image[0].src || "/placeholder.svg"}
                         alt={project.name}
                         fill
                         className="w-full h-full object-cover transition-transform duration-500"
@@ -43,14 +43,14 @@ export const ProjectCardDetail = ({
         </SheetTrigger>
         <SheetContent
             side="bottom"
-            className="max-h-[85vh] w-full md:w-[90vw] lg:w-[90vw] place-self-center sm:max-h-[90vh] rounded-t-3xl border-0 bg-white/95 backdrop-blur-xl shadow-2xl"
+            className="max-h-[85vh] w-full md:w-[90vw] lg:w-[90vw] place-self-center sm:max-h-[90vh] rounded-t-3xl border-0 bg-white/95 backdrop-blur-xl shadow-2xl overflow-auto"
         >
-            <div className="mx-auto max-w-4xl mt-10">
+            <div className="mx-auto max-w-4xl mt-10 overflow-y-auto py-4">
                 <SheetHeader className="text-left pb-6">
                     <div className="flex flex-col sm:flex-row gap-6">
                         {/* Project Image */}
-                        <div className="relative w-full sm:w-80 h-64 sm:h-80 rounded-2xl overflow-hidden shadow-xl bg-gradient-to-br from-gray-100 to-gray-200">
-                            <Image src={project.image || "/placeholder.svg"} alt={project.name} fill className="w-full h-full object-cover" />
+                        <div className="relative w-[full] sm:w-80 h-64 sm:h-80 rounded-2xl overflow-hidden shadow-xl bg-gradient-to-br from-gray-100 to-gray-200">
+                            <Image src={project.image[0].src || "/placeholder.svg"} alt={project.name} fill className="w-full h-full object-cover" />
                             <div className="absolute top-4 right-4">
                                 <Badge variant="secondary" className="bg-white/90 text-gray-800 font-medium">
                                     {project.category}
@@ -135,9 +135,39 @@ export const ProjectCardDetail = ({
                                         </a>
                                     </Button>
                                 )}
+                                {project.Figma && (
+                                    <Button
+                                        variant="outline"
+                                        asChild
+                                        className="border-gray-300 text-gray-700 hover:bg-gray-50 rounded-xl px-6 py-3 font-medium transition-all duration-200 bg-transparent"
+                                    >
+                                        <a
+                                            href={project.github}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-2"
+                                        >
+                                            <Figma className="w-4 h-4" />
+                                            Voir le projet
+                                        </a>
+                                    </Button>
+                                )}
                             </div>
                         </div>
                     </div>
+                    <div className="w-full flex flex-col gap-10 py-2">
+                        {project.image.map((img, index) => (
+                            <div key={index} className="w-full rounded-xl overflow-hidden shadow-lg bg-gray-100 aspect-[16/9] relative">
+                                <Image
+                                    src={img.src || "/placeholder.svg"}
+                                    alt={`${project.name} image ${index + 1}`}
+                                    fill
+                                    className="object-cover"
+                                />
+                            </div>
+                        ))}
+                    </div>
+
                 </SheetHeader>
             </div>
         </SheetContent>

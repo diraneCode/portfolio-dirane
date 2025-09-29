@@ -83,21 +83,21 @@ export default function Projects() {
                 <div className="flex justify-between space-x-4">
                   <div className="w-64 h-64">
                     <ProjectCardDetail
-                      project={projectData[0]}
+                      project={projectData[6]}
                       imageHeight="h-full"
                       className="w-full h-full"
                     />
                   </div>
                   <div className="w-[27rem] h-64">
                     <ProjectCardDetail
-                      project={projectData[1]}
+                      project={projectData[2]}
                       imageHeight="h-full"
                       className="w-full h-full"
                     />
                   </div>
                   <div className="w-64 h-64">
                     <ProjectCardDetail
-                      project={projectData[2]}
+                      project={projectData[1]}
                       imageHeight="h-full"
                       className="w-full h-full"
                     />
@@ -122,14 +122,14 @@ export default function Projects() {
                     <div className="w-full h-full space-x-4 flex flex-row">
                       <div className="w-full h-full">
                         <ProjectCardDetail
-                          project={projectData[3]}
+                          project={projectData[0]}
                           imageHeight="h-full"
                           className="w-full h-full"
                         />
                       </div>
                       <div className="w-full h-full">
                         <ProjectCardDetail
-                          project={projectData[1]}
+                          project={projectData[7]}
                           imageHeight="h-full"
                           className="w-full h-full"
                         />
@@ -141,7 +141,7 @@ export default function Projects() {
             </section>
 
           ) : (
-            <div className="max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-blue-500/50 scrollbar-track-transparent pr-2">
+            <div className="max-h-fit pr-2">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {projectData.map((project, index) => (
                   <ProjectCardDetail key={index} project={project} imageHeight="h-64" />

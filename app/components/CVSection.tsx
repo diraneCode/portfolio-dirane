@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import { FaDownload } from "react-icons/fa";
 
 export default function CVSection() {
@@ -22,7 +21,7 @@ export default function CVSection() {
                         backgroundImage: `radial-gradient(circle 600px at 50% 50%, rgba(59,130,246,0.3), transparent)`,
                     }}
                 />
-                <div className="flex flex-col space-y-3 sm:flex-row justify-between items-center bg-[#1B2062] rounded-xl py-4 px-8">
+                <div className="container mx-auto flex flex-col space-y-3 sm:flex-row justify-between items-center bg-[#1B2062] rounded-xl py-4 px-6">
                     <div className="flex flex-col space-y-3 sm:flex-row justify-between items-center">
                         <div className="sm:size-28 sm:rounded-xl rounded-md">
                             <Image

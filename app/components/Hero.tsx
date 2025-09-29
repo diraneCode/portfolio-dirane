@@ -108,36 +108,61 @@ export default function Hero() {
             Jeune <span className="text-green-500">Came</span><span className="text-red-500">roun</span><span className="text-yellow-500">ais</span>, je vous accompagne à chaque étape : du branding créatif aux maquettes finales, pour donner vie à vos idées avec clarté et impact grâce à mon expérience.
           </motion.p>
           <div className="space-y-4">
-            <div
-              className="flex space-x-6 items-center justify-center md:justify-start"
-            >
+            <div className="flex space-x-6 items-center justify-center md:justify-start">
+              {/* GitHub */}
               <a
                 href="https://github.com/diraneCode"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaGithub size={24} className="text-gray-400 hover:text-white transition-colors" />
+                <FaGithub
+                  size={24}
+                  className="text-gray-400 hover:text-white transition-colors"
+                />
               </a>
+
+              {/* LinkedIn */}
               <a
                 href="https://linkedin.com/in/dirane-mekem-63b588273"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaLinkedin size={24} className="text-gray-400 hover:text-white transition-colors" />
+                <FaLinkedin
+                  size={24}
+                  className="text-gray-400 hover:text-white transition-colors"
+                />
               </a>
+
+              {/* TikTok */}
+              <a
+                href="https://www.tiktok.com/@diranecode"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaTiktok
+                  size={24}
+                  className="text-gray-400 hover:text-white transition-colors"
+                />
+              </a>
+
+              {/* WhatsApp */}
               <a
                 href="https://wa.me/237697609387"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaTiktok size={24} className="text-gray-400 hover:text-white transition-colors" />
+                <FaWhatsapp
+                  size={24}
+                  className="text-gray-400 hover:text-white transition-colors"
+                />
               </a>
-              <a
-                href="https://wa.me/237697609387"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaEnvelope size={24} className="text-gray-400 hover:text-white transition-colors" />
+
+              {/* Email */}
+              <a href="mailto:diranemekem@gmail.com">
+                <FaEnvelope
+                  size={24}
+                  className="text-gray-400 hover:text-white transition-colors"
+                />
               </a>
             </div>
             <motion.a

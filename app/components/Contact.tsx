@@ -111,7 +111,7 @@ export default function Contact() {
                 </div>
                 <div className="flex flex-col space-y-2">
                   <span className="text-sm text-white/50">Email</span>
-                  <span className="font-bold">diranemekem@gmail.com</span>
+                  <span className="font-bold">contact@dirane.me</span>
                 </div>
               </div>
               <div className="flex items-center gap-x-3">

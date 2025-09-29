@@ -18,7 +18,7 @@ export default function Home() {
         <CVSection />
         <Footer />
       </div>
-    </main>
+    </main> 
   )
 }
 
