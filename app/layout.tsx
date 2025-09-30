@@ -8,10 +8,11 @@ const orbitron = Nunito({ subsets: ["latin"] })
 
 export const metadata = {
   title: `Dirane • Portfolio`,
+  author: "Dirane",
   description: "Software Engineer - UI/UX Designer",
   icons: {
     icon: '/dirane-logo.ico'
-  }
+  },
 }
 
 export default function RootLayout({
