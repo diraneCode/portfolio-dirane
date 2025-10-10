@@ -1,6 +1,7 @@
 import * as Icon from 'react-icons/fa6'
 
 
+
 export default function Skills() {
   const skills = [
     {

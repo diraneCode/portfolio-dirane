@@ -32,7 +32,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Chatbot />
-        <Toaster />
+        <Toaster richColors position="top-center" closeButton={true} swipeDirections={["top"]} />
       </body>
     </html>
   )

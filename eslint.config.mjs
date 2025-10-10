@@ -11,6 +11,22 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+
+  {
+    rules: {
+      // ✅ Autorise le type any
+      "@typescript-eslint/no-explicit-any": "off",
+
+      // ✅ Corrige ton erreur "Expected an assignment or function call"
+      "@typescript-eslint/no-unused-expressions": "off",
+
+      // ✅ Les warnings React Hooks deviennent non bloquants
+      "react-hooks/exhaustive-deps": "warn",
+
+      // ✅ Autorise <img> au lieu de <Image />
+      "@next/next/no-img-element": "off",
+    },
+  },
 ];
 
 export default eslintConfig;

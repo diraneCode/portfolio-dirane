@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
-import Slider from 'react-infinite-logo-slider'
+import LogoLoop from '../../components/LogoLoop';
 
 export default function LogoSection() {
     const logoFrontTab = [
@@ -52,19 +51,19 @@ export default function LogoSection() {
             name: "Html",
             src: "/logo/html.png",
             width: 50,
-            height: 50 
+            height: 50
         },
         {
             name: "Bootstrap",
             src: "/logo/bootstrap.png",
             width: 50,
-            height: 50 
+            height: 50
         },
         {
             name: "Javascript",
             src: "/logo/javascript.png",
             width: 50,
-            height: 50 
+            height: 50
         },
     ]
 
@@ -121,38 +120,32 @@ export default function LogoSection() {
                         backgroundImage: `radial-gradient(circle 600px at 50% 50%, rgba(59,130,246,0.3), transparent)`,
                     }}
                 />
-                <Slider
-                    width="150px"
-                    duration={40}
-                    pauseOnHover={false}
-                    blurBorders={false}
-                    blurBorderColor={'#fff'}
-                >
-                    {logoFrontTab.map((logo, index) => (
-                        <Slider.Slide key={index}>
-                            <div className='size-14 p-2 rounded-xl bg-white flex items-center justify-center '>
-                                <Image src={logo.src} alt={logo.name} width={logo.width} height={logo.height} />
-                            </div>
-                        </Slider.Slide>
-                    ))}
-                </Slider>
-                <Slider
-                    width="150px"
-                    duration={35}
-                    pauseOnHover={false}
-                    blurBorders={false}
-                    blurBorderColor={'#BDBDBD'}
-                    toRight={true}
-                    
-                >
-                    {logoBackTab.map((logo, index) => (
-                        <Slider.Slide key={index}>
-                            <div className='size-14 p-2 rounded-xl bg-white flex items-center justify-center '>
-                                <Image src={logo.src} alt={logo.name} width={logo.width} height={logo.height} />
-                            </div>
-                        </Slider.Slide>
-                    ))}
-                </Slider>
+                <div style={{ height: '200px', position: 'relative', overflow: 'hidden' }} className='space-y-16'>
+                    <LogoLoop
+                        logos={logoFrontTab}
+                        speed={40}
+                        direction="left"
+                        logoHeight={48}
+                        gap={40}
+                        pauseOnHover
+                        scaleOnHover
+                        fadeOut
+                        fadeOutColor="#ffffff"
+                        ariaLabel="Technology Logo"
+                    />
+                    <LogoLoop
+                        logos={logoBackTab}
+                        speed={40}
+                        direction="right"
+                        logoHeight={48}
+                        gap={40}
+                        pauseOnHover
+                        scaleOnHover
+                        fadeOut
+                        fadeOutColor="#ffffff"
+                        ariaLabel="Technology Logo"
+                    />
+                </div>
             </motion.section>
         </div>
     )

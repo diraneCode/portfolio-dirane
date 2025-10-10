@@ -43,7 +43,7 @@ export const ProjectCardDetail = ({
         </SheetTrigger>
         <SheetContent
             side="bottom"
-            className="max-h-[85vh] w-full md:w-[90vw] lg:w-[90vw] place-self-center sm:max-h-[90vh] rounded-t-3xl border-0 bg-white/95 backdrop-blur-xl shadow-2xl overflow-auto"
+            className="max-h-[85vh] w-full md:w-[90vw] lg:w-[90vw] place-self-center sm:max-h-[90vh] rounded-t-xl border-0 bg-white/95 backdrop-blur-xl shadow-2xl overflow-auto"
         >
             <div className="mx-auto max-w-4xl mt-10 overflow-y-auto py-4">
                 <SheetHeader className="text-left pb-6">

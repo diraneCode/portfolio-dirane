@@ -2,8 +2,21 @@
 
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { FaDownload } from "react-icons/fa";
+import ChromaGrid from '../../components/ChromaGrid';
+import BtnDevis from "@/components/BtnDevis";
+
+const items = [
+    {
+        image: "/dirane-square.png",
+        title: "Dirane",
+        subtitle: "Software Engineer",
+        handle: "@dirane",
+        borderColor: "#3B82F6",
+        gradient: "linear-gradient(145deg, #3B82F6, #000)",
+        url: "https://github.com/dirane"
+    }
+];
 
 export default function CVSection() {
     return (
@@ -21,28 +34,37 @@ export default function CVSection() {
                         backgroundImage: `radial-gradient(circle 600px at 50% 50%, rgba(59,130,246,0.3), transparent)`,
                     }}
                 />
-                <div className="container mx-auto flex flex-col space-y-3 sm:flex-row justify-between items-center bg-[#1B2062] rounded-xl py-4 px-6">
-                    <div className="flex flex-col space-y-3 sm:flex-row justify-between items-center">
-                        <div className="sm:size-28 sm:rounded-xl rounded-md">
-                            <Image
-                                src={"/dirane-square.png"}
-                                alt="CV"
-                                width={800}
-                                height={600}
-                                className="mx-auto"
+                <div className="container mx-auto flex justify-between  space-y-3 sm:flex-row bg-[#1B2062] rounded-xl py-4 px-6">
+                    <div className="bg-transparent flex flex-col space-y-3 sm:flex-row justify-between items-center">
+                        <div className="h-fit relative">
+                            <ChromaGrid
+                                items={items}
+                                radius={300}
+                                damping={0.45}
+                                fadeOut={0.6}
+                                ease="power3.out"
                             />
                         </div>
-                        <div className="flex flex-col justify-center ml-6 space-y-2">
-                            <span className="text-xl font-bold">Mon profil vous intéresse ?</span>
-                            <span>Télécharger la version pdf de mon curriculum vitae pour en savoir plus...</span>
-                        </div>
                     </div>
-                    <a href="/dirane's-cv.pdf" download>
-                        <Button className="p-6 bg-blue-500 w-full sm:w-fit">
-                            <FaDownload size={20} />
-                            Télécharger CV
-                        </Button>
-                    </a>
+                    <div className="flex flex-col items-start gap-5">
+                        <div className="flex flex-col justify-center space-y-5">
+                            <span className="text-xl font-bold">Mon profil vous intéresse ?</span>
+                            <span>Télécharger la version pdf de mon CV</span>
+                        </div>
+                        <a href="/dirane's-cv.pdf" download>
+                            <Button className="p-6 bg-blue-500 w-full sm:w-fit">
+                                <FaDownload size={20} />
+                                Télécharger CV
+                            </Button>
+                        </a>
+                    </div>
+                    <div className="flex flex-col items-start gap-5">
+                        <div className="flex flex-col justify-center space-y-5">
+                            <span className="text-xl font-bold">Vous avez besoin d&lsquo;un service ?</span>
+                            <span>Obtenez un devis gratuitement</span>
+                        </div>
+                        <BtnDevis />
+                    </div>
                 </div>
             </motion.section>
         </div>

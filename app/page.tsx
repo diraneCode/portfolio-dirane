@@ -6,6 +6,7 @@ import Footer from "./components/Footer"
 import CVSection from "./components/CVSection"
 import LogoSection from "./components/LogoSection"
 import StatSection from "./components/StatSection"
+import GallerySection from "./components/GallerySection"
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <LogoSection />
         <Contact />
         <CVSection />
+        <GallerySection />
         <Footer />
       </div>
     </main> 
