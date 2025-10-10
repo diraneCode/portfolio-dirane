@@ -34,8 +34,8 @@ const CardNav: React.FC<CardNavProps> = ({
   items,
   className = '',
   ease = 'power3.out',
-  baseColor = '#fff',
-  menuColor,
+  // baseColor = '#fff',
+  // menuColor,
 }) => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -70,7 +70,6 @@ const CardNav: React.FC<CardNavProps> = ({
     return 260;
   }, []);
 
-  // ✅ useCallback pour éviter le warning
   const createTimeline = useCallback(() => {
     const navEl = navRef.current;
     if (!navEl) return null;
@@ -133,51 +132,67 @@ const CardNav: React.FC<CardNavProps> = ({
 
   return (
     <div
-      className={`card-nav-container backdrop-blur-sm absolute left-1/2 -translate-x-1/2 w-[90%] max-w-[800px] z-[99] top-[1.2em] md:top-[2em] ${className}`}
+      className={`
+        card-nav-container absolute left-1/2 -translate-x-1/2
+        w-[92%] max-w-[900px] z-[99] top-[1em] md:top-[2em]
+        ${className}
+      `}
     >
       <nav
         ref={navRef}
-        className={`card-nav ${isExpanded ? 'open' : ''} block h-[60px] p-0 rounded-xl shadow-md relative overflow-hidden will-change-[height]`}
+        className={`
+          relative block h-[60px] rounded-2xl overflow-hidden
+          shadow-[0_8px_40px_rgba(0,0,0,0.25)]
+          transition-all duration-500 ease-out
+          backdrop-blur-2xl backdrop-saturate-150
+          border border-white/20 bg-gradient-to-br
+          from-white/15 via-white/10 to-transparent
+          hover:shadow-[0_12px_50px_rgba(0,0,0,0.35)]
+          hover:scale-[1.01]
+          ${isExpanded ? "ring-1 ring-white/30" : ""}
+        `}
         style={{
-          backgroundColor: baseColor || 'rgba(255, 255, 255, 0.15)',
-          backdropFilter: 'blur(32px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(32px) saturate(180%)',
-          border: '1px solid rgba(255, 255, 255, 0.25)',
-          boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+          background: "linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05))",
         }}
       >
-        <div className="card-nav-top absolute inset-x-0 top-0 h-[60px] flex items-center justify-between p-2 pl-[1.1rem] z-[2]">
-          <Link href="/" className="logo-container flex items-center hover:scale-110 transition-all">
-            <img src={logo} alt={logoAlt} className="logo h-[40px]" />
+        {/* --- TOP BAR --- */}
+        <div className="absolute inset-x-0 top-0 h-[60px] flex items-center justify-between px-4 z-[2]">
+          <Link
+            href="/"
+            className="flex items-center gap-2 hover:scale-105 transition-transform duration-300"
+          >
+            <img src={logo} alt={logoAlt} className="h-[40px] w-auto drop-shadow-lg" />
           </Link>
+
+          {/* --- Hamburger --- */}
           <div
-            className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''} group h-full flex flex-col items-center justify-center cursor-pointer gap-[6px] order-2 md:order-none`}
+            className={`relative flex flex-col justify-center items-center gap-[6px] cursor-pointer z-[10]
+                        transition-transform duration-300 ${isHamburgerOpen ? "rotate-90" : ""}`}
             onClick={toggleMenu}
             role="button"
-            aria-label={isExpanded ? 'Close menu' : 'Open menu'}
-            tabIndex={0}
-            style={{ color: menuColor || '#000' }}
+            aria-label={isExpanded ? "Fermer le menu" : "Ouvrir le menu"}
           >
-            <div
-              className={`hamburger-line w-[30px] h-[2px] bg-current transition-[transform,opacity,margin] duration-300 ease-linear [transform-origin:50%_50%] ${
-                isHamburgerOpen ? 'translate-y-[4px] rotate-45' : ''
-              } group-hover:opacity-75`}
+            <span
+              className={`block w-[28px] h-[2px] bg-white transition-all duration-300 rounded-full
+                ${isHamburgerOpen ? "translate-y-[6px] rotate-45 bg-cyan-400" : "bg-white/80"}`}
             />
-            <div
-              className={`hamburger-line w-[30px] h-[2px] bg-current transition-[transform,opacity,margin] duration-300 ease-linear [transform-origin:50%_50%] ${
-                isHamburgerOpen ? '-translate-y-[4px] -rotate-45' : ''
-              } group-hover:opacity-75`}
+            <span
+              className={`block w-[28px] h-[2px] bg-white transition-all duration-300 rounded-full
+                ${isHamburgerOpen ? "-translate-y-[6px] -rotate-45 bg-cyan-400" : "bg-white/80"}`}
             />
           </div>
         </div>
 
+        {/* --- CONTENT --- */}
         <div
-          className={`card-nav-content absolute left-0 right-0 top-[60px] bottom-0 p-2 flex flex-col items-stretch gap-2 justify-start z-[1] ${
-            isExpanded ? 'visible pointer-events-auto' : 'invisible pointer-events-none'
-          } md:flex-row md:items-end md:gap-[12px]`}
-          aria-hidden={!isExpanded}
+          className={`
+            card-nav-content absolute left-0 right-0 top-[60px] bottom-0
+            flex flex-col md:flex-row gap-3 md:gap-4 p-4
+            transition-[opacity,visibility] duration-300
+            ${isExpanded ? "visible opacity-100" : "invisible opacity-0"}
+          `}
         >
-          {(items || []).slice(0, 3).map((item, idx) => (
+          {items.slice(0, 3).map((item, idx) => (
             <div
               key={`${item.label}-${idx}`}
               className="nav-card select-none relative flex flex-col gap-2 p-[12px_16px] rounded-[calc(0.75rem-0.2rem)] min-w-0 flex-[1_1_auto] h-auto min-h-[60px] md:h-full md:min-h-0 md:flex-[1_1_0%]"
@@ -203,6 +218,9 @@ const CardNav: React.FC<CardNavProps> = ({
             </div>
           ))}
         </div>
+
+        {/* Halo animé */}
+        <span className="absolute inset-0 bg-gradient-to-tr from-cyan-400/10 to-blue-600/10 blur-3xl -z-10" />
       </nav>
     </div>
   );

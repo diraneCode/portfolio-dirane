@@ -106,7 +106,7 @@ export default function LogoSection() {
         }
     ]
     return (
-        <div>
+        <section id='logo'>
             <motion.section
                 id="competences"
                 className="min-h-fit w-full bg-[#0f172a] relative py-4 space-y-10"
@@ -147,6 +147,6 @@ export default function LogoSection() {
                     />
                 </div>
             </motion.section>
-        </div>
+        </section>
     )
 }

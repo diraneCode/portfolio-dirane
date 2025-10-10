@@ -9,7 +9,7 @@ export default function GallerySection() {
 
   return (
     <section
-      id="contact"
+      id="gallery"
       className="py-10 md:py-20 bg-gradient-to-b from-gray-900 to-blue-900 flex items-center justify-center"
     >
       <div className="container mx-auto px-6">

@@ -77,15 +77,64 @@ export default function BtnDevis() {
         form.reset()
         toast.custom((id) => (
             <div
-                className="relative flex w-[340px] items-center gap-2 rounded-2xl border border-white/10 bg-[#141414]/50 p-4 shadow-lg backdrop-blur-sm animate-in fade-in-0 slide-in-from-bottom-5"
+                className="
+        group relative flex w-full max-w-[380px] sm:max-w-[420px]
+        items-center gap-4 rounded-2xl border border-white/20
+        bg-gradient-to-br from-white/10 via-white/5 to-transparent
+        p-4 shadow-[0_8px_30px_rgba(0,0,0,0.3)]
+        backdrop-blur-xl backdrop-saturate-150
+        animate-in fade-in-0 slide-in-from-bottom-5
+        transition-all duration-500 hover:scale-[1.03] hover:shadow-[0_8px_40px_rgba(0,0,0,0.4)]
+      "
             >
-                <div className="size-10 shrink-0 rounded-full bg-blue-500 flex items-center justify-center">
-                    <IoCheckmarkDone size={20} color="#fff" />
+                {/* Cercle avec effet lumineux */}
+                <div
+                    className="
+          relative flex size-12 shrink-0 items-center justify-center
+          rounded-full bg-gradient-to-tr from-blue-500 to-cyan-400
+          shadow-[0_0_20px_rgba(56,189,248,0.6)]
+          transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110
+        "
+                >
+                    <IoCheckmarkDone size={22} color="#fff" />
+                    {/* Halo lumineux animé */}
+                    <span
+                        className="
+            absolute inset-0 rounded-full bg-blue-500/30 blur-lg opacity-0
+            group-hover:opacity-100 transition-opacity duration-700
+          "
+                    />
                 </div>
 
-                <p className="flex-1 text-sm text-white break-words whitespace-normal">
-                    Merci pour votre message! Nous vous répondrons dans les plus brefs délais. {id}
-                </p>
+                {/* Texte avec effet de profondeur */}
+                <div className="flex-1">
+                    <p
+                        className="
+            text-[15px] sm:text-[16px] font-medium text-white/90 leading-snug
+            tracking-[-0.01em] drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]
+          "
+                    >
+                        Merci pour votre message&nbsp;!<br />
+                        <span className="text-white/70 text-[14px]">
+                            Nous vous répondrons dans les plus brefs délais.
+                        </span>
+                    </p>
+
+                    {/* ID (optionnel ou debug) */}
+                    <span className="block mt-1 text-[12px] text-white/40 font-mono select-none">
+                        #{id}
+                    </span>
+                </div>
+
+                {/* Ligne décorative lumineuse à gauche */}
+                <span
+                    className="
+          absolute left-0 top-0 h-full w-[3px]
+          bg-gradient-to-b from-blue-400 via-cyan-300 to-blue-600
+          rounded-l-2xl opacity-60 group-hover:opacity-100
+          transition-opacity duration-500
+        "
+                />
             </div>
         ), {
             duration: 4000
@@ -114,7 +163,7 @@ export default function BtnDevis() {
 
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 text-black">
-                        <div className="flex-col md:flex-row items-center justify-between gap-8">
+                        <div className="flex flex-col md:flex-row  items-center justify-between gap-4 md:gap-8">
                             <FormField
                                 control={form.control}
                                 name="service"
@@ -129,7 +178,7 @@ export default function BtnDevis() {
                                                 <SelectTrigger id="service" className="w-full mt-2 bg-white/70">
                                                     <SelectValue placeholder="Choisissez un service" />
                                                 </SelectTrigger>
-                                                <SelectContent>
+                                                <SelectContent className="dark">
                                                     <SelectItem value="design">Design & Branding</SelectItem>
                                                     <SelectItem value="dev-web">Développement Web</SelectItem>
                                                     <SelectItem value="dev-mobile">Application Mobile</SelectItem>
@@ -158,7 +207,7 @@ export default function BtnDevis() {
                                 )}
                             />
                         </div>
-                        <div className="flex flex-col md:flex-row  items-center justify-between gap-8">
+                        <div className="flex flex-col md:flex-row  items-center justify-between gap-4 md:gap-8">
                             <FormField
                                 control={form.control}
                                 name="phone"
@@ -200,7 +249,7 @@ export default function BtnDevis() {
                                 <FormItem className="w-full dark">
                                     <FormLabel>Message</FormLabel>
                                     <FormControl>
-                                        <Textarea rows={6} placeholder="Entrez votre message ici" {...field} />
+                                        <Textarea rows={4} placeholder="Entrez votre message ici" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>

@@ -12,7 +12,7 @@ export default function StatSection() {
 
   return (
     <section
-      id="competences"
+      id="stats"
       className="relative w-full py-16 bg-[#0f172a] overflow-hidden"
     >
       {/* Background radial */}

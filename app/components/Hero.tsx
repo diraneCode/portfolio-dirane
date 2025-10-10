@@ -50,7 +50,7 @@ export default function Hero() {
             {/* Image avec effet noir & blanc au hover */}
             <Image
               src="/placeholder2.png"
-              alt="Dirane"
+              alt="Photo de Dirane"
               width={256}
               height={256}
               className={`rounded-b-full object-cover absolute bottom-0 transition duration-300 ${hovered ? "grayscale" : ""
@@ -194,7 +194,6 @@ export default function Hero() {
                 </div>
                 <span>Discuter</span>
               </button>
-
             </motion.a>
           </div>
         </div>

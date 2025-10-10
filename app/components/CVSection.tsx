@@ -20,7 +20,7 @@ const items = [
 
 export default function CVSection() {
     return (
-        <div>
+        <section>
             <motion.section
                 id="competences"
                 className="min-h-fit w-full bg-[#0f172a] relative py-20 px-6"
@@ -67,6 +67,6 @@ export default function CVSection() {
                     </div>
                 </div>
             </motion.section>
-        </div>
+        </section>
     )
 }
