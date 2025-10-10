@@ -36,31 +36,31 @@ type ItemDef = {
 const DEFAULT_IMAGES: ImageItem[] = [
   {
     src: '/joker.jpg',
-    alt: 'Abstract art'
+    alt: 'Dirane Mekem'
   },
   {
     src: '/dirane-square.png',
-    alt: 'Modern sculpture'
+    alt: 'Dirane Code'
   },
   {
     src: '/joker-3.jpg',
-    alt: 'Digital artwork'
+    alt: 'Dirane'
   },
   {
     src: '/joker-2.jpg',
-    alt: 'Contemporary art'
+    alt: 'Dirane Joker'
   },
   {
     src: '/joker-4.jpg',
-    alt: 'Geometric pattern'
+    alt: 'Mekem'
   },
   {
     src: '/joker-5.jpg',
-    alt: 'Textured surface'
+    alt: 'Mekem Dirane'
   },
   {
     src: '/joker-6.jpg',
-    alt: 'Social media image'
+    alt: 'Dirane'
   }
 ];
 

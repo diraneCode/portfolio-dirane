@@ -11,10 +11,10 @@ const items = [
         image: "/dirane-square.png",
         title: "Dirane",
         subtitle: "Software Engineer",
-        handle: "@dirane",
+        handle: "@diranecode",
         borderColor: "#3B82F6",
         gradient: "linear-gradient(145deg, #3B82F6, #000)",
-        url: "https://github.com/dirane"
+        url: "https://github.com/diranecode"
     }
 ];
 

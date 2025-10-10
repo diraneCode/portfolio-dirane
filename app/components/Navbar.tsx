@@ -15,8 +15,8 @@ export default function Navbar() {
       bgColor: "#0D0716",
       textColor: "#fff",
       links: [
-        { label: "Portfolio", ariaLabel: "Portfolio", href: "" },
-        { label: "Compétences", ariaLabel: "Compétences", href: "" }
+        { label: "Portfolio", ariaLabel: "Portfolio", href: "/" },
+        { label: "Compétences", ariaLabel: "Compétences", href: "/#competences" }
       ]
     },
     {
@@ -24,8 +24,8 @@ export default function Navbar() {
       bgColor: "#170D27",
       textColor: "#fff",
       links: [
-        { label: "Terminés", ariaLabel: "Terminés", href: "" },
-        { label: "Design", ariaLabel: "Design", href: "" },
+        { label: "Terminés", ariaLabel: "Terminés", href: "/#projets" },
+        { label: "Design", ariaLabel: "Design", href: "/#projets" },
       ]
     },
     {
