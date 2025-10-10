@@ -104,7 +104,7 @@ export default function BtnDevis() {
             {/* Contenu de la Sheet */}
             <SheetContent
                 side="bottom"
-                className="max-h-[85vh] w-full py-10 px-28 md:w-[90vw] lg:w-[90vw] place-self-center sm:max-h-[90vh] rounded-t-xl border-0 bg-white/95 backdrop-blur-xl shadow-2xl overflow-auto"
+                className="max-h-[85vh] w-full py-10 md:px-28 md:w-[90vw] lg:w-[90vw] place-self-center sm:max-h-[90vh] rounded-t-xl border-0 bg-white/95 backdrop-blur-xl shadow-2xl overflow-auto"
             >
                 <SheetHeader className="text-center mb-6">
                     <SheetTitle className="text-2xl font-bold text-gray-800 sr-only">
@@ -114,7 +114,7 @@ export default function BtnDevis() {
 
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 text-black">
-                        <div className="flex items-center justify-between gap-8">
+                        <div className="flex-col md:flex-row items-center justify-between gap-8">
                             <FormField
                                 control={form.control}
                                 name="service"
@@ -158,7 +158,7 @@ export default function BtnDevis() {
                                 )}
                             />
                         </div>
-                        <div className="flex items-center justify-between gap-8">
+                        <div className="flex flex-col md:flex-row  items-center justify-between gap-8">
                             <FormField
                                 control={form.control}
                                 name="phone"

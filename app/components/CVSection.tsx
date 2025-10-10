@@ -34,7 +34,7 @@ export default function CVSection() {
                         backgroundImage: `radial-gradient(circle 600px at 50% 50%, rgba(59,130,246,0.3), transparent)`,
                     }}
                 />
-                <div className="container mx-auto flex justify-between  space-y-3 sm:flex-row bg-[#1B2062] rounded-xl py-4 px-6">
+                <div className="container mx-auto flex flex-col justify-between space-y-3 md:flex-row bg-[#1B2062] rounded-xl py-4 px-6">
                     <div className="bg-transparent flex flex-col space-y-3 sm:flex-row justify-between items-center">
                         <div className="h-fit relative">
                             <ChromaGrid
@@ -51,7 +51,7 @@ export default function CVSection() {
                             <span className="text-xl font-bold">Mon profil vous intéresse ?</span>
                             <span>Télécharger la version pdf de mon CV</span>
                         </div>
-                        <a href="/dirane's-cv.pdf" download>
+                        <a href="/dirane's-cv.pdf" className="block w-full " download>
                             <Button className="p-6 bg-blue-500 w-full sm:w-fit">
                                 <FaDownload size={20} />
                                 Télécharger CV

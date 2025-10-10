@@ -175,7 +175,7 @@ export default function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <button className="cta-button mt-4">
+              <button className="cta-button mt-4 w-full flex justify-center items-center">
                 <div className="svg-wrapper-1">
                   <div className="svg-wrapper">
                     <svg
