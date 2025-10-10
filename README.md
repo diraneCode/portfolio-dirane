@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Next.js
+
+Il s'agit d'un **portfolio Next.js** créé avec [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).  
+Il présente mon travail, mes projets et mes compétences à travers une interface moderne, responsive et performante.
+
+## 🚀 Fonctionnalités
+
+- **Application mono-page (SPA)** avec navigation fluide entre les sections.
+- **Design responsive** optimisé pour ordinateur, tablette et mobile.
+- **UI Glassmorphism** pour un rendu moderne et élégant.
+- **Animations et transitions** avec GSAP pour une expérience utilisateur soignée.
+- **SEO-friendly** avec meta tags, sitemap et données structurées.
+- **Chargement paresseux des images** pour améliorer les performances.
+- **Mode sombre** disponible.
+- **Accessibilité** et HTML sémantique pour une meilleure UX.
+
+## 🛠 Stack technique
+
+- [Next.js](https://nextjs.org/) - Framework React pour SSR et sites statiques
+- [React](https://reactjs.org/) - Librairie UI
+- [GSAP](https://greensock.com/gsap/) - Librairie d’animations
+- [Tailwind CSS](https://tailwindcss.com/) - Framework CSS utilitaire
+- [React Icons](https://react-icons.github.io/react-icons/) - Librairie d’icônes
+- [Vercel](https://vercel.com/) - Plateforme de déploiement
+
+## 📦 Installation et démarrage
+
+Clonez le projet :
+
+````bash
+git clone https://github.com/votre-utilisateur/portfolio.git
+cd portfolio
+
+Installez les dépendances :
+npm install
+# ou
+yarn install
+# ou
+pnpm install
 
 ## Getting Started
 
-First, run the development server:
+Lancez le serveur de développement :
 
 ```bash
 npm run dev
-# or
+# ou
 yarn dev
-# or
+# ou
 pnpm dev
-# or
-bun dev
-```
+````
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrez http://localhost:3000
+ dans votre navigateur pour voir le portfolio.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Vous pouvez commencer à modifier la page en éditant app/page.tsx. La page se mettra à jour automatiquement.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+⚙️ Configuration et SEO
 
-## Learn More
+Le site utilise next-sitemap
+ pour générer le sitemap et le robots.txt.
 
-To learn more about Next.js, take a look at the following resources:
+Meta tags et Open Graph inclus pour le partage sur les réseaux sociaux et le SEO.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Les images sont optimisées et chargées de manière paresseuse grâce au composant Image de Next.js.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+portfolio/
+├─ app/                 # Fichiers principaux de l'application
+│  └─ page.tsx          # Page d'accueil
+├─ components/          # Composants React réutilisables
+├─ public/              # Assets statiques (images, fonts, icônes)
+├─ styles/              # Styles Tailwind & globaux
+├─ next.config.js       # Configuration Next.js
+├─ package.json         # Dépendances et scripts
+└─ next-sitemap.config.js # Configuration du sitemap
 
-## Deploy on Vercel
+🌐 Déploiement
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+npm run build
+npm run start
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Ou connectez directement votre repository GitHub à Vercel
+ pour un déploiement automatique.
+
+📖 Ressources
+
+Documentation Next.js
+ - Tout savoir sur Next.js.
+
+Learn Next.js
+ - Tutoriel interactif Next.js.
+
+Documentation Tailwind CSS
+ - Guide de stylisation.
+
+Documentation GSAP
+ - Guide d’animations.
+
+💡 Notes
+
+Le portfolio est une application mono-page avec sections ancrées pour une navigation fluide.
+
+Optimisations SEO : meta tags, sitemap, robots.txt et HTML sémantique.
+
+Design léger, rapide et esthétique avec glassmorphism et animations subtiles.
+
+Fait avec ❤️ avec Next.js, React, Tailwind CSS et GSAP.
