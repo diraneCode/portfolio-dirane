@@ -32,37 +32,37 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
-import { IoCheckmarkDone, IoSend } from "react-icons/io5"
-import { toast } from "sonner"
+import { IoSend } from "react-icons/io5"
+import { useAddDevis } from "@/hooks/useDevis"
+import { Spinner } from "./ui/spinner"
 
+export const formDevis = z.object({
+    service: z
+        .string()
+        .min(5, { message: "Veuillez sélectionner un service" })
+        .max(15, { message: "Veuillez sélectionner un service" })
+        .nonempty({ message: "Veuillez sélectionner un service" }),
+    fullName: z
+        .string()
+        .min(3, { message: "Nom & prénom trop court (min 3 caractères)" })
+        .max(100, { message: "Nom trop long" })
+        .nonempty({ message: "Veuillez renseigner votre nom et prénom" }),
+    phone: z
+        .string()
+        .min(7, { message: "Numéro de téléphone invalide" })
+        .max(20)
+        .regex(/^\+?[0-9\s\-\(\)]+$/, { message: "Format du téléphone invalide" }),
+    email: z.string().email({ message: "Email invalide" }),
+    message: z
+        .string()
+        .min(10, { message: "Décrivez brièvement votre besoin (min 10 caractères)" })
+        .max(2000, { message: "Message trop long" }),
+})
 
 export default function BtnDevis() {
-
-    const formSchema = z.object({
-        service: z
-            .string()
-            .min(5, { message: "Veuillez sélectionner un service" })
-            .max(15, { message: "Veuillez sélectionner un service" })
-            .nonempty({ message: "Veuillez sélectionner un service" }),
-        fullName: z
-            .string()
-            .min(3, { message: "Nom & prénom trop court (min 3 caractères)" })
-            .max(100, { message: "Nom trop long" })
-            .nonempty({ message: "Veuillez renseigner votre nom et prénom" }),
-        phone: z
-            .string()
-            .min(7, { message: "Numéro de téléphone invalide" })
-            .max(20)
-            .regex(/^\+?[0-9\s\-\(\)]+$/, { message: "Format du téléphone invalide" }),
-        email: z.string().email({ message: "Email invalide" }),
-        message: z
-            .string()
-            .min(10, { message: "Décrivez brièvement votre besoin (min 10 caractères)" })
-            .max(2000, { message: "Message trop long" }),
-    })
-
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    const { mutate:addDevis, isPending } = useAddDevis();
+    const form = useForm<z.infer<typeof formDevis>>({
+        resolver: zodResolver(formDevis),
         defaultValues: {
             fullName: "",
             phone: "",
@@ -71,80 +71,16 @@ export default function BtnDevis() {
         }
     })
 
-    function onSubmit(data: z.infer<typeof formSchema>) {
+    function onSubmit(data: z.infer<typeof formDevis>) {
 
-        console.log(data)
+        addDevis(data)
         form.reset()
-        toast.custom((id) => (
-            <div
-                className="
-        group relative flex w-full max-w-[380px] sm:max-w-[420px]
-        items-center gap-4 rounded-2xl border border-white/20
-        bg-gradient-to-br from-white/10 via-white/5 to-transparent
-        p-4 shadow-[0_8px_30px_rgba(0,0,0,0.3)]
-        backdrop-blur-xl backdrop-saturate-150
-        animate-in fade-in-0 slide-in-from-bottom-5
-        transition-all duration-500 hover:scale-[1.03] hover:shadow-[0_8px_40px_rgba(0,0,0,0.4)]
-      "
-            >
-                {/* Cercle avec effet lumineux */}
-                <div
-                    className="
-          relative flex size-12 shrink-0 items-center justify-center
-          rounded-full bg-gradient-to-tr from-blue-500 to-cyan-400
-          shadow-[0_0_20px_rgba(56,189,248,0.6)]
-          transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110
-        "
-                >
-                    <IoCheckmarkDone size={22} color="#fff" />
-                    {/* Halo lumineux animé */}
-                    <span
-                        className="
-            absolute inset-0 rounded-full bg-blue-500/30 blur-lg opacity-0
-            group-hover:opacity-100 transition-opacity duration-700
-          "
-                    />
-                </div>
-
-                {/* Texte avec effet de profondeur */}
-                <div className="flex-1">
-                    <p
-                        className="
-            text-[15px] sm:text-[16px] font-medium text-white/90 leading-snug
-            tracking-[-0.01em] drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]
-          "
-                    >
-                        Merci pour votre message&nbsp;!<br />
-                        <span className="text-white/70 text-[14px]">
-                            Nous vous répondrons dans les plus brefs délais.
-                        </span>
-                    </p>
-
-                    {/* ID (optionnel ou debug) */}
-                    <span className="block mt-1 text-[12px] text-white/40 font-mono select-none">
-                        #{id}
-                    </span>
-                </div>
-
-                {/* Ligne décorative lumineuse à gauche */}
-                <span
-                    className="
-          absolute left-0 top-0 h-full w-[3px]
-          bg-gradient-to-b from-blue-400 via-cyan-300 to-blue-600
-          rounded-l-2xl opacity-60 group-hover:opacity-100
-          transition-opacity duration-500
-        "
-                />
-            </div>
-        ), {
-            duration: 4000
-        })
     }
     return (
         <Sheet>
             {/* Bouton principal */}
             <SheetTrigger asChild>
-                <Button className="p-6 bg-blue-500 w-full sm:w-fit">
+                <Button className="flex items-center gap-2 px-6 py-4 bg-blue-500 hover:bg-blue-600 transition-colors w-full sm:w-auto">
                     <FaFileAlt size={20} />
                     Devis Gratuit
                 </Button>
@@ -255,9 +191,9 @@ export default function BtnDevis() {
                                 </FormItem>
                             )}
                         />
-                        <Button type="submit">
-                            <IoSend className="-rotate-45" />
-                            Demander le devis
+                        <Button disabled={isPending} type="submit">
+                            {isPending ? <Spinner /> : <IoSend className="-rotate-45" />}
+                            {isPending ? "Envoi en cours..." : "Envoyer"}
                         </Button>
                     </form>
                 </Form>

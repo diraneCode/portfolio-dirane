@@ -4,17 +4,18 @@ import Navbar from "./components/Navbar"
 import "./globals.css"
 import { Nunito } from "next/font/google"
 import { Metadata } from "next";
+import { ReactQueryProvider } from "@/providers/ReactQueryProvider"
 
 const orbitron = Nunito({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-//   title: `Dirane • Portfolio`,
-//   author: "Dirane",
-//   description: "Software Engineer - UI/UX Designer",
-//   icons: {
-//     icon: '/dirane-logo.ico'
-//   },
-// },
+  //   title: `Dirane • Portfolio`,
+  //   author: "Dirane",
+  //   description: "Software Engineer - UI/UX Designer",
+  //   icons: {
+  //     icon: '/dirane-logo.ico'
+  //   },
+  // },
   other: {
     "script:type": "application/ld+json",
     "script:innerHTML": JSON.stringify({
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
       url: "https://www.dirane.cme",
       sameAs: [
         "https://github.com/diranecode",
-      "https://linkedin.com/in/dirane-mekem-63b588273",
+        "https://linkedin.com/in/dirane-mekem-63b588273",
       ],
     }),
   },
@@ -46,10 +47,12 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className={`${orbitron.className} bg-gray-900 text-white`}>
-        <Navbar />
-        {children}
-        <Chatbot />
-        <Toaster richColors position="top-center" closeButton={true} swipeDirections={["top"]} />
+        <ReactQueryProvider>
+          <Navbar />
+          {children}
+          <Chatbot />
+          <Toaster richColors position="top-center" closeButton={true} swipeDirections={["top"]} />
+        </ReactQueryProvider>
       </body>
     </html>
   )

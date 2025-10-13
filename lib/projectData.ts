@@ -65,9 +65,9 @@ export const projectData = [
       "Concept de landing page valorisant les manettes PS5 avec un design élégant, animations fluides et expérience utilisateur immersive pour séduire les gamers.",
     image: [
       { src: "/projets/ps5-1.png", alt: "PS5 Landing Page" },
-      { src: "/images/ps5-landing-2.png", alt: "PS5 Landing Page 2" },
-      { src: "/images/ps5-landing-3.png", alt: "PS5 Landing Page 3" },
-      { src: "/images/ps5-landing-4.png", alt: "PS5 Landing Page 4" },
+      { src: "/projets/ps5-2.png", alt: "PS5 Landing Page 2" },
+      { src: "/projets/ps5-3.png", alt: "PS5 Landing Page 3" },
+      { src: "/projets/ps5-4.png", alt: "PS5 Landing Page 4" },
     ],
     Figma: "https://www.figma.com/design/0pqD9RyPMi9ydD9uVd29wP/Untitled?node-id=0-1&t=SDhzwOalVRSIKQ9T-1",
     tech: ["Design", "Figma", "UI/UX"],

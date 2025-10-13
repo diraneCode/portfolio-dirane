@@ -1,9 +1,8 @@
 "use client"
 
-import { IoLocation, IoMailUnread, IoCall, IoSend, IoCheckmarkDone } from "react-icons/io5"
+import { IoLocation, IoMailUnread, IoCall, IoSend } from "react-icons/io5"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { toast } from "sonner"
 import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import {
@@ -16,39 +15,40 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+import { useAddConatct } from "@/hooks/useContact"
+import { Spinner } from "@/components/ui/spinner"
+
+export const FormSchema = z.object({
+  username: z
+  .string()
+  .min(2, { message: "Le nom doit comporter au moins 2 caractères." })
+  .max(50, { message: "Le nom ne doit pas dépasser 50 caractères." }),
+  
+  email: z
+  .string()
+  .email({ message: "Veuillez entrer une adresse e-mail valide." }),
+  
+  phone: z
+  .string()
+  .regex(/^(?:\+?\d{7,15})$/, {
+    message: "Veuillez entrer un numéro de téléphone valide.",
+    }),
+    
+    object: z
+    .string()
+    .min(2, { message: "L’objet doit comporter au moins 2 caractères." })
+    .max(100, { message: "L’objet ne doit pas dépasser 100 caractères." }),
+    
+    description: z
+    .string()
+    .min(10, { message: "La description doit comporter au moins 10 caractères." })
+    .max(1000, { message: "La description ne doit pas dépasser 1000 caractères." }),
+})
 
 export default function Contact() {
-
-  const FormSchema = z.object({
-    username: z
-      .string()
-      .min(2, { message: "Le nom doit comporter au moins 2 caractères." })
-      .max(50, { message: "Le nom ne doit pas dépasser 50 caractères." }),
-
-    email: z
-      .string()
-      .email({ message: "Veuillez entrer une adresse e-mail valide." }),
-
-    phone: z
-      .string()
-      .regex(/^(?:\+?\d{7,15})$/, {
-        message: "Veuillez entrer un numéro de téléphone valide.",
-      }),
-
-    object: z
-      .string()
-      .min(2, { message: "L’objet doit comporter au moins 2 caractères." })
-      .max(100, { message: "L’objet ne doit pas dépasser 100 caractères." }),
-
-    description: z
-      .string()
-      .min(10, { message: "La description doit comporter au moins 10 caractères." })
-      .max(1000, { message: "La description ne doit pas dépasser 1000 caractères." }),
-  })
-
+  const { mutate: addMessage, isPending } = useAddConatct();
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -62,24 +62,8 @@ export default function Contact() {
     },
   })
   function onSubmit(data: z.infer<typeof FormSchema>) {
-
-    console.log(data)
+    addMessage(data)
     form.reset()
-    toast.custom((id) => (
-      <div
-        className="relative flex w-[340px] items-center gap-2 rounded-2xl border border-white/10 bg-[#141414]/50 p-4 shadow-lg backdrop-blur-sm animate-in fade-in-0 slide-in-from-bottom-5"
-      >
-        <div className="size-10 shrink-0 rounded-full bg-blue-500 flex items-center justify-center">
-          <IoCheckmarkDone size={20} color="#fff" />
-        </div>
-
-        <p className="flex-1 text-sm text-white break-words whitespace-normal">
-          Merci pour votre message! Nous vous répondrons dans les plus brefs délais. {id}
-        </p>
-      </div>
-    ), {
-      duration: 4000
-    })
   }
   return (
     <section
@@ -200,9 +184,9 @@ export default function Contact() {
                     </FormItem>
                   )}
                 />
-                <Button variant={"outline"} type="submit" className="text-black">
-                  <IoSend className="-rotate-45" />
-                  Envoyer
+                <Button disabled={isPending} variant={"outline"} type="submit" className="text-black">
+                  {isPending ? <Spinner /> : <IoSend className="-rotate-45" />}
+                  {isPending ? "Envoi en cours..." : "Envoyer"}
                 </Button>
               </form>
             </Form>

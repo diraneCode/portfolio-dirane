@@ -81,7 +81,7 @@ export default function Chatbot() {
             return {
                 id: Date.now().toString(),
                 content:
-                    "Je suis un développeur passionné avec plus de 4 ans d'expériences en développement web. Je me spécialise dans React, Next.js, l'IA et les technologies modernes. J'aime créer des expériences utilisateur exceptionnelles ! 🚀",
+                    "Je suis un développeur passionné avec plus de 2 ans d'expériences en développement web. Je me spécialise dans React, Next.js, l'IA et les technologies modernes. J'aime créer des expériences utilisateur exceptionnelles ! 🚀",
                 sender: "bot",
                 timestamp: new Date(),
             }
@@ -96,6 +96,8 @@ export default function Chatbot() {
                 type: "action",
                 actions: [
                     { label: "Site web clinique", icon: <ExternalLink className="w-4 h-4" />, url: "https://www.cliniquesaintemonique.com/" },
+                    { label: "Caline House", icon: <ExternalLink className="w-4 h-4" />, url: "https://www.calinehouse.com/" },
+                    { label: "Build Together Group", icon: <ExternalLink className="w-4 h-4" />, url: "https://buildtogether-group.com/" },
                     { label: "Site e-commerce", icon: <ExternalLink className="w-4 h-4" />, url: "https://mr-promo.vercel.app/" },
                     { label: "CRM entreprise", icon: <ExternalLink className="w-4 h-4" />, url: "https://crm.buildtogether-group.com" },
                 ],
