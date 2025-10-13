@@ -16,6 +16,12 @@ export const metadata: Metadata = {
   //     icon: '/dirane-logo.ico'
   //   },
   // },
+  authors: [{name: "Dirane", url: "https://www.dirane.me"}],
+  icons: {
+    icon: '/dirane-logo.ico'
+  },
+  title: `Dirane • Portfolio`,
+  description: "Software Engineer - UI/UX Designer",
   other: {
     "script:type": "application/ld+json",
     "script:innerHTML": JSON.stringify({
