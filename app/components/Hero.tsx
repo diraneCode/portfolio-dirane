@@ -93,7 +93,7 @@ export default function Hero() {
 
           </motion.h3>
           <TypeAnimation
-            sequence={["Software Engineer", 1000, "Développeur", 1000, "UI/UX Designer", 1000]}
+            sequence={["Software Engineer", 1000, "Web Developper", 1000, "UI/UX Designer", 1000]}
             wrapper="h2"
             speed={50}
             className="text-xl md:text-5xl font-bold text-blue-400 mb-6"

@@ -47,7 +47,7 @@ export default function Skills() {
                 key={index}
                 className="bg-white/10 backdrop-blur-md rounded-lg p-6 shadow-lg relative"
               >
-                <div className="w-full h-full rounded rotate-0 border-2py-4 px-6 flex flex-col justify-between cursor-pointer">
+                <div className="w-full h-full rounded rotate-0  px-3 flex flex-col justify-between cursor-pointer space-y-4">
                   {skill.icon}
                   <h1 className="text-xl font-bold">{skill.title}</h1>
                   <span className="text-sm text-gray-400">

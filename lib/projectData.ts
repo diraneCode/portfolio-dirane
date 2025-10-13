@@ -89,7 +89,7 @@ export const projectData = [
       { src: "/projets/calinehouse-5.png", alt: "Caline House - Wallet utilisateur", },
       { src: "/projets/calinehouse-6.png", alt: "Caline House - Profil utilisateur", },
     ],
-    link: "https://caline-house.com", // ou ton futur domaine
+    link: "https://calinehouse.com", // ou ton futur domaine
     github: "", // repo GitHub si public
     tech: ["React Native", "Expo", "NextJS", "Supabase", "NotchPay"],
     year: "2025",
