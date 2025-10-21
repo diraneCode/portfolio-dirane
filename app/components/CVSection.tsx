@@ -47,7 +47,7 @@ export default function CVSection() {
                             <span className="text-xl font-bold block">Mon profil vous intéresse ?</span>
                             <span className="text-sm text-white/70">Télécharger la version PDF de mon CV</span>
                         </div>
-                        <a href="/dirane's-cv.pdf" download className="w-full sm:w-auto">
+                        <a href="/CV_Dirane_Mekem.pdf" download className="w-full sm:w-auto">
                             <Button className="flex items-center gap-2 px-6 py-4 bg-blue-500 hover:bg-blue-600 transition-colors w-full sm:w-auto">
                                 <FaDownload size={20} />
                                 Télécharger CV

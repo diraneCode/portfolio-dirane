@@ -60,8 +60,38 @@ export default function LogoSection() {
             height: 50
         },
         {
-            name: "Javascript",
-            src: "/logo/javascript.png",
+            name: "Cursor",
+            src: "/logo/cursor.png",
+            width: 50,
+            height: 50
+        },
+        {
+            name: "Notion",
+            src: "/logo/notion.png",
+            width: 50,
+            height: 50
+        },
+        {
+            name: "Expo",
+            src: "/logo/expo.png",
+            width: 50,
+            height: 50
+        },
+        {
+            name: "Trello",
+            src: "/logo/trello.png",
+            width: 50,
+            height: 50
+        },
+        {
+            name: "Figma",
+            src: "/logo/figma.png",
+            width: 50,
+            height: 50
+        },
+        {
+            name: "Typescript",
+            src: "/logo/typescript.png",
             width: 50,
             height: 50
         },
