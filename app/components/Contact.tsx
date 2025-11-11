@@ -47,7 +47,7 @@ export const FormSchema = z.object({
     .max(1000, { message: "La description ne doit pas dépasser 1000 caractères." }),
 })
 
-export default function Contact() {
+export function ContactSection() {
   const { mutate: addMessage, isPending } = useAddConatct();
 
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -71,7 +71,11 @@ export default function Contact() {
       className="py-20 bg-gradient-to-b from-gray-900 to-blue-900 flex items-center justify-center"
     >
       <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-bold mb-12">Contactez-moi</h2>
+        <h2
+          className="text-start text-4xl font-bold text-white mb-14"
+        >
+          Contactez-<span className="text-blue-400">moi</span>
+        </h2>
         <div className="w-full sm:h-screen h-fit bg-[#1B2062] flex sm:flex-row flex-col-reverse rounded-xl overflow-hidden">
           <div className="w-full sm:w-3/5 h-full bg-gradient-to-b from-[#1B2062] to-[#050C38] p-10 rounded-xl space-y-7">
             <h3 className="text-xl font-bold">Vous pouvez me joindre via ce formulaire de contact</h3>

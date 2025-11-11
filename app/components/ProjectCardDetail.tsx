@@ -1,9 +1,19 @@
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { ExternalLink, Github, Calendar, User, Figma } from "lucide-react"
 import { projectData } from "@/lib/projectData"
+
+import {
+    Drawer,
+    DrawerClose,
+    DrawerContent,
+    DrawerDescription,
+    DrawerFooter,
+    DrawerTitle,
+    DrawerTrigger,
+} from "@/components/ui/drawer";
+import { FaX } from "react-icons/fa6"
 
 
 export const ProjectCardDetail = ({
@@ -15,8 +25,8 @@ export const ProjectCardDetail = ({
     className?: string
     imageHeight?: string
 }) => (
-    <Sheet>
-        <SheetTrigger asChild>
+    <Drawer>
+        <DrawerTrigger asChild>
             <div
                 className={`bg-white/10 backdrop-blur-md rounded-xl overflow-hidden shadow-lg group cursor-pointer relative transition-all duration-300 hover:shadow-2xl hover:bg-white/15 ${className}`}
             >
@@ -40,136 +50,141 @@ export const ProjectCardDetail = ({
                     </div>
                 </div>
             </div>
-        </SheetTrigger>
-        <SheetContent
-            side="bottom"
-            className="max-h-[85vh] w-full md:w-[90vw] lg:w-[90vw] place-self-center sm:max-h-[90vh] rounded-t-xl border-0 bg-white/95 backdrop-blur-xl shadow-2xl overflow-auto"
+        </DrawerTrigger>
+        <DrawerContent
+            className="max-h-[85vh] w-full md:w-[90vw] lg:w-[90vw] place-self-center sm:max-h-[90vh] rounded-t-xl border-0 backdrop-blur-xl shadow-2xl"
         >
-            <div className="mx-auto max-w-4xl mt-10 overflow-y-auto py-4">
-                <SheetHeader className="text-left pb-6">
-                    <div className="flex flex-col sm:flex-row gap-6">
-                        {/* Project Image */}
-                        <div className="relative w-[full] sm:w-80 h-64 sm:h-80 rounded-2xl overflow-hidden shadow-xl bg-gradient-to-br from-gray-100 to-gray-200">
-                            <Image src={project.image[0].src || "/placeholder.svg"} alt={project.name} fill className="w-full h-full object-cover" />
-                            <div className="absolute top-4 right-4">
-                                <Badge variant="secondary" className="bg-white/90 text-gray-800 font-medium">
-                                    {project.category}
-                                </Badge>
+            <div className="mx-auto w-full max-w-full space-y-6 px-44 py-10 overflow-auto relative">
+                <div className="flex flex-col sm:flex-row gap-6">
+                    {/* Project Image */}
+                    <div className="relative w-[full] sm:w-80 h-64 sm:h-80 rounded-2xl overflow-hidden shadow-xl bg-gradient-to-br from-gray-100 to-gray-200">
+                        <Image src={project.image[0].src || "/placeholder.svg"} alt={project.name} fill className="w-full h-full object-cover" />
+                        <div className="absolute top-4 right-4">
+                            <Badge variant="secondary" className="bg-white/90 text-gray-800 font-medium">
+                                {project.category}
+                            </Badge>
+                        </div>
+                    </div>
+
+                    {/* Project Info */}
+                    <div className="flex-1 space-y-4">
+                        <div>
+                            <DrawerTitle className="text-3xl sm:text-4xl font-bold text-gray-900 capitalize mb-2">
+                                {project.name}
+                            </DrawerTitle>
+                            <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
+                                <div className="flex items-center gap-1">
+                                    <Calendar className="w-4 h-4" />
+                                    <span>{project.year}</span>
+                                </div>
+                                <div className="flex items-center gap-1">
+                                    <User className="w-4 h-4" />
+                                    <span>Projet personnel</span>
+                                </div>
                             </div>
                         </div>
 
-                        {/* Project Info */}
-                        <div className="flex-1 space-y-4">
-                            <div>
-                                <SheetTitle className="text-3xl sm:text-4xl font-bold text-gray-900 capitalize mb-2">
-                                    {project.name}
-                                </SheetTitle>
-                                <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
-                                    <div className="flex items-center gap-1">
-                                        <Calendar className="w-4 h-4" />
-                                        <span>{project.year}</span>
-                                    </div>
-                                    <div className="flex items-center gap-1">
-                                        <User className="w-4 h-4" />
-                                        <span>Projet personnel</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Technologies */}
-                            <div className="space-y-2">
-                                <h4 className="font-semibold text-gray-900">Technologies utilisées</h4>
-                                <div className="flex flex-wrap gap-2">
-                                    {project.tech.map((tech, index) => (
-                                        <Badge
-                                            key={index}
-                                            variant="outline"
-                                            className="bg-blue-50 border-blue-200 text-blue-800 hover:bg-blue-100"
-                                        >
-                                            {tech}
-                                        </Badge>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* Description */}
-                            <div className="space-y-2">
-                                <h4 className="font-semibold text-gray-900">Description</h4>
-                                <SheetDescription className="text-gray-700 leading-relaxed text-base">
-                                    {project.fullDescription}
-                                </SheetDescription>
-                            </div>
-
-                            {/* Action Buttons */}
-                            <div className="flex flex-col sm:flex-row gap-3 pt-4">
-                                {project.link && project.link !== "#" && (
-                                    <Button
-                                        asChild
-                                        className="bg-blue-600 hover:bg-blue-700 text-white rounded-xl px-6 py-3 font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
-                                    >
-                                        <a
-                                            href={project.link}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-2"
-                                        >
-                                            <ExternalLink className="w-4 h-4" />
-                                            Voir le projet
-                                        </a>
-                                    </Button>
-                                )}
-                                {project.github && (
-                                    <Button
+                        {/* Technologies */}
+                        <div className="space-y-2">
+                            <h4 className="font-semibold text-gray-900">Technologies utilisées</h4>
+                            <div className="flex flex-wrap gap-2">
+                                {project.tech.map((tech, index) => (
+                                    <Badge
+                                        key={index}
                                         variant="outline"
-                                        asChild
-                                        className="border-gray-300 text-gray-700 hover:bg-gray-50 rounded-xl px-6 py-3 font-medium transition-all duration-200 bg-transparent"
+                                        className="bg-blue-50 border-blue-200 text-blue-800 hover:bg-blue-100"
                                     >
-                                        <a
-                                            href={project.github}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-2"
-                                        >
-                                            <Github className="w-4 h-4" />
-                                            Code source
-                                        </a>
-                                    </Button>
-                                )}
-                                {project.Figma && (
-                                    <Button
-                                        variant="outline"
-                                        asChild
-                                        className="border-gray-300 text-gray-700 hover:bg-gray-50 rounded-xl px-6 py-3 font-medium transition-all duration-200 bg-transparent"
-                                    >
-                                        <a
-                                            href={project.github}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-2"
-                                        >
-                                            <Figma className="w-4 h-4" />
-                                            Voir le projet
-                                        </a>
-                                    </Button>
-                                )}
+                                        {tech}
+                                    </Badge>
+                                ))}
                             </div>
                         </div>
-                    </div>
-                    <div className="w-full flex flex-col gap-10 py-2">
-                        {project.image.map((img, index) => (
-                            <div key={index} className="w-full rounded-xl overflow-hidden shadow-lg bg-gray-100 aspect-[16/9] relative">
-                                <Image
-                                    src={img.src || "/placeholder.svg"}
-                                    alt={`${project.name} image ${index + 1}`}
-                                    fill
-                                    className="object-cover"
-                                />
-                            </div>
-                        ))}
-                    </div>
 
-                </SheetHeader>
+                        {/* Description */}
+                        <div className="space-y-2">
+                            <h4 className="font-semibold text-gray-900">Description</h4>
+                            <DrawerDescription className="text-gray-700 leading-relaxed text-base">
+                                {project.fullDescription}
+                            </DrawerDescription>
+                        </div>
+
+                        {/* Action Buttons */}
+                        <div className="flex flex-col sm:flex-row gap-3 pt-4">
+                            {project.link && project.link !== "#" && (
+                                <Button
+                                    asChild
+                                    className="bg-blue-600 hover:bg-blue-700 text-white rounded-xl px-6 py-3 font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
+                                >
+                                    <a
+                                        href={project.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2"
+                                    >
+                                        <ExternalLink className="w-4 h-4" />
+                                        Voir le projet
+                                    </a>
+                                </Button>
+                            )}
+                            {project.github && (
+                                <Button
+                                    variant="outline"
+                                    asChild
+                                    className="border-gray-300 text-gray-700 hover:bg-gray-50 rounded-xl px-6 py-3 font-medium transition-all duration-200 bg-transparent"
+                                >
+                                    <a
+                                        href={project.github}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2"
+                                    >
+                                        <Github className="w-4 h-4" />
+                                        Code source
+                                    </a>
+                                </Button>
+                            )}
+                            {project.Figma && (
+                                <Button
+                                    variant="outline"
+                                    asChild
+                                    className="border-gray-300 text-gray-700 hover:bg-gray-50 rounded-xl px-6 py-3 font-medium transition-all duration-200 bg-transparent"
+                                >
+                                    <a
+                                        href={project.github}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2"
+                                    >
+                                        <Figma className="w-4 h-4" />
+                                        Voir le projet
+                                    </a>
+                                </Button>
+                            )}
+                        </div>
+                    </div>
+                </div>
+                <div className="w-full flex flex-col gap-10 py-2">
+                    {project.image.map((img, index) => (
+                        <div key={index} className="w-full rounded-xl overflow-hidden shadow-lg bg-gray-100 aspect-[16/9] relative">
+                            <Image
+                                src={img.src || "/placeholder.svg"}
+                                alt={`${project.name} image ${index + 1}`}
+                                fill
+                                className="object-cover"
+                            />
+                        </div>
+                    ))}
+                </div>
+                <DrawerFooter className="w-fit flex flex-row gap-3 px-0 absolute -top-5 left-10">
+                    <DrawerClose asChild className="text-white hover:scale-110 transition-all">
+                        <div
+                        className="size-10 rounded-full bg-black cursor-pointer flex items-center justify-center"
+                        >
+                            <FaX className="w-4 h-4 text-white" />
+                        </div>
+                    </DrawerClose>
+                </DrawerFooter>
             </div>
-        </SheetContent>
-    </Sheet>
+        </DrawerContent>
+    </Drawer>
 )

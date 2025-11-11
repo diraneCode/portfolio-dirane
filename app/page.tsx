@@ -1,28 +1,30 @@
-import Hero from "./components/Hero"
-import Skills from "./components/Skills"
-import Projects from "./components/Projects"
-import Contact from "./components/Contact"
-import Footer from "./components/Footer"
-import CVSection from "./components/CVSection"
-import LogoSection from "./components/LogoSection"
-import StatSection from "./components/StatSection"
-import GallerySection from "./components/GallerySection"
+import { HeroSection } from "./components/Hero"
+import { ServiceSection } from "./components/Services"
+import { ProjectSection } from "./components/Projects"
+import { ContactSection } from "./components/Contact"
+import { FooterSection } from "./components/Footer"
+import { CVSection } from "./components/CVSection"
+import { LogoSection } from "./components/LogoSection"
+import { StatSection } from "./components/StatSection"
+import { GallerySection } from "./components/GallerySection"
+import { TestimonialSection } from "./components/Testimonial"
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-900 to-blue-900 relative">
       <div className="relative z-10">
-        <Hero />
+        <HeroSection />
         <StatSection />
-        <Projects />
-        <Skills />
+        <ProjectSection />
+        <ServiceSection />
         <LogoSection />
-        <Contact />
+        <ContactSection />
         <CVSection />
+        <TestimonialSection />
         <GallerySection />
-        <Footer />
+        <FooterSection />
       </div>
-    </main> 
+    </main>
   )
 }
 

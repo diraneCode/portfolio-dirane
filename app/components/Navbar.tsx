@@ -4,7 +4,6 @@ import { useState } from "react"
 import { motion, useScroll, useMotionValueEvent } from "framer-motion"
 import CardNav from '../../components/CardNav'
 
-
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const { scrollY, scrollYProgress } = useScroll()

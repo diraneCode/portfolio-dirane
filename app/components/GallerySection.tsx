@@ -3,9 +3,7 @@
 import 'react-phone-input-2/lib/style.css';
 import DomeGallery from '../../components/DomeGallery';
 
-
-export default function GallerySection() {
-
+export function GallerySection() {
 
   return (
     <section

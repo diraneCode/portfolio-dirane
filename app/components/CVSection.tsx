@@ -1,20 +1,16 @@
-
-"use client";
+"use client"
 
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { FaDownload } from "react-icons/fa";
-import BtnDevis from "@/components/BtnDevis";
 import Image from "next/image";
+import SmoothDrawer from "./Smooth-Drawer";
 
-export default function CVSection() {
+export function CVSection() {
     return (
-        <motion.section
-            id="competences"
+        <section
+            id="CVSection"
             className="min-h-fit w-full bg-[#0f172a] relative py-20 px-6"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
         >
             <div
                 className="absolute inset-0 z-0 pointer-events-none"
@@ -64,10 +60,11 @@ export default function CVSection() {
                             <span className="text-xl font-bold block">Besoin d’un service ?</span>
                             <span className="text-sm text-white/70">Obtenez un devis gratuitement</span>
                         </div>
-                        <BtnDevis />
+                        {/* <BtnDevis /> */}
+                        <SmoothDrawer />
                     </motion.div>
                 </div>
             </div>
-        </motion.section>
+        </section>
     );
 }

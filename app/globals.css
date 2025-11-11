@@ -69,3 +69,20 @@ body {
     transform: translateY(-0.1em);
   }
 }
+
+.btn-cta {
+  align-items: center;
+  color: #ffffff;
+  font-size: 18px;
+  background: #4169e1;
+  border: none !important;
+  padding: 15px 16px;
+  box-shadow: 0 4px 0 #2e395b;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.btn-cta:active {
+  box-shadow: none;
+  transform: translate(0, 4px);
+}

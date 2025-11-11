@@ -1,23 +1,19 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { useState } from "react"
 import { Grid3X3, List, LayoutGrid } from "lucide-react"
 import { ProjectCardDetail } from "./ProjectCardDetail"
 import { projectData } from "@/lib/projectData"
 
 
-export default function Projects() {
+export function ProjectSection() {
   const [viewMode, setViewMode] = useState<"bento" | "vertical">("bento")
   const [mobileViewMode, setMobileViewMode] = useState<"vertical" | "horizontal">("vertical")
 
   return (
-    <motion.section
+    <section
       id="projets"
       className="sm:py-20 min-h-screen w-full bg-[#0f172a] relative"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
     >
       <div
         className="absolute inset-0 z-0"
@@ -27,7 +23,11 @@ export default function Projects() {
       />
       <div className="container mx-auto px-6">
         <div className="flex flex-col items-start mb-12">
-          <h2 className="text-4xl font-bold mb-8 text-white">Mes Projets</h2>
+          <h2
+            className="text-start text-4xl font-bold text-white mb-14"
+          >
+            Mes <span className="text-blue-400">Projets</span>
+          </h2>
 
           <div className="hidden md:flex bg-white/10 backdrop-blur-md rounded-xl p-1 border border-white/20 mb-4 space-x-1">
             <button
@@ -167,6 +167,6 @@ export default function Projects() {
           )}
         </div>
       </div>
-    </motion.section>
+    </section>
   )
 }

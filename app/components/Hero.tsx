@@ -4,201 +4,197 @@ import Image from "next/image"
 import { motion } from "framer-motion"
 import { TypeAnimation } from "react-type-animation"
 import { useState } from "react"
-import ShinyText from '@/app/components/ShinyText';
 import { FaGithub, FaLinkedin, FaWhatsapp, FaTiktok, FaEnvelope } from "react-icons/fa"
+import { Pacifico } from "next/font/google"
+import { FloatingPaths } from "./BackgroundPath"
+import { AppleHelloEnglishEffect } from "@/components/ui/shadcn-io/apple-hello-effect";
 
-export default function Hero() {
+const pacifico = Pacifico({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-pacifico",
+})
+
+export function HeroSection() {
   const [hovered, setHovered] = useState(false)
   const phone = "237697609387"
   const message = "Bonjour, je souhaite discuter avec vous 😊"
+
+  const socials = [
+    {
+      icon: <FaGithub size={28} />,
+      href: "https://github.com/diraneCode",
+      color: "#fff",
+    },
+    {
+      icon: <FaLinkedin size={28} />,
+      href: "https://linkedin.com/in/dirane-mekem-63b588273",
+      color: "#0A66C2",
+    },
+    {
+      icon: <FaTiktok size={28} />,
+      href: "https://www.tiktok.com/@diranecode",
+      color: "#fff",
+    },
+    {
+      icon: <FaWhatsapp size={28} />,
+      href: "https://wa.me/237697609387",
+      color: "#25D366",
+    },
+    {
+      icon: <FaEnvelope size={28} />,
+      href: "mailto:diranemekem@gmail.com",
+      color: "#f1f1f1",
+    },
+  ]
+
   return (
     <motion.section
-      className="min-h-screen w-full bg-[#0f172a] relative flex items-center justify-center py-20"
+      id="home"
+      className="relative h-screen flex items-center justify-center bg-gradient-to-b from-[#0f172a] via-[#111827] to-[#0f172a] overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.8 }}
     >
-      <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+      {/* Background animation */}
+      <div className="absolute inset-0 z-0 opacity-40 pointer-events-none">
+        <FloatingPaths position={1} />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.25),transparent_70%)]" />
+      </div>
+
+      {/* Content */}
+      <div className="mt-10 relative z-10 container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-10">
+        {/* Image + Animation */}
         <motion.div
-          className="md:w-1/2 mb-10 md:mb-0"
+          className="relative w-72 h-72 flex justify-center items-center"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
         >
-          {/* <div
-            className="absolute inset-0 z-0"
-            style={{
-              backgroundImage: `radial-gradient(circle 600px at 50% 50%, rgba(59,130,246,0.3), transparent)`,
-            }}
-          /> */}
+          {/* Gradient rotating aura */}
+          <motion.div
+            className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-500 via-sky-400 to-indigo-500 blur-xl opacity-40 scale-110"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          />
+
+          {/* Wrapper hover */}
           <div
-            className="relative w-64 h-64 mx-auto group cursor-pointer"
+            className="relative group flex flex-col items-center"
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
           >
-            {/* Cercle animé */}
+            {/* Cercle image */}
+            <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
+              <Image
+                src="/dirane mekem.png"
+                alt="Dirane Mekem"
+                fill
+                className={`object-cover transition duration-500 ${hovered ? "grayscale" : ""}`}
+              />
+            </div>
+
+            {/* Bubble avec glassmorphisme */}
             <motion.div
-              className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-blue-600"
-              animate={{ rotate: 360 }}
-              transition={{
-                duration: 10,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "linear",
-              }}
-            />
-
-            {/* Image avec effet noir & blanc au hover */}
-            <Image
-              src="/placeholder2.png"
-              alt="Photo de Dirane"
-              width={256}
-              height={256}
-              className={`rounded-b-full object-cover absolute bottom-0 transition duration-300 ${hovered ? "grayscale" : ""
-                }`}
-            />
-
-            {/* Popup style bulle de chat */}
-            {hovered && (
-              <motion.div
-                initial={{ opacity: 0, y: 20, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 20, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
-                className="absolute -top-10 left-1/2 -translate-x-1/2"
-              >
-                <div className="relative bg-white text-gray-800 px-4 py-2 rounded-2xl shadow-lg text-sm font-medium">
-                  Ravie de vous voir !😊
-                  {/* Petite flèche type bulle de chat */}
-                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 
-                              border-l-8 border-r-8 border-t-8 border-transparent 
-                              border-t-white" />
-                </div>
-              </motion.div>
-            )}
+              initial={{ opacity: 0, y: 10, scale: 0.95 }}
+              animate={hovered ? { opacity: 1, y: -85, scale: 1 } : { opacity: 0, y: 0 }}
+              transition={{ type: "spring", stiffness: 180, damping: 14 }}
+              className="absolute top-0 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none"
+            >
+              <div className="relative bg-white/15 text-white backdrop-blur-md border border-white/20 px-4 py-2 rounded-2xl shadow-xl whitespace-nowrap">
+                👋 Ravi de vous rencontrer !
+                {/* Flèche stylisée */}
+                <div className="absolute left-1/2 -bottom-[7px] -translate-x-1/2 w-0 h-0 border-l-[8px] border-r-[8px] border-t-[10px] border-transparent border-t-white/20" />
+              </div>
+            </motion.div>
           </div>
         </motion.div>
-        <div className="md:w-1/2 text-center md:text-left">
-          <motion.h3
-            className="text-4xl md:text-6xl font-bold mb-4"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <ShinyText
-              text="Hi 👋, je suis Dirane"
-              disabled={false}
-              speed={2}
-              className='custom-class'
-            />
 
-          </motion.h3>
+
+        {/* Text + CTA */}
+        <motion.div
+          className="md:w-1/2 text-center md:text-left space-y-6"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <h1
+            className={`text-5xl md:text-6xl font-bold text-white leading-tight ${pacifico.className}`}
+          >
+            <span className="flex items-center">
+              <AppleHelloEnglishEffect speed={1.1} /> 👋,
+            </span>
+            <span>je suis Dirane</span>
+          </h1>
+
           <TypeAnimation
-            sequence={["Software Engineer", 1000, "Web Developper", 1000, "UI/UX Designer", 1000]}
-            wrapper="h2"
+            sequence={[
+              "Software Engineer 💻",
+              1200,
+              "Web Developer 🌍",
+              1200,
+              "UI/UX Designer 🎨",
+              1200,
+              "AI Engineer 🤖",
+              1200,
+            ]}
+
+            wrapper="span"
             speed={50}
-            className="text-xl md:text-5xl font-bold text-blue-400 mb-6"
-            repeat={Number.POSITIVE_INFINITY}
+            className="block text-2xl md:text-3xl font-semibold text-sky-400"
+            repeat={Infinity}
           />
-          <motion.p
-            className="text-lg mb-8"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+
+          <p
+            className="text-gray-300 leading-relaxed mx-auto md:mx-0 text-base sm:text-lg md:text-xl lg:text-[1.25rem] tracking-wide"
           >
-            Jeune <span className="text-green-500">Came</span><span className="text-red-500">roun</span><span className="text-yellow-500">ais</span>, je vous accompagne à chaque étape : du branding créatif aux maquettes finales, pour donner vie à vos idées avec clarté et impact grâce à mon expérience.
-          </motion.p>
-          <div className="space-y-4">
-            <div className="flex space-x-6 items-center justify-center md:justify-start">
-              {/* GitHub */}
-              <a
-                href="https://github.com/diraneCode"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaGithub
-                  size={24}
-                  className="text-gray-400 hover:text-white transition-colors"
-                />
-              </a>
+            J’aide les{" "}
+            <span className="font-semibold text-white">entreprises</span> et{" "}
+            <span className="font-semibold text-white">créateurs</span> à booster leur
+            <span className="font-semibold text-white"> productivité</span> en concevant
+            des solutions <span className="font-semibold text-white">intelligentes</span>,
+            modernes et automatisées.
+          </p>
 
-              {/* LinkedIn */}
-              <a
-                href="https://linkedin.com/in/dirane-mekem-63b588273"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaLinkedin
-                  size={24}
-                  className="text-gray-400 hover:text-white transition-colors"
-                />
-              </a>
-
-              {/* TikTok */}
-              <a
-                href="https://www.tiktok.com/@diranecode"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaTiktok
-                  size={24}
-                  className="text-gray-400 hover:text-white transition-colors"
-                />
-              </a>
-
-              {/* WhatsApp */}
-              <a
-                href="https://wa.me/237697609387"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaWhatsapp
-                  size={24}
-                  className="text-gray-400 hover:text-white transition-colors"
-                />
-              </a>
-
-              {/* Email */}
-              <a href="mailto:diranemekem@gmail.com">
-                <FaEnvelope
-                  size={24}
-                  className="text-gray-400 hover:text-white transition-colors"
-                />
-              </a>
+          {/* CTA + Socials */}
+          <div className="space-y-6">
+            <div className="flex justify-center md:justify-start">
+              {socials.map(({ icon, href, color }, i) => (
+                <motion.a
+                  key={i}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.25 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="text-gray-400 transition-colors duration-300"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "48px",
+                    height: "48px",
+                    borderRadius: "9999px",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = color)}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "#9ca3af")}
+                >
+                  {icon}
+                </motion.a>
+              ))}
             </div>
+
             <motion.a
               href={`https://wa.me/${phone}?text=${encodeURIComponent(message)}`}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="block btn-cta w-fit"
             >
-              <button className="cta-button mt-4 w-full md:w-fit flex justify-center items-center">
-                <div className="svg-wrapper-1">
-                  <div className="svg-wrapper">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      width="24"
-                      height="24"
-                    >
-                      <path fill="none" d="M0 0h24v24H0z"></path>
-                      <path
-                        fill="currentColor"
-                        d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-                <span>Discuter</span>
-              </button>
+              🚀 Discuter maintenant
             </motion.a>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </motion.section>
+    </motion.section >
   )
 }
-
