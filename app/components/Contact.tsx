@@ -76,7 +76,7 @@ export function ContactSection() {
         >
           Contactez-<span className="text-blue-400">moi</span>
         </h2>
-        <div className="w-full sm:h-screen h-fit bg-[#1B2062] flex sm:flex-row flex-col-reverse rounded-xl overflow-hidden">
+        <div className="w-full sm:h-screen h-fit lg:min-h-fit  bg-[#1B2062] flex sm:flex-row flex-col-reverse rounded-xl overflow-hidden">
           <div className="w-full sm:w-3/5 h-full bg-gradient-to-b from-[#1B2062] to-[#050C38] p-10 rounded-xl space-y-7">
             <h3 className="text-xl font-bold">Vous pouvez me joindre via ce formulaire de contact</h3>
             <p className="text-sm text-white/50">

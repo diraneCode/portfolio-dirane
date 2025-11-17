@@ -78,24 +78,24 @@ export function ProjectSection() {
 
         <div className="hidden md:block">
           {viewMode === "bento" ? (
-            <section className="max-w-6xl mx-auto">
+            <section className="w-full mx-auto">
               <div className="w-full h-full flex flex-col gap-6">
                 <div className="flex justify-between space-x-4">
-                  <div className="w-64 h-64">
+                  <div className="w-64 h-64 lg:w-[30rem] lg:h-80">
                     <ProjectCardDetail
                       project={projectData[6]}
                       imageHeight="h-full"
                       className="w-full h-full"
                     />
                   </div>
-                  <div className="w-[27rem] h-64">
+                  <div className="w-64 h-64 lg:w-[30rem] lg:h-80">
                     <ProjectCardDetail
                       project={projectData[2]}
                       imageHeight="h-full"
                       className="w-full h-full"
                     />
                   </div>
-                  <div className="w-64 h-64">
+                  <div className="w-64 h-64 lg:w-[30rem] lg:h-80">
                     <ProjectCardDetail
                       project={projectData[1]}
                       imageHeight="h-full"
@@ -104,14 +104,14 @@ export function ProjectSection() {
                   </div>
                 </div>
                 <div className="flex space-x-4">
-                  <div className="w-full h-96">
+                  <div className="w-full h-96 lg:h-[30rem]">
                     <ProjectCardDetail
                       project={projectData[3]}
                       imageHeight="h-full"
                       className="w-full h-full"
                     />
                   </div>
-                  <div className="w-full h-96 space-y-4 flex flex-col">
+                  <div className="w-full h-96 lg:h-[30rem] space-y-4 flex flex-col">
                     <div className="w-full h-full">
                       <ProjectCardDetail
                         project={projectData[4]}

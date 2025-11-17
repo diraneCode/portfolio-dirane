@@ -1,11 +1,10 @@
 import { Toaster } from "sonner"
 import Chatbot from "./components/chatbot"
-// import Navbar from "./components/Navbar"
 import "./globals.css"
 import { Nunito } from "next/font/google"
 import { Metadata } from "next";
 import { ReactQueryProvider } from "@/providers/ReactQueryProvider"
-import { BtnMenu } from "./components/BtnMenu"
+import { Navbar } from "./components/Navbar"
 
 const orbitron = Nunito({ subsets: ["latin"] })
 
@@ -31,7 +30,7 @@ export const metadata: Metadata = {
       name: "Dirane",
       title: "Dirane • Portfolio",
       jobTitle: "Software Engineer - UI/UX Designer",
-      url: "https://www.dirane.cme",
+      url: "https://www.dirane.me",
       sameAs: [
         "https://github.com/diranecode",
         "https://linkedin.com/in/dirane-mekem-63b588273",
@@ -55,8 +54,7 @@ export default function RootLayout({
       </head>
       <body className={`${orbitron.className} bg-gray-900 text-white`}>
         <ReactQueryProvider>
-          {/* <Navbar /> */}
-          <BtnMenu />
+          <Navbar />
           {children}
           <Chatbot />
           <Toaster richColors position="top-center" closeButton={true} swipeDirections={["top"]} />

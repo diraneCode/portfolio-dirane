@@ -43,7 +43,7 @@ export function TestimonialSection() {
   return (
     <section
       id="testimonial"
-      className="min-h-screen w-full bg-[#0f172a] relative py-10 "
+      className="min-h-screen lg:min-h-fit  w-full bg-[#0f172a] relative py-10 "
     >
       <div
         className="absolute inset-0 z-0"

@@ -4,7 +4,6 @@ import Image from "next/image"
 import { motion } from "framer-motion"
 import { TypeAnimation } from "react-type-animation"
 import { useState } from "react"
-import { FaGithub, FaLinkedin, FaWhatsapp, FaTiktok, FaEnvelope } from "react-icons/fa"
 import { Pacifico } from "next/font/google"
 import { FloatingPaths } from "./BackgroundPath"
 import { AppleHelloEnglishEffect } from "@/components/ui/shadcn-io/apple-hello-effect";
@@ -19,34 +18,6 @@ export function HeroSection() {
   const [hovered, setHovered] = useState(false)
   const phone = "237697609387"
   const message = "Bonjour, je souhaite discuter avec vous 😊"
-
-  const socials = [
-    {
-      icon: <FaGithub size={28} />,
-      href: "https://github.com/diraneCode",
-      color: "#fff",
-    },
-    {
-      icon: <FaLinkedin size={28} />,
-      href: "https://linkedin.com/in/dirane-mekem-63b588273",
-      color: "#0A66C2",
-    },
-    {
-      icon: <FaTiktok size={28} />,
-      href: "https://www.tiktok.com/@diranecode",
-      color: "#fff",
-    },
-    {
-      icon: <FaWhatsapp size={28} />,
-      href: "https://wa.me/237697609387",
-      color: "#25D366",
-    },
-    {
-      icon: <FaEnvelope size={28} />,
-      href: "mailto:diranemekem@gmail.com",
-      color: "#f1f1f1",
-    },
-  ]
 
   return (
     <motion.section
@@ -66,7 +37,7 @@ export function HeroSection() {
       <div className="mt-10 relative z-10 container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-10">
         {/* Image + Animation */}
         <motion.div
-          className="relative w-72 h-72 flex justify-center items-center"
+          className="relative w-72 h-72 lg:w-96 lg:h-9w-96 flex justify-center items-center"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
@@ -85,7 +56,7 @@ export function HeroSection() {
             onMouseLeave={() => setHovered(false)}
           >
             {/* Cercle image */}
-            <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
+            <div className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
               <Image
                 src="/dirane mekem.png"
                 alt="Dirane Mekem"
@@ -113,7 +84,7 @@ export function HeroSection() {
 
         {/* Text + CTA */}
         <motion.div
-          className="md:w-1/2 text-center md:text-left space-y-6"
+          className="md:w-1/2 text-center md:text-left sm:space-y-6"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
@@ -156,43 +127,16 @@ export function HeroSection() {
             modernes et automatisées.
           </p>
 
-          {/* CTA + Socials */}
-          <div className="space-y-6">
-            <div className="flex justify-center md:justify-start">
-              {socials.map(({ icon, href, color }, i) => (
-                <motion.a
-                  key={i}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.25 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="text-gray-400 transition-colors duration-300"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: "48px",
-                    height: "48px",
-                    borderRadius: "9999px",
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = color)}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "#9ca3af")}
-                >
-                  {icon}
-                </motion.a>
-              ))}
-            </div>
 
-            <motion.a
-              href={`https://wa.me/${phone}?text=${encodeURIComponent(message)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block btn-cta w-fit"
-            >
-              🚀 Discuter maintenant
-            </motion.a>
-          </div>
+          <motion.a
+            href={`https://wa.me/${phone}?text=${encodeURIComponent(message)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block btn-cta w-fit"
+          >
+            🚀 Discuter maintenant
+          </motion.a>
+
         </motion.div>
       </div>
     </motion.section >

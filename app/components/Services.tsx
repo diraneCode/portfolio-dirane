@@ -50,7 +50,7 @@ export function ServiceSection() {
   return (
     <section
       id="services"
-      className="min-h-screen w-full bg-[#0f172a] relative py-20 "
+      className="min-h-screen lg:min-h-fit w-full bg-[#0f172a] relative py-20 flex"
     >
       <div
         className="absolute inset-0 z-0"
