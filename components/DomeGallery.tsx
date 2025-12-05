@@ -61,7 +61,15 @@ const DEFAULT_IMAGES: ImageItem[] = [
   {
     src: '/joker-6.jpg',
     alt: 'Dirane'
-  }
+  },
+  {
+    src: '/dirane mekem.jpg',
+    alt: 'dirane mekem'
+  },
+  {
+    src: '/mekem.jpg',
+    alt: 'mekem'
+  },
 ];
 
 const DEFAULTS = {
