@@ -6,7 +6,7 @@ import CountUp from "../../components/CountUp"
 
 export function StatSection() {
   const stats = [
-    { value: 2, label: "Années d'expérience", icon: <Icon.FaUserGraduate /> },
+    { value: 4, label: "Années d'expérience", icon: <Icon.FaUserGraduate /> },
     { value: 10, label: "Projets terminés", icon: <Icon.FaCode /> },
     { value: 5, label: "Clients satisfaits", icon: <Icon.FaUsers /> },
   ]
