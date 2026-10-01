@@ -1,172 +1,157 @@
 "use client"
 
-import { useState } from "react"
-import { Grid3X3, List, LayoutGrid } from "lucide-react"
-import { ProjectCardDetail } from "./ProjectCardDetail"
-import { projectData } from "@/lib/projectData"
+import { useCallback, useState } from "react"
+import { Grid3X3, LayoutGrid, List } from "lucide-react"
+import { SectionHeading } from "@/components/shared/SectionHeading"
+import { Reveal } from "@/components/shared/Reveal"
+import { ProjectCard } from "./ProjectCard"
+import { ProjectOverlay } from "./ProjectOverlay"
+import { projectData, type Project } from "@/lib/projectData"
+import { cn } from "@/lib/utils"
 
+type DesktopMode = "bento" | "grid"
+type MobileMode = "vertical" | "grid"
 
-export function ProjectSection() {
-  const [viewMode, setViewMode] = useState<"bento" | "vertical">("bento")
-  const [mobileViewMode, setMobileViewMode] = useState<"vertical" | "horizontal">("vertical")
+function Toggle<T extends string>({ value, onChange, options }: { value: T; onChange: (v: T) => void; options: { value: T; label: string; Icon: React.ElementType }[] }) {
+  return (
+    <div className="inline-flex rounded-full border border-white/15 bg-white/5 p-1 backdrop-blur" role="tablist" aria-label="Mode d'affichage">
+      {options.map((o) => (
+        <button
+          key={o.value}
+          type="button"
+          role="tab"
+          aria-selected={value === o.value}
+          onClick={() => onChange(o.value)}
+          className={cn(
+            "flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium transition-all duration-300",
+            value === o.value ? "bg-brand text-white shadow-glow" : "text-ash hover:text-paper"
+          )}
+        >
+          <o.Icon className="size-4" />
+          {o.label}
+        </button>
+      ))}
+    </div>
+  )
+}
+
+export function Projects() {
+  const [desktop, setDesktop] = useState<DesktopMode>("bento")
+  const [mobile, setMobile] = useState<MobileMode>("vertical")
+  const [activeIndex, setActiveIndex] = useState<number | null>(null)
+
+  const open = useCallback((p: Project) => setActiveIndex(projectData.indexOf(p)), [])
+  const close = useCallback(() => setActiveIndex(null), [])
+  const next = useCallback(() => setActiveIndex((i) => (i === null ? null : (i + 1) % projectData.length)), [])
+  const prev = useCallback(() => setActiveIndex((i) => (i === null ? null : (i - 1 + projectData.length) % projectData.length)), [])
+
+  // Disposition bento (reprend l'agencement d'origine : 3 cartes, puis une grande + une large + deux petites)
+  const bento = {
+    top: [projectData[6], projectData[2], projectData[1]],
+    big: projectData[3],
+    wide: projectData[4],
+    small: [projectData[0], projectData[7]],
+  }
 
   return (
-    <section
-      id="projets"
-      className="sm:py-20 min-h-screen w-full bg-[#0f172a] relative"
-    >
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: `radial-gradient(circle 600px at 50% 50%, rgba(59,130,246,0.3), transparent)`,
-        }}
-      />
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col items-start mb-12">
-          <h2
-            className="text-start text-4xl font-bold text-white mb-14"
-          >
-            Mes <span className="text-blue-400">Projets</span>
-          </h2>
-
-          <div className="hidden md:flex bg-white/10 backdrop-blur-md rounded-xl p-1 border border-white/20 mb-4 space-x-1">
-            <button
-              onClick={() => setViewMode("bento")}
-              className={`px-6 py-3 rounded-lg transition-all duration-300 flex items-center gap-2 ${viewMode === "bento"
-                ? "bg-blue-500 text-white shadow-lg"
-                : "text-gray-300 hover:text-white hover:bg-white/10"
-                }`}
-            >
-              <LayoutGrid className="w-4 h-4" />
-              Bento Grid
-            </button>
-            <button
-              onClick={() => setViewMode("vertical")}
-              className={`px-6 py-3 rounded-lg transition-all duration-300 flex items-center gap-2 ${viewMode === "vertical"
-                ? "bg-blue-500 text-white shadow-lg"
-                : "text-gray-300 hover:text-white hover:bg-white/10"
-                }`}
-            >
-              <Grid3X3 className="w-4 h-4" />
-              Grille
-            </button>
-          </div>
-
-          <div className="flex md:hidden bg-white/10 backdrop-blur-md rounded-xl p-1 border border-white/20">
-            <button
-              onClick={() => setMobileViewMode("vertical")}
-              className={`px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2 ${mobileViewMode === "vertical"
-                ? "bg-blue-500 text-white shadow-lg"
-                : "text-gray-300 hover:text-white hover:bg-white/10"
-                }`}
-            >
-              <List className="w-4 h-4" />
-              <span className="text-sm">Vertical</span>
-            </button>
-            <button
-              onClick={() => setMobileViewMode("horizontal")}
-              className={`px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2 ${mobileViewMode === "horizontal"
-                ? "bg-blue-500 text-white shadow-lg"
-                : "text-gray-300 hover:text-white hover:bg-white/10"
-                }`}
-            >
-              <Grid3X3 className="w-4 h-4" />
-              <span className="text-sm">2x2</span>
-            </button>
-          </div>
+    <section id="projets" className="section section-dark border-t border-white/10" aria-labelledby="projets-title">
+      <div className="container-x">
+        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+          <SectionHeading
+            index="06"
+            eyebrow="Projets"
+            id="projets-title"
+            title="Une sélection de *réalisations*"
+            lede="Sites vitrines, e-commerce, outils métier et maquettes : des projets livrés pour des clients ou menés à titre personnel. Cliquez pour ouvrir la présentation."
+          />
+          <Reveal delay={0.1}>
+            <div className="hidden md:block">
+              <Toggle
+                value={desktop}
+                onChange={setDesktop}
+                options={[
+                  { value: "bento", label: "Bento", Icon: LayoutGrid },
+                  { value: "grid", label: "Grille", Icon: Grid3X3 },
+                ]}
+              />
+            </div>
+            <div className="md:hidden">
+              <Toggle
+                value={mobile}
+                onChange={setMobile}
+                options={[
+                  { value: "vertical", label: "Vertical", Icon: List },
+                  { value: "grid", label: "2 × 2", Icon: Grid3X3 },
+                ]}
+              />
+            </div>
+          </Reveal>
         </div>
 
-        <div className="hidden md:block">
-          {viewMode === "bento" ? (
-            <section className="w-full mx-auto">
-              <div className="w-full h-full flex flex-col gap-6">
-                <div className="flex justify-between space-x-4">
-                  <div className="w-64 h-64 lg:w-[30rem] lg:h-80">
-                    <ProjectCardDetail
-                      project={projectData[6]}
-                      imageHeight="h-full"
-                      className="w-full h-full"
-                    />
-                  </div>
-                  <div className="w-64 h-64 lg:w-[30rem] lg:h-80">
-                    <ProjectCardDetail
-                      project={projectData[2]}
-                      imageHeight="h-full"
-                      className="w-full h-full"
-                    />
-                  </div>
-                  <div className="w-64 h-64 lg:w-[30rem] lg:h-80">
-                    <ProjectCardDetail
-                      project={projectData[1]}
-                      imageHeight="h-full"
-                      className="w-full h-full"
-                    />
-                  </div>
-                </div>
-                <div className="flex space-x-4">
-                  <div className="w-full h-96 lg:h-[30rem]">
-                    <ProjectCardDetail
-                      project={projectData[3]}
-                      imageHeight="h-full"
-                      className="w-full h-full"
-                    />
-                  </div>
-                  <div className="w-full h-96 lg:h-[30rem] space-y-4 flex flex-col">
-                    <div className="w-full h-full">
-                      <ProjectCardDetail
-                        project={projectData[4]}
-                        imageHeight="h-full"
-                        className="w-full h-full"
-                      />
-                    </div>
-                    <div className="w-full h-full space-x-4 flex flex-row">
-                      <div className="w-full h-full">
-                        <ProjectCardDetail
-                          project={projectData[0]}
-                          imageHeight="h-full"
-                          className="w-full h-full"
-                        />
-                      </div>
-                      <div className="w-full h-full">
-                        <ProjectCardDetail
-                          project={projectData[7]}
-                          imageHeight="h-full"
-                          className="w-full h-full"
-                        />
-                      </div>
-                    </div>
-                  </div>
+        {/* Desktop */}
+        <div className="mt-14 hidden md:block">
+          {desktop === "bento" ? (
+            <div className="grid grid-cols-6 gap-5">
+              {bento.top.map((p, i) => (
+                <Reveal key={p.name} delay={i * 0.08} className="col-span-2">
+                  <ProjectCard project={p} onOpen={open} imageHeight="h-72 lg:h-80" />
+                </Reveal>
+              ))}
+              <Reveal delay={0.1} className="col-span-3">
+                <ProjectCard project={bento.big} onOpen={open} imageHeight="h-[32rem] lg:h-[36rem]" />
+              </Reveal>
+              <div className="col-span-3 grid grid-rows-[1fr_1fr] gap-5">
+                <Reveal delay={0.15}>
+                  <ProjectCard project={bento.wide} onOpen={open} imageHeight="h-[15.4rem] lg:h-[17.4rem]" />
+                </Reveal>
+                <div className="grid grid-cols-2 gap-5">
+                  {bento.small.map((p, i) => (
+                    <Reveal key={p.name} delay={0.2 + i * 0.08}>
+                      <ProjectCard project={p} onOpen={open} imageHeight="h-[15.4rem] lg:h-[17.4rem]" />
+                    </Reveal>
+                  ))}
                 </div>
               </div>
-            </section>
-
+            </div>
           ) : (
-            <div className="max-h-fit pr-2">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {projectData.map((project, index) => (
-                  <ProjectCardDetail key={index} project={project} imageHeight="h-64" />
-                ))}
-              </div>
+            <div className="grid grid-cols-2 gap-5 lg:grid-cols-3">
+              {projectData.map((p, i) => (
+                <Reveal key={p.name} delay={Math.min(i * 0.06, 0.3)}>
+                  <ProjectCard project={p} onOpen={open} imageHeight="h-64" />
+                </Reveal>
+              ))}
             </div>
           )}
         </div>
 
-        <div className="block md:hidden">
-          {mobileViewMode === "vertical" ? (
-            <div className="space-y-6">
-              {projectData.map((project, index) => (
-                <ProjectCardDetail key={index} project={project} imageHeight="h-56" className="w-full" />
+        {/* Mobile */}
+        <div className="mt-10 md:hidden">
+          {mobile === "vertical" ? (
+            <div className="space-y-5">
+              {projectData.map((p, i) => (
+                <Reveal key={p.name} delay={Math.min(i * 0.05, 0.2)}>
+                  <ProjectCard project={p} onOpen={open} imageHeight="h-60" />
+                </Reveal>
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-4">
-              {projectData.map((project, index) => (
-                <ProjectCardDetail key={index} project={project} imageHeight="h-40" className="w-full" />
+            <div className="grid grid-cols-2 gap-3">
+              {projectData.map((p) => (
+                <ProjectCard key={p.name} project={p} onOpen={open} imageHeight="h-44" />
               ))}
             </div>
           )}
         </div>
       </div>
+
+      <ProjectOverlay
+        project={activeIndex === null ? null : projectData[activeIndex]}
+        index={activeIndex ?? 0}
+        total={projectData.length}
+        onClose={close}
+        onNext={next}
+        onPrev={prev}
+      />
     </section>
   )
 }

@@ -1,30 +1,19 @@
 "use client";
 
-import { z } from "zod";
-import { supabase } from "@/lib/supabase";
-import { FormSchema } from "@/app/components/Contact";
+import { getSupabase } from "@/lib/supabase";
+import type { ContactInput } from "@/lib/schemas";
 
-/**
- * Envoie un message de contact à la table "contact" dans Supabase.
- */
-export const sendMessage = async (dataContact: z.infer<typeof FormSchema>) => {
-  try {
-    // Construction directe de la donnée à insérer
-    const payload = {
-      fullname: dataContact.username.trim(),
-      email: dataContact.email.toLowerCase().trim(),
-      phone: dataContact.phone.trim(),
-      object: dataContact.object.trim(),
-      message: dataContact.description.trim(),
-    };
+/** Enregistre un message de contact dans la table "contact" (Supabase). */
+export const sendMessage = async (input: ContactInput) => {
+  const payload = {
+    fullname: input.username.trim(),
+    email: input.email.toLowerCase().trim(),
+    phone: input.phone.replace(/[\s().-]/g, ""),
+    object: input.object.trim(),
+    message: input.description.trim(),
+  };
 
-    const { data, error } = await supabase.from("contact").insert([payload]).select("*").single();
-
-    if (error) throw new Error(error.message);
-
-    return data;
-  } catch (err) {
-    console.error("Erreur lors de l’envoi du message :", err);
-    throw err; // on relance l’erreur pour que React Query la capture dans onError
-  }
+  const { data, error } = await getSupabase().from("contact").insert([payload]).select("*").single();
+  if (error) throw new Error(error.message);
+  return data;
 };

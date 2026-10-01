@@ -44,9 +44,9 @@ const quickActions = [
 
 const socialLinks = [
     { label: "GitHub", icon: <Github className="w-4 h-4" />, url: "https://github.com/diranecode" },
-    { label: "LinkedIn", icon: <Linkedin className="w-4 h-4" />, url: "www.linkedin.com/in/dirane-mekem-63b588273" },
+    { label: "LinkedIn", icon: <Linkedin className="w-4 h-4" />, url: "https://www.linkedin.com/in/dirane-mekem-63b588273" },
     { label: "Email", icon: <Mail className="w-4 h-4" />, url: "mailto:diranemekem@gmail.com" },
-    { label: "WhatApp", icon: <FaWhatsapp className="w-4 h-4" />, url: "https://wa.me/237697609387?text=Bonjour%Dirane👋" },
+    { label: "WhatsApp", icon: <FaWhatsapp className="w-4 h-4" />, url: "https://wa.me/237697609387?text=Bonjour%20Dirane%20%F0%9F%91%8B" },
 ]
 
 export default function Chatbot() {
@@ -81,7 +81,7 @@ export default function Chatbot() {
             return {
                 id: Date.now().toString(),
                 content:
-                    "Je suis un développeur passionné avec plus de 2 ans d'expériences en développement web. Je me spécialise dans React, Next.js, l'IA et les technologies modernes. J'aime créer des expériences utilisateur exceptionnelles ! 🚀",
+                    "Je suis Dirane, Software Engineer et UI/UX Designer basé à Douala. Je conçois des applications web et mobiles avec React, Next.js, React Native et Supabase, et je design les interfaces sur Figma.",
                 sender: "bot",
                 timestamp: new Date(),
             }
@@ -119,7 +119,7 @@ export default function Chatbot() {
             return {
                 id: Date.now().toString(),
                 content:
-                    "Mes principales compétences incluent : React, NExt.js, TypeScript, Node.js, Python, PostgreSQL, MongoDB, Figma et bien plus encore. Je suis toujours en train d'apprendre de nouvelles technologies ! 💻",
+                    "Mes principales compétences incluent : React, Next.js, TypeScript, Node.js, Python, PostgreSQL, MongoDB, Figma et bien plus encore. Je suis toujours en train d'apprendre de nouvelles technologies ! 💻",
                 sender: "bot",
                 timestamp: new Date(),
             }
@@ -169,12 +169,12 @@ export default function Chatbot() {
     }
 
     return (
-        <div className="fixed bottom-4 right-4 z-50 font-mono">
+        <div className="fixed bottom-4 right-4 z-50">
             {/* Chat Button */}
             {!isOpen && (
                 <Button
                     onClick={() => setIsOpen(true)}
-                    className="h-14 w-14 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                    className="h-14 w-14 rounded-full bg-primary hover:bg-primary-600 shadow-lift transition-all duration-300 transform hover:scale-105" aria-label="Ouvrir l'assistant"
                 >
                     <MessageCircle className="h-6 w-6 text-white" />
                 </Button>
@@ -183,11 +183,11 @@ export default function Chatbot() {
             {/* Chat Window */}
             {isOpen && (
                 <Card
-                    className={`w-80 sm:w-96 bg-white shadow-2xl border-0 overflow-hidden transition-all duration-300 ${isMinimized ? "h-16" : "h-[500px]"
+                    className={`w-80 sm:w-96 bg-white shadow-lift border border-line overflow-hidden rounded-2xl transition-all duration-300 ${isMinimized ? "h-16" : "h-[500px]"
                         }`}
                 >
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-4 text-white">
+                    <div className="bg-primary p-4 text-cream">
                         <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-3">
                                 <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
@@ -233,7 +233,7 @@ export default function Chatbot() {
                                     >
                                         <div
                                             className={`max-w-[80%] p-3 rounded-2xl ${message.sender === "user"
-                                                    ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white"
+                                                    ? "bg-primary text-cream"
                                                     : "bg-gray-100 text-gray-800"
                                                 }`}
                                         >
@@ -285,7 +285,7 @@ export default function Chatbot() {
                                         <Badge
                                             key={index}
                                             variant="secondary"
-                                            className="cursor-pointer hover:bg-blue-100 transition-colors text-xs"
+                                            className="cursor-pointer hover:bg-primary-50 transition-colors text-xs"
                                             onClick={() => handleQuickAction(action.label)}
                                         >
                                             {action.icon}
@@ -302,7 +302,7 @@ export default function Chatbot() {
                                         value={inputValue}
                                         onChange={(e) => setInputValue(e.target.value)}
                                         placeholder="Tapez votre message..."
-                                        className="flex-1 border-gray-200 focus:border-blue-500"
+                                        className="flex-1 border-line focus:border-primary"
                                         onKeyPress={(e) => {
                                             if (e.key === "Enter") {
                                                 handleSendMessage(inputValue)
@@ -311,7 +311,7 @@ export default function Chatbot() {
                                     />
                                     <Button
                                         onClick={() => handleSendMessage(inputValue)}
-                                        className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700"
+                                        className="bg-primary hover:bg-primary-600"
                                         size="sm"
                                     >
                                         <Send className="h-4 w-4" />

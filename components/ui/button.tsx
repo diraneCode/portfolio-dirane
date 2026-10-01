@@ -5,26 +5,27 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-950 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 dark:focus-visible:ring-neutral-300",
+  "group/btn inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-full font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-night disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 active:scale-[0.97]",
   {
     variants: {
       variant: {
-        default:
-          "bg-neutral-900 text-neutral-50 shadow hover:bg-neutral-900/90 dark:bg-neutral-50 dark:text-neutral-900 dark:hover:bg-neutral-50/90",
-        destructive:
-          "bg-red-500 text-neutral-50 shadow-sm hover:bg-red-500/90 dark:bg-red-900 dark:text-neutral-50 dark:hover:bg-red-900/90",
-        outline:
-          "border border-neutral-200 bg-white shadow-sm hover:bg-neutral-100 hover:text-neutral-900 dark:border-neutral-800 dark:bg-neutral-950 dark:hover:bg-neutral-800 dark:hover:text-neutral-50",
-        secondary:
-          "bg-neutral-100 text-neutral-900 shadow-sm hover:bg-neutral-100/80 dark:bg-neutral-800 dark:text-neutral-50 dark:hover:bg-neutral-800/80",
-        ghost: "hover:bg-neutral-100 hover:text-neutral-900 dark:hover:bg-neutral-800 dark:hover:text-neutral-50",
-        link: "text-neutral-900 underline-offset-4 hover:underline dark:text-neutral-50",
+        default: "bg-brand text-white shadow-glow hover:bg-brand-600 hover:text-white hover:-translate-y-0.5",
+        white: "bg-paper text-night hover:bg-night hover:text-paper hover:-translate-y-0.5",
+        night: "bg-night text-paper hover:bg-brand hover:text-white hover:-translate-y-0.5",
+        outline: "border border-white/25 bg-transparent text-paper hover:border-brand hover:text-brand",
+        "outline-dark": "border border-ink/25 bg-transparent text-ink hover:border-brand hover:text-brand",
+        ghost: "text-paper/80 hover:bg-white/10 hover:text-paper",
+        link: "text-brand underline-offset-4 hover:underline",
+        destructive: "bg-red-600 text-white hover:bg-red-700",
+        // compat
+        inverse: "bg-paper text-night hover:bg-night hover:text-paper",
+        secondary: "bg-white/10 text-paper hover:bg-white/20",
       },
       size: {
-        default: "h-9 px-4 py-2",
-        sm: "h-8 rounded-md px-3 text-xs",
-        lg: "h-10 rounded-md px-8",
-        icon: "h-9 w-9",
+        default: "h-11 px-6 text-sm",
+        sm: "h-9 px-4 text-xs",
+        lg: "h-13 px-7 py-3.5 text-[0.95rem]",
+        icon: "h-10 w-10",
       },
     },
     defaultVariants: {
@@ -53,5 +54,22 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   }
 )
 Button.displayName = "Button"
+
+/** Pastille ronde avec flèche, à placer dans un bouton (style "See my works"). */
+export function ArrowDot({ className }: { className?: string }) {
+  return (
+    <span
+      className={cn(
+        "flex size-7 shrink-0 items-center justify-center rounded-full bg-white/20 transition-transform duration-300 group-hover/btn:rotate-45",
+        className
+      )}
+      aria-hidden
+    >
+      <svg viewBox="0 0 24 24" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M5 12h14M13 5l7 7-7 7" />
+      </svg>
+    </span>
+  )
+}
 
 export { Button, buttonVariants }

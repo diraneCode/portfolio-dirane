@@ -1,30 +1,19 @@
 "use client";
 
-import { z } from "zod";
-import { supabase } from "@/lib/supabase";
-import { formDevis } from "@/components/BtnDevis";
-import { EmailTemplate } from '@/feature/email-template';
+import { getSupabase } from "@/lib/supabase";
+import type { DevisInput } from "@/lib/schemas";
 
-/**
- * Envoie un message de contact à la table "contact" dans Supabase.
- */
-export const sendDevis = async (dataContact: z.infer<typeof formDevis>) => {
-  try {
-    // Construction directe de la donnée à insérer
-    const payload = {
-      service: dataContact.service.trim(),
-      fullname: dataContact.fullName.toLowerCase().trim(),
-      phone: dataContact.phone.trim(),
-      email: dataContact.email.trim(),
-      message: dataContact.message.trim(),
-    };
+/** Enregistre une demande de devis dans la table "devis" (Supabase). */
+export const sendDevis = async (input: DevisInput) => {
+  const payload = {
+    service: input.service.trim(),
+    fullname: input.fullName.trim(),
+    phone: input.phone.replace(/[\s().-]/g, ""),
+    email: input.email.toLowerCase().trim(),
+    message: input.message.trim(),
+  };
 
-    const { data, error } = await supabase.from("devis").insert([payload]).select("*").single();
-
-    if (error) throw new Error(error.message);
-    return data;
-  } catch (err) {
-    console.error("Erreur lors de l’envoi du devis :", err);
-    throw err; // on relance l’erreur pour que React Query la capture dans onError
-  }
+  const { data, error } = await getSupabase().from("devis").insert([payload]).select("*").single();
+  if (error) throw new Error(error.message);
+  return data;
 };

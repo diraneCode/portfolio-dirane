@@ -1,32 +1,20 @@
 "use client";
 
-import { sendDevis } from '@/services/devis-service';
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { toast } from 'sonner';
+import { sendDevis } from "@/services/devis-service";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "sonner";
 
-const useAddDevis = () => {
-  const queryClient = useQueryClient();
-
-  return useMutation({
+export const useAddDevis = () =>
+  useMutation({
     mutationFn: sendDevis,
-    onSuccess: (_) => {
-      // On invalide les données liées au propriétaire courant
-      queryClient.invalidateQueries({
-        queryKey: ["devis"],
-      });
-
-      toast.success("Merci pour votre message",{
-        description: "Nous vous répondrons dans les plus brefs délais.",
+    onSuccess: () => {
+      toast.success("Demande de devis envoyée", {
+        description: "Merci ! Je reviens vers vous sous 48 h avec une première estimation.",
       });
     },
     onError: () => {
-      toast.error("Échec de l'envoie' ❌",{
-        description: "Une erreur est survenue. Veuillez réessayer.",
+      toast.error("Échec de l'envoi", {
+        description: "Une erreur est survenue. Veuillez réessayer ou m'écrire directement par e-mail.",
       });
     },
   });
-};
-
-export {
-    useAddDevis
-}

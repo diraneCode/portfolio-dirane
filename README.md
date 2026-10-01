@@ -1,107 +1,71 @@
-# Portfolio Next.js
+# Portfolio — Dirane Mekem
 
-Il s'agit d'un **portfolio Next.js** créé avec [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).  
-Il présente mon travail, mes projets et mes compétences à travers une interface moderne, responsive et performante.
+Portfolio personnel de **Dirane Mekem**, Software Engineer & UI/UX Designer (Douala, Cameroun), construit avec Next.js 15 (App Router), React 19, Tailwind CSS et Motion.
 
-## 🚀 Fonctionnalités
+Site : https://www.dirane.me
 
-- **Application mono-page (SPA)** avec navigation fluide entre les sections.
-- **Design responsive** optimisé pour ordinateur, tablette et mobile.
-- **UI Glassmorphism** pour un rendu moderne et élégant.
-- **Animations et transitions** avec GSAP pour une expérience utilisateur soignée.
-- **SEO-friendly** avec meta tags, sitemap et données structurées.
-- **Chargement paresseux des images** pour améliorer les performances.
-- **Mode sombre** disponible.
-- **Accessibilité** et HTML sémantique pour une meilleure UX.
+## Direction artistique
 
-## 🛠 Stack technique
+- **Palette** : nuit (`#121212`), blanc, bleu de marque (`#3B6CFF`, token `brand`), sections claires en alternance. Tokens dans `tailwind.config.ts` (`night`, `paper`, `brand`, `ash`, `ink`).
+- **Filigrane de marque** : `components/shared/BrandPattern.tsx` (monogramme D+M avec repère de maquette, variantes `mark`, `grid`, `arc`) et `BrandMark` (logo seul). Posé discrètement en fond du hero, de l'à-propos, des services, de la section Art, de la bande CTA et du blog.
+- **Typographie** : Poppins (texte et titres géants, `--font-sans`), Caveat Brush (titres de section façon "brush", `--font-brush`), Geist Mono (étiquettes, `--font-mono`). Chargées avec `next/font/google` dans `app/layout.tsx`.
+- **Animations** : nom géant lettre par lettre et parallaxe du portrait (hero), titres qui se dessinent avec trait de pinceau bleu (`SectionHeading` : entourez des mots d'`*astérisques*`), manifeste plein écran qui s'allume au scroll (`Manifesto.tsx`), ouverture plein écran d'un projet en rideau (`ProjectOverlay.tsx`), survols orange sur cartes et boutons, respect de `prefers-reduced-motion`.
 
-- [Next.js](https://nextjs.org/) - Framework React pour SSR et sites statiques
-- [React](https://reactjs.org/) - Librairie UI
-- [GSAP](https://greensock.com/gsap/) - Librairie d’animations
-- [Tailwind CSS](https://tailwindcss.com/) - Framework CSS utilitaire
-- [React Icons](https://react-icons.github.io/react-icons/) - Librairie d’icônes
-- [Vercel](https://vercel.com/) - Plateforme de déploiement
+## Sections
 
-## 📦 Installation et démarrage
+Hero (style image de référence : nom géant sur portrait, pastille disponibilité, CTA orange, défilé d'outils) → À propos (+ statistiques) → Manifeste (plein écran, scroll) → Parcours (frise Expérience / Formation) → Services → Projets (bento / grille sur desktop, vertical / 2×2 sur mobile, présentation plein écran) → Art & création « Mes activités » (grille uniforme de photos portrait 3:4, légende au survol, lightbox, lien créateur de contenu) → Outils → Témoignages → Galerie → Bande CTA (devis, CV, WhatsApp) → Contact → Footer.
 
-Clonez le projet :
+Pages : `/blog` (liste) et `/blog/[slug]` (article), générées statiquement à partir de `content/blog/*.md`.
 
-````bash
-git clone https://github.com/votre-utilisateur/portfolio.git
-cd portfolio
+## Structure
 
-Installez les dépendances :
-npm install
-# ou
-yarn install
-# ou
-pnpm install
+```
+app/
+  layout.tsx            # polices, métadonnées SEO, JSON-LD, Navbar/Footer
+  page.tsx              # composition des sections
+  robots.ts, sitemap.ts, manifest.ts
+  opengraph-image.tsx   # image OG générée (1200×630, nuit/orange), réutilisée pour Twitter
+  blog/                 # page de liste et page article (markdown via react-markdown)
+  components/           # sections de la page
+components/
+  shared/               # Reveal, SectionHeading, BrushStroke, Marquee, Timeline (parcours), SocialLinks
+  ui/                   # primitives shadcn restylées (button, input, drawer…)
+  StaggeredMenu.tsx, DomeGallery.tsx, LogoLoop.tsx, CountUp.tsx
+lib/
+  site.ts               # identité, coordonnées, réseaux, navigation
+  projectData.ts        # projets
+  experienceData.ts     # expériences et formations (frise)
+  artData.ts            # galerie d'art (dessins, vidéos, photos)
+  blog.ts               # lecture des articles markdown (frontmatter + contenu)
+  schemas.ts            # schémas zod des formulaires
+services/, hooks/       # envoi contact / devis vers Supabase (React Query)
+```
 
-## Getting Started
+## Modifier le contenu
 
-Lancez le serveur de développement :
+- Coordonnées, réseaux, disponibilité : `lib/site.ts`
+- Projets : `lib/projectData.ts`
+- Parcours : `lib/experienceData.ts` ; les logos sont dans `public/logos/` (les fichiers `.svg` 2tcorp, cinaf et iut sont des **placeholders** à remplacer par les vrais logos)
+- Galerie photo : `lib/artData.ts` + fichiers dans `public/art/` (les images actuelles sont des **placeholders** à remplacer par vos photos, format portrait conseillé)
+- Articles de blog : un fichier `.md` par article dans `content/blog/` avec un frontmatter `title`, `description`, `date`, `tags`, `cover`, `readingTime`
+- Chaîne de contenu (TikTok…) : `lib/site.ts` → `content`
+- Témoignages : `app/components/Testimonials.tsx`
+- Outils : `app/components/Tools.tsx`
+
+## Développement
 
 ```bash
-npm run dev
-# ou
-yarn dev
-# ou
-pnpm dev
-````
+pnpm install
+pnpm dev        # http://localhost:3000
+pnpm build && pnpm start
+pnpm lint
+```
 
-Ouvrez http://localhost:3000
- dans votre navigateur pour voir le portfolio.
+Variables d'environnement (formulaires) :
 
-Vous pouvez commencer à modifier la page en éditant app/page.tsx. La page se mettra à jour automatiquement.
+```
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
+```
 
-⚙️ Configuration et SEO
-
-Le site utilise next-sitemap
- pour générer le sitemap et le robots.txt.
-
-Meta tags et Open Graph inclus pour le partage sur les réseaux sociaux et le SEO.
-
-Les images sont optimisées et chargées de manière paresseuse grâce au composant Image de Next.js.
-
-portfolio/
-├─ app/                 # Fichiers principaux de l'application
-│  └─ page.tsx          # Page d'accueil
-├─ components/          # Composants React réutilisables
-├─ public/              # Assets statiques (images, fonts, icônes)
-├─ styles/              # Styles Tailwind & globaux
-├─ next.config.js       # Configuration Next.js
-├─ package.json         # Dépendances et scripts
-└─ next-sitemap.config.js # Configuration du sitemap
-
-🌐 Déploiement
-
-npm run build
-npm run start
-
-Ou connectez directement votre repository GitHub à Vercel
- pour un déploiement automatique.
-
-📖 Ressources
-
-Documentation Next.js
- - Tout savoir sur Next.js.
-
-Learn Next.js
- - Tutoriel interactif Next.js.
-
-Documentation Tailwind CSS
- - Guide de stylisation.
-
-Documentation GSAP
- - Guide d’animations.
-
-💡 Notes
-
-Le portfolio est une application mono-page avec sections ancrées pour une navigation fluide.
-
-Optimisations SEO : meta tags, sitemap, robots.txt et HTML sémantique.
-
-Design léger, rapide et esthétique avec glassmorphism et animations subtiles.
-
-Fait avec ❤️ avec Next.js, React, Tailwind CSS et GSAP.
+Le client Supabase est créé à la demande : le build fonctionne sans ces variables, seuls les envois de formulaire en ont besoin.

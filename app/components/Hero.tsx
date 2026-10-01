@@ -1,144 +1,126 @@
 "use client"
 
 import Image from "next/image"
-import { motion } from "framer-motion"
-import { TypeAnimation } from "react-type-animation"
-import { useState } from "react"
-import { Pacifico } from "next/font/google"
-import { FloatingPaths } from "./BackgroundPath"
-import { AppleHelloEnglishEffect } from "@/components/ui/shadcn-io/apple-hello-effect";
+import Link from "next/link"
+import { motion, useReducedMotion } from "motion/react"
+import { Button, ArrowDot } from "@/components/ui/button"
+import { Marquee } from "@/components/shared/Marquee"
+import { BrandPattern } from "@/components/shared/BrandPattern"
+import { site } from "@/lib/site"
 
-const pacifico = Pacifico({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-pacifico",
-})
+const EASE = [0.22, 1, 0.36, 1] as const
 
-export function HeroSection() {
-  const [hovered, setHovered] = useState(false)
-  const phone = "237697609387"
-  const message = "Bonjour, je souhaite discuter avec vous 😊"
+const marqueeTools = [
+  { name: "React", src: "/logo/react.png" },
+  { name: "Next.js", src: "/logo/nextjs.png" },
+  { name: "TypeScript", src: "/logo/typescript.png" },
+  { name: "Figma", src: "/logo/figma.png" },
+  { name: "Supabase", src: "/logo/supabase.png" },
+  { name: "Tailwind", src: "/logo/tailwind.png" },
+  { name: "Expo", src: "/logo/expo.png" },
+  { name: "NestJS", src: "/logo/nestjs.png" },
+  { name: "Docker", src: "/logo/docker.png" },
+  { name: "PostgreSQL", src: "/logo/postgre.png" },
+]
+
+export function Hero() {
+  const reduce = useReducedMotion()
+
+  const fadeUp = (delay: number) => ({
+    initial: reduce ? false : { opacity: 0, y: 18 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.8, ease: EASE, delay },
+  })
 
   return (
-    <motion.section
-      id="home"
-      className="relative h-screen flex items-center justify-center bg-gradient-to-b from-[#0f172a] via-[#111827] to-[#0f172a] overflow-hidden"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
-    >
-      {/* Background animation */}
-      <div className="absolute inset-0 z-0 opacity-40 pointer-events-none">
-        <FloatingPaths position={1} />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.25),transparent_70%)]" />
-      </div>
+    <section id="home" className="section-dark relative flex min-h-[100svh] flex-col overflow-hidden" aria-label="Introduction">
+      <div className="vignette pointer-events-none absolute inset-0" aria-hidden />
+      <BrandPattern className="text-white" variant="mark" opacity={0.05} size={110} />
 
-      {/* Content */}
-      <div className="mt-10 relative z-10 container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-10">
-        {/* Image + Animation */}
-        <motion.div
-          className="relative w-72 h-72 lg:w-96 lg:h-9w-96 flex justify-center items-center"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          {/* Gradient rotating aura */}
-          <motion.div
-            className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-500 via-sky-400 to-indigo-500 blur-xl opacity-40 scale-110"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          />
-
-          {/* Wrapper hover */}
-          <div
-            className="relative group flex flex-col items-center"
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-          >
-            {/* Cercle image */}
-            <div className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
-              <Image
-                src="/dirane mekem.png"
-                alt="Dirane Mekem"
-                fill
-                className={`object-cover transition duration-500 ${hovered ? "grayscale" : ""}`}
-              />
-            </div>
-
-            {/* Bubble avec glassmorphisme */}
-            <motion.div
-              initial={{ opacity: 0, y: 10, scale: 0.95 }}
-              animate={hovered ? { opacity: 1, y: -85, scale: 1 } : { opacity: 0, y: 0 }}
-              transition={{ type: "spring", stiffness: 180, damping: 14 }}
-              className="absolute top-0 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none"
+      {/* Ligne du haut : accroche à gauche, intro + CTA à droite */}
+      <div className="container-x relative z-[2] grid gap-8 pt-28 md:grid-cols-2 md:pt-32">
+        <div>
+          {site.available && (
+            <motion.p
+              {...fadeUp(0.2)}
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[0.7rem] font-medium text-paper/80 backdrop-blur"
             >
-              <div className="relative bg-white/15 text-white backdrop-blur-md border border-white/20 px-4 py-2 rounded-2xl shadow-xl whitespace-nowrap">
-                👋 Ravi de vous rencontrer !
-                {/* Flèche stylisée */}
-                <div className="absolute left-1/2 -bottom-[7px] -translate-x-1/2 w-0 h-0 border-l-[8px] border-r-[8px] border-t-[10px] border-transparent border-t-white/20" />
-              </div>
-            </motion.div>
-          </div>
-        </motion.div>
+              <span className="size-1.5 rounded-full bg-brand animate-pulse-dot" />
+              Disponible pour vos projets
+            </motion.p>
+          )}
+          <motion.p {...fadeUp(0.35)} className="mt-5 max-w-xs text-[1.5rem] font-semibold leading-[1.15] text-paper md:text-[1.9rem]">
+            Software Engineer, UI/UX Designer &amp; créateur de contenu tech
+          </motion.p>
+        </div>
 
-
-        {/* Text + CTA */}
-        <motion.div
-          className="md:w-1/2 text-center md:text-left sm:space-y-6"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <h1
-            className={`text-5xl md:text-6xl font-bold text-white leading-tight ${pacifico.className}`}
-          >
-            <span className="flex items-center">
-              <AppleHelloEnglishEffect speed={1.1} /> 👋,
-            </span>
-            <span>je suis Dirane</span>
-          </h1>
-
-          <TypeAnimation
-            sequence={[
-              "Software Engineer 💻",
-              1200,
-              "Web Developer 🌍",
-              1200,
-              "UI/UX Designer 🎨",
-              1200,
-              "AI Engineer 🤖",
-              1200,
-            ]}
-
-            wrapper="span"
-            speed={50}
-            className="block text-2xl md:text-3xl font-semibold text-sky-400"
-            repeat={Infinity}
-          />
-
-          <p
-            className="text-gray-300 leading-relaxed mx-auto md:mx-0 text-base sm:text-lg md:text-xl lg:text-[1.25rem] tracking-wide"
-          >
-            J’aide les{" "}
-            <span className="font-semibold text-white">entreprises</span> et{" "}
-            <span className="font-semibold text-white">créateurs</span> à booster leur
-            <span className="font-semibold text-white"> productivité</span> en concevant
-            des solutions <span className="font-semibold text-white">intelligentes</span>,
-            modernes et automatisées.
+        <motion.div {...fadeUp(0.5)} className="hidden max-w-xs md:block md:justify-self-end md:pt-10">
+          <p className="text-sm leading-relaxed text-ash">
+            Salut, je suis Dirane Mekem, développeur et designer basé à Douala. Je conçois des expériences numériques
+            fluides qui connectent et convertissent, et je partage mes coulisses en vidéo.
           </p>
-
-
-          <motion.a
-            href={`https://wa.me/${phone}?text=${encodeURIComponent(message)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block btn-cta w-fit"
-          >
-            🚀 Discuter maintenant
-          </motion.a>
-
+          <Button asChild size="lg" className="mt-5 pl-2">
+            <Link href="#projets">
+              <ArrowDot /> Voir mes projets
+            </Link>
+          </Button>
         </motion.div>
       </div>
-    </motion.section >
+
+      {/* Portrait : dans le flux jusqu'à la tablette, quasi pleine hauteur et centré en absolu sur grand écran. Noir et blanc sauf au survol. */}
+      <div className="group/portrait relative z-[1] mx-auto mt-4 h-[52vh] w-full md:h-[58vh] lg:absolute lg:inset-x-0 lg:bottom-[8%] lg:top-[7%] lg:mt-0 lg:flex lg:h-auto lg:justify-center">
+        <div className="relative h-full w-full max-w-[1100px] [mask-image:linear-gradient(to_bottom,black_72%,transparent_100%)]">
+          <Image
+            src="/dirane-hero.png"
+            alt="Portrait de Dirane Mekem"
+            fill
+            priority
+            sizes="100vw"
+            className="object-contain object-bottom grayscale transition-[filter] duration-700 ease-out group-hover/portrait:grayscale-0"
+          />
+        </div>
+      </div>
+
+      {/* Nom géant, statique */}
+      <h1
+        className="pointer-events-none relative z-[2] -mt-[18vw] select-none px-[0.12em] pt-[0.12em] text-center font-sans text-giant font-semibold text-paper md:-mt-[12vw] lg:mt-auto"
+        aria-label={site.name}
+      >
+        Dirane
+      </h1>
+
+      {/* Intro + CTA (mobile uniquement) */}
+      <motion.div {...fadeUp(0.6)} className="container-x relative z-[2] mt-6 md:hidden">
+        <p className="text-sm leading-relaxed text-ash">
+          Salut, je suis Dirane Mekem, développeur et designer basé à Douala. Je conçois des expériences numériques
+          fluides qui connectent et convertissent, et je partage mes coulisses en vidéo.
+        </p>
+        <Button asChild size="lg" className="mt-5 pl-2">
+          <Link href="#projets">
+            <ArrowDot /> Voir mes projets
+          </Link>
+        </Button>
+      </motion.div>
+
+      {/* Bandeau outils */}
+      <motion.div
+        initial={reduce ? false : { opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.8 }}
+        className="relative z-[2] mt-8 border-t border-white/10 bg-night/70 py-6 backdrop-blur-sm md:mt-6"
+      >
+        <Marquee
+          speed="slow"
+          itemClassName="px-8"
+          items={marqueeTools.map((t) => (
+            <span key={t.name} className="group/tool flex items-center gap-3 text-xl font-semibold text-white/30 transition-colors duration-300 hover:text-white md:text-2xl">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={t.src} alt="" className="h-7 w-auto opacity-40 grayscale transition-all duration-300 group-hover/tool:opacity-100 group-hover/tool:grayscale-0 md:h-8" draggable={false} />
+              {t.name}
+            </span>
+          ))}
+        />
+      </motion.div>
+    </section>
   )
 }

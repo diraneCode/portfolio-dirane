@@ -1,4 +1,17 @@
-export const projectData = [
+export type Project = {
+  name: string
+  description: string
+  fullDescription: string
+  image: { src: string; alt: string }[]
+  link?: string
+  github?: string
+  Figma?: string
+  tech: string[]
+  year: string
+  category: string
+}
+
+export const projectData: Project[] = [
   {
     name: "Promo Store",
     description:

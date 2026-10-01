@@ -1,30 +1,31 @@
-import { HeroSection } from "./components/Hero"
-import { ServiceSection } from "./components/Services"
-import { ProjectSection } from "./components/Projects"
-import { ContactSection } from "./components/Contact"
-import { FooterSection } from "./components/Footer"
-import { CVSection } from "./components/CVSection"
-import { LogoSection } from "./components/LogoSection"
-import { StatSection } from "./components/StatSection"
-import { GallerySection } from "./components/GallerySection"
-import { TestimonialSection } from "./components/Testimonial"
+import { Hero } from "./components/Hero"
+import { About } from "./components/About"
+import { Manifesto } from "./components/Manifesto"
+import { Experience } from "./components/Experience"
+import { Services } from "./components/Services"
+import { Projects } from "./components/Projects"
+import { Art } from "./components/Art"
+import { Tools } from "./components/Tools"
+import { Testimonials } from "./components/Testimonials"
+import { Gallery } from "./components/Gallery"
+import { CTABand } from "./components/CTABand"
+import { Contact } from "./components/Contact"
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-900 to-blue-900 relative">
-      <div className="relative z-10">
-        <HeroSection />
-        <StatSection />
-        <ProjectSection />
-        <ServiceSection />
-        <LogoSection />
-        <ContactSection />
-        <CVSection />
-        <TestimonialSection />
-        <GallerySection />
-        <FooterSection />
-      </div>
+    <main id="contenu" className="relative">
+      <Hero />
+      <About />
+      <Manifesto />
+      <Experience />
+      <Services />
+      <Projects />
+      <Art />
+      <Tools />
+      <Testimonials />
+      <Gallery />
+      <CTABand />
+      <Contact />
     </main>
   )
 }
-

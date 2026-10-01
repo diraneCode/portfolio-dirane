@@ -1,40 +1,35 @@
 "use client"
 
-import StaggeredMenu from '../../components/StaggeredMenu';
+import StaggeredMenu from "@/components/StaggeredMenu"
+import { site } from "@/lib/site"
 
-const menuItems = [
-    { label: 'Accueil', ariaLabel: 'Aller à l\'accueil', link: '/#home' },
-    { label: 'Projets', ariaLabel: 'Voir mes projets', link: '/#projets' },
-    { label: 'Services', ariaLabel: 'Mes services', link: '/#services' },
-    { label: 'Contact', ariaLabel: 'Contactez-moi', link: '/#contact' },
-    { label: 'Clients', ariaLabel: 'Voir mes témoignages', link: '/#testimonial' },
-];
+const menuItems = site.nav.map((n) => ({ label: n.label, ariaLabel: n.ariaLabel, link: n.href }))
 
 const socialItems = [
-    { label: 'Github', link: 'https://github.com/diraneCode' },
-    { label: 'LinkedIn', link: 'https://linkedin.com/in/dirane-mekem-63b588273' },
-    { label: 'Tiktok', link: 'https://www.tiktok.com/@diranecode' }
-];
+  { label: "GitHub", link: site.socials.github },
+  { label: "LinkedIn", link: site.socials.linkedin },
+  { label: "TikTok", link: site.socials.tiktok },
+  { label: "Instagram", link: site.socials.instagram },
+]
 
 export function Navbar() {
-    return (
-        <div className='absolute inset-0 z-40 pointer-events-none'>
-            <StaggeredMenu
-                isFixed={true}
-                position="right"
-                items={menuItems}
-                socialItems={socialItems}
-                displaySocials={true}
-                displayItemNumbering={true}
-                menuButtonColor="#fff"
-                openMenuButtonColor="#fff"
-                changeMenuColorOnOpen={true}
-                colors={['#B19EEF', '#5227FF']}
-                logoUrl="/apple-touch-icon.png"
-                accentColor="#4169e1"
-                onMenuOpen={() => console.log('Menu opened')}
-                onMenuClose={() => console.log('Menu closed')}
-            />
-        </div>
-    )
+  return (
+    <div className="pointer-events-none absolute inset-0 z-40">
+      <StaggeredMenu
+        isFixed
+        position="right"
+        items={menuItems}
+        socialItems={socialItems}
+        displaySocials
+        displayItemNumbering
+        menuButtonColor="#FFFFFF"
+        openMenuButtonColor="#FFFFFF"
+        changeMenuColorOnOpen={false}
+        colors={["#3B6CFF", "#1A1A1A"]}
+        logoUrl="/dirane-square.png"
+        brandLabel="Dirane Mekem"
+        accentColor="#3B6CFF"
+      />
+    </div>
+  )
 }

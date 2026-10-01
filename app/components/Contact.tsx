@@ -1,180 +1,137 @@
 "use client"
 
-import { IoLocation, IoMailUnread, IoCall, IoSend } from "react-icons/io5"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { Mail, MapPin, Phone, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
-import { useAddConatct } from "@/hooks/useContact"
 import { Spinner } from "@/components/ui/spinner"
+import { SectionHeading } from "@/components/shared/SectionHeading"
+import { Reveal } from "@/components/shared/Reveal"
+import { SocialLinks } from "@/components/shared/SocialLinks"
+import { contactSchema, type ContactInput } from "@/lib/schemas"
+import { useAddContact } from "@/hooks/useContact"
+import { site } from "@/lib/site"
 
-export const FormSchema = z.object({
-  username: z
-  .string()
-  .min(2, { message: "Le nom doit comporter au moins 2 caractères." })
-  .max(50, { message: "Le nom ne doit pas dépasser 50 caractères." }),
-  
-  email: z
-  .string()
-  .email({ message: "Veuillez entrer une adresse e-mail valide." }),
-  
-  phone: z
-  .string()
-  .regex(/^(?:\+?\d{7,15})$/, {
-    message: "Veuillez entrer un numéro de téléphone valide.",
-    }),
-    
-    object: z
-    .string()
-    .min(2, { message: "L’objet doit comporter au moins 2 caractères." })
-    .max(100, { message: "L’objet ne doit pas dépasser 100 caractères." }),
-    
-    description: z
-    .string()
-    .min(10, { message: "La description doit comporter au moins 10 caractères." })
-    .max(1000, { message: "La description ne doit pas dépasser 1000 caractères." }),
-})
+const channels = [
+  { Icon: Mail, label: "E-mail", value: site.email, href: `mailto:${site.email}` },
+  { Icon: Phone, label: "Téléphone / WhatsApp", value: site.phoneDisplay, href: `tel:+${site.phoneRaw}` },
+  { Icon: MapPin, label: "Localisation", value: site.location },
+]
 
-export function ContactSection() {
-  const { mutate: addMessage, isPending } = useAddConatct();
-
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-    defaultValues: {
-      username: "",
-      email: "",
-      phone: "",
-      object: "",
-      description: ""
-
-    },
+export function Contact() {
+  const { mutate: addMessage, isPending } = useAddContact()
+  const form = useForm<ContactInput>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: { username: "", email: "", phone: "", object: "", description: "" },
   })
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    addMessage(data)
-    form.reset()
+
+  function onSubmit(data: ContactInput) {
+    addMessage(data, { onSuccess: () => form.reset() })
   }
+
   return (
-    <section
-      id="contact"
-      className="py-20 bg-gradient-to-b from-gray-900 to-blue-900 flex items-center justify-center"
-    >
-      <div className="container mx-auto px-6">
-        <h2
-          className="text-start text-4xl font-bold text-white mb-14"
-        >
-          Contactez-<span className="text-blue-400">moi</span>
-        </h2>
-        <div className="w-full sm:h-screen h-fit lg:min-h-fit  bg-[#1B2062] flex sm:flex-row flex-col-reverse rounded-xl overflow-hidden">
-          <div className="w-full sm:w-3/5 h-full bg-gradient-to-b from-[#1B2062] to-[#050C38] p-10 rounded-xl space-y-7">
-            <h3 className="text-xl font-bold">Vous pouvez me joindre via ce formulaire de contact</h3>
-            <p className="text-sm text-white/50">
-              N’hésitez pas à me laisser un message pour toute collaboration, question ou projet.
-              Je reviendrai vers vous dans les plus brefs délais.
-            </p>
-            <div className="space-y-5">
-              <div className="flex items-center gap-x-3">
-                <div className="size-10 bg-blue-500 rounded-full flex items-center justify-center">
-                  <IoCall size={20} className="" />
-                </div>
-                <div className="flex flex-col space-y-2">
-                  <span className="text-sm text-white/50">Téléphone</span>
-                  <span className="font-bold">+237 697 60 93 87</span>
-                </div>
-              </div>
-              <div className="flex items-center gap-x-3">
-                <div className="size-10 bg-blue-500 rounded-full flex items-center justify-center">
-                  <IoMailUnread size={20} className="" />
-                </div>
-                <div className="flex flex-col space-y-2">
-                  <span className="text-sm text-white/50">Email</span>
-                  <span className="font-bold">contact@dirane.me</span>
-                </div>
-              </div>
-              <div className="flex items-center gap-x-3">
-                <div className="size-10 bg-blue-500 rounded-full flex items-center justify-center">
-                  <IoLocation size={20} className="" />
-                </div>
-                <div className="flex flex-col space-y-2">
-                  <span className="text-sm text-white/50">Adresse</span>
-                  <span className="font-bold">Douala, Cameroun</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="w-full h-full p-10">
+    <section id="contact" className="section section-dark" aria-labelledby="contact-title">
+      <div className="container-x grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <div>
+          <SectionHeading
+            index="11"
+            eyebrow="Contact"
+            id="contact-title"
+            title="Écrivez-moi, je réponds *vite*"
+            lede="Une question, une collaboration ou un projet à lancer ? Laissez-moi un message, je reviens vers vous sous 24 à 48 h."
+          />
+
+          <Reveal delay={0.1} className="mt-8">
+            <ul className="divide-y divide-white/10 rounded-3xl border border-white/10 bg-white/5">
+              {channels.map(({ Icon, label, value, href }) => (
+                <li key={label} className="flex items-center gap-4 px-5 py-4">
+                  <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-brand/15 text-brand">
+                    <Icon className="size-4" />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-ash">{label}</p>
+                    {href ? (
+                      <a href={href} className="link-brush text-sm font-semibold text-paper">
+                        {value}
+                      </a>
+                    ) : (
+                      <p className="text-sm font-semibold text-paper">{value}</p>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+
+          <Reveal delay={0.15} className="mt-6">
+            <p className="mb-3 font-mono text-[0.6rem] uppercase tracking-[0.18em] text-ash">Me suivre</p>
+            <SocialLinks />
+          </Reveal>
+        </div>
+
+        <Reveal delay={0.1}>
+          <div className="rounded-3xl border border-white/10 bg-night-2 p-6 md:p-8">
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="sm:w-2/3 space-y-6">
-                <FormField
-                  control={form.control}
-                  name="username"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Nom et prénom(s)</FormLabel>
-                      <FormControl>
-                        <Input type="text" required placeholder="Ex: John Doe" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input type="email" required placeholder="Ex: john.doe@example.com" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="phone"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>N° de téléphone</FormLabel>
-                      <FormControl>
-                        <PhoneInput
-                          country={'cm'}
-                          inputStyle={{ width: '100%', backgroundColor: "transparent" }}
-                          buttonStyle={{ backgroundColor: 'transparent', color: "#000" }}
-                          containerStyle={{ border: '1px solid grey' }}
-                          containerClass="flex h-9 w-full rounded-md border bg-transparent text-base shadow-sm transition-colors placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-950 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="object"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Objet du message</FormLabel>
-                      <FormControl>
-                        <Input type="text" required placeholder="Ex: Collaboration, Devis, Préocupation..." {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5" noValidate>
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <FormField
+                    control={form.control}
+                    name="username"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Nom et prénom</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Ex : Jean Dupont" autoComplete="name" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>E-mail</FormLabel>
+                        <FormControl>
+                          <Input type="email" placeholder="vous@entreprise.com" autoComplete="email" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Téléphone</FormLabel>
+                        <FormControl>
+                          <Input type="tel" placeholder="+237 6 00 00 00 00" autoComplete="tel" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="object"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Objet</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Collaboration, devis, question…" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
                 <FormField
                   control={form.control}
                   name="description"
@@ -182,23 +139,24 @@ export function ContactSection() {
                     <FormItem>
                       <FormLabel>Message</FormLabel>
                       <FormControl>
-                        <Textarea required placeholder="Ex: Bonjour, je souhaite discuter avec vous 😊" {...field} />
+                        <Textarea rows={6} placeholder="Bonjour Dirane, je souhaite discuter avec vous de…" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                <Button disabled={isPending} variant={"outline"} type="submit" className="text-black">
-                  {isPending ? <Spinner /> : <IoSend className="-rotate-45" />}
-                  {isPending ? "Envoi en cours..." : "Envoyer"}
-                </Button>
+                <div className="flex flex-wrap items-center justify-between gap-4 pt-1">
+                  <p className="text-xs text-ash">Vos données ne sont utilisées que pour vous répondre.</p>
+                  <Button type="submit" disabled={isPending} size="lg">
+                    {isPending ? <Spinner className="size-4" /> : <Send />}
+                    {isPending ? "Envoi en cours…" : "Envoyer le message"}
+                  </Button>
+                </div>
               </form>
             </Form>
           </div>
-        </div>
-
+        </Reveal>
       </div>
     </section>
   )
 }
-
