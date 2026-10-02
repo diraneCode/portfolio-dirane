@@ -18,7 +18,7 @@ export function CTABand() {
           speed="fast"
           itemClassName="px-6"
           items={words.map((w, i) => (
-            <span key={w} className={`font-brush text-3xl md:text-5xl ${i % 2 ? "text-stroke text-paper" : "text-brand"}`}>
+            <span key={w} className={`font-display text-3xl md:text-5xl ${i % 2 ? "text-stroke text-paper" : "text-brand-light"}`}>
               {w} <span className="mx-3 text-paper/40">✦</span>
             </span>
           ))}
@@ -29,8 +29,8 @@ export function CTABand() {
         <BrandPattern className="text-white" variant="mark" opacity={0.12} size={120} fade={false} />
         <div className="container-x relative grid items-center gap-12 lg:grid-cols-[1.3fr_1fr]">
           <Reveal>
-            <p className="eyebrow text-white/70">Travaillons ensemble</p>
-            <h2 id="cta-title" className="mt-4 font-brush text-brush-xl">
+            <p className="eyebrow text-white/90">Travaillons ensemble</p>
+            <h2 id="cta-title" className="mt-4 font-display text-brush-xl">
               Un projet en tête ?<br />
               <span className="font-sans text-display-lg font-semibold">Parlons-en.</span>
             </h2>
@@ -45,7 +45,7 @@ export function CTABand() {
             <Button
               asChild
               size="lg"
-              className="bg-[#25D366] text-white shadow-[0_0_60px_-10px_rgba(37,211,102,0.7)] hover:bg-[#1EBE5A] hover:text-white [&_svg]:size-5"
+              className="bg-[#25D366] text-night shadow-[0_0_60px_-10px_rgba(37,211,102,0.7)] hover:bg-[#1EBE5A] hover:text-night [&_svg]:size-5"
             >
               <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
                 <FaWhatsapp /> Discuter sur WhatsApp

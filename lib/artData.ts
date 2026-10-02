@@ -15,12 +15,9 @@ export type ArtPiece = {
  * Déposez les fichiers dans /public/art/ puis référencez-les ici.
  */
 export const artPieces: ArtPiece[] = [
-  { title: "Studio", kind: "photo", src: "/art/dessin-1.jpg", year: "2025" },
-  { title: "Lumière rouge", kind: "photo", src: "/art/dessin-2.jpg", year: "2024" },
-  { title: "Douala", kind: "photo", src: "/art/video-1.jpg", year: "2025" },
-  { title: "Code Connect", kind: "photo", src: "/art/dessin-3.jpg", year: "2025" },
-  { title: "En ville", kind: "photo", src: "/art/video-2.jpg", year: "2025" },
-  { title: "Lumière & béton", kind: "photo", src: "/art/photo-1.jpg", year: "2024" },
+  { title: "Cortex Agency", kind: "photo", src: "/art/dirane-cortex.webp", year: "2026" },
+  { title: "CEO", kind: "photo", src: "/art/dirane-ceo.webp", year: "2026" },
+  { title: "Studio Photo", kind: "photo", src: "/art/dirane-conference.webp", year: "2025" },
 ]
 
 export const artKindLabel: Record<ArtKind, string> = {

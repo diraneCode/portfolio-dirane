@@ -48,7 +48,7 @@ export function Contact() {
             <ul className="divide-y divide-white/10 rounded-3xl border border-white/10 bg-white/5">
               {channels.map(({ Icon, label, value, href }) => (
                 <li key={label} className="flex items-center gap-4 px-5 py-4">
-                  <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-brand/15 text-brand">
+                  <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-brand/15 text-brand-light">
                     <Icon className="size-4" />
                   </span>
                   <div className="min-w-0">
@@ -84,7 +84,7 @@ export function Contact() {
                       <FormItem>
                         <FormLabel>Nom et prénom</FormLabel>
                         <FormControl>
-                          <Input placeholder="Ex : Jean Dupont" autoComplete="name" {...field} />
+                          <Input placeholder="Ex : Votre nom" autoComplete="name" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>

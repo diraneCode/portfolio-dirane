@@ -13,6 +13,7 @@ export const site = {
   phoneRaw: "237697609387",
   whatsappMessage: "Bonjour Dirane, je souhaite discuter d'un projet avec vous.",
   location: "Douala, Cameroun",
+  geo: { lat: 4.0511, lng: 9.7679, region: "Littoral", countryCode: "CM" },
   cvPath: "/CV_Dirane_Mekem.pdf",
   available: true,
   keywords: [

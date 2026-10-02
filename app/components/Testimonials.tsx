@@ -6,31 +6,19 @@ const testimonials = [
   {
     quote:
       "Grâce à cette solution, notre gestion interne a gagné en efficacité. Dirane a su comprendre nos besoins et livrer un produit à la hauteur des standards internationaux.",
-    name: "Estelle Nguimgo",
-    designation: "Responsable Communication, Build Together Group",
+    name: "Kepseu Beatrice",
+    designation: "PDG, Powerlink Cameroon",
   },
   {
     quote:
       "L'intégration du paiement NotchPay sur notre plateforme a facilité les transactions de nos clients au Cameroun et dans la sous-région. Un vrai plus pour notre entreprise.",
-    name: "Mickaël Tchinda",
-    designation: "CTO, Caline House",
-  },
-  {
-    quote:
-      "Le design du site de notre clinique reflète parfaitement notre image : professionnel, moderne et humain. Nos patients trouvent facilement toutes les informations dont ils ont besoin.",
-    name: "Dr. Emilie Ndongo",
-    designation: "Directrice, Clinique Sainte Monique",
+    name: "Prescile Essono",
+    designation: "PDG, Lavish Sarl",
   },
   {
     quote: "Un site vitrine élégant et fluide pour notre restaurant. Le design est à la fois attractif et fidèle à notre identité culinaire.",
     name: "Jean-Baptiste Kamdem",
-    designation: "Fondateur, restaurant KMC",
-  },
-  {
-    quote:
-      "Nous avons été impressionnés par la qualité du travail et le respect des délais. Le nouveau site e-commerce a boosté nos ventes dès les premières semaines.",
-    name: "Linda Awa",
-    designation: "Responsable Marketing, Promo Store Cameroun",
+    designation: "Fondateur, FJoe Construction",
   },
 ]
 
@@ -46,7 +34,7 @@ function initials(name: string) {
 export function Testimonials() {
   return (
     <section id="temoignages" className="section section-light" aria-labelledby="temoignages-title">
-      <BrushBlob className="-right-24 bottom-6 w-[400px] rotate-6 opacity-90" />
+      <BrushBlob className="bottom-8 right-6 hidden md:block md:right-12" />
       <div className="container-x">
         <SectionHeading
           index="09"
@@ -61,12 +49,12 @@ export function Testimonials() {
           {testimonials.map((t, i) => (
             <Reveal key={t.name} delay={(i % 3) * 0.08} className="break-inside-avoid">
               <figure className="group rounded-3xl border border-ink/10 bg-paper-2 p-7 transition-all duration-500 hover:-translate-y-1 hover:border-brand hover:shadow-lift">
-                <span className="font-brush text-6xl leading-none text-brand" aria-hidden>
+                <span className="font-display text-6xl leading-none text-brand" aria-hidden>
                   “
                 </span>
                 <blockquote className="-mt-4 text-[0.98rem] leading-relaxed text-ink-muted">{t.quote}</blockquote>
                 <figcaption className="mt-6 flex items-center gap-3">
-                  <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-night font-brush text-lg text-brand transition-colors group-hover:bg-brand group-hover:text-white">
+                  <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-night font-display text-lg text-brand transition-colors group-hover:bg-brand group-hover:text-white">
                     {initials(t.name)}
                   </span>
                   <div>

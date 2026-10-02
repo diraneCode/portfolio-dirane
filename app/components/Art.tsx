@@ -20,7 +20,7 @@ export function Art() {
       <div className="container-x">
         <Reveal>
           <p className="eyebrow text-ash">
-            <span className="text-brand">07</span> &nbsp;—&nbsp; Art & création
+            <span className="text-brand-light">07</span> &nbsp;—&nbsp; Art & création
           </p>
           <h2 id="art-title" className="mt-4 font-mono text-display-md font-medium tracking-tight text-paper">
             Mes activités
@@ -72,7 +72,7 @@ export function Art() {
 
         <Reveal delay={0.1} className="mt-10 flex flex-col items-start justify-between gap-5 border-t border-white/10 pt-8 md:flex-row md:items-center">
           <div>
-            <p className="eyebrow text-brand">Créateur de contenu tech</p>
+            <p className="eyebrow text-brand-light">Créateur de contenu tech</p>
             <p className="mt-2 text-ash">{site.content.pitch}</p>
           </div>
           <Button asChild variant="outline" className="shrink-0">

@@ -6,22 +6,21 @@ import { BrushBlob } from "@/components/shared/BrushStroke"
 
 // Mot = texte, accent = en orange
 const sentence: { text: string; accent?: boolean }[] = [
-  ..."Je conçois des interfaces que les gens".split(" ").map((t) => ({ text: t })),
-  { text: "comprennent,", accent: true },
-  ..."je code des produits qui".split(" ").map((t) => ({ text: t })),
-  { text: "tiennent", accent: true },
-  { text: "la", accent: true },
-  { text: "route,", accent: true },
-  ..."et j'automatise ce qui vous fait".split(" ").map((t) => ({ text: t })),
-  { text: "perdre", accent: true },
-  { text: "du", accent: true },
-  { text: "temps.", accent: true },
+  ..."J'aide les entreprises et les particuliers à".split(" ").map((t) => ({ text: t })),
+  { text: "automatiser,", accent: true },
+  ..."leur".split(" ").map((t) => ({ text: t })),
+  { text: "business", accent: true },
+  { text: "avec", accent: true },
+  { text: "l'IA,", accent: true },
+  ..."l'automatisation et les".split(" ").map((t) => ({ text: t })),
+  { text: "Solutions digitales.", accent: true },
 ]
 
 function Word({ children, progress, range, accent }: { children: string; progress: MotionValue<number>; range: [number, number]; accent?: boolean }) {
-  const opacity = useTransform(progress, range, [0.12, 1])
+  // Interpolation de couleur (gris lisible → encre / bleu) : le contraste reste ≥ 4.5:1 à chaque étape.
+  const color = useTransform(progress, range, accent ? ["#6B7FB8", "#2F5BEB"] : ["#767676", "#121212"])
   return (
-    <motion.span style={{ opacity }} className={`mr-[0.25em] inline-block ${accent ? "text-brand" : ""}`}>
+    <motion.span style={{ color }} className="mr-[0.25em] inline-block">
       {children}
     </motion.span>
   )
@@ -36,12 +35,14 @@ export function Manifesto() {
   return (
     <section ref={ref} className="section-light relative h-[240vh]" aria-label="Manifeste">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        <BrushBlob className="-right-24 top-8 hidden w-[380px] opacity-90 lg:block" />
+        <BrushBlob className="right-8 top-10 hidden lg:block" />
         <div className="container-x">
           <p className="eyebrow text-ink-subtle">
             <span className="text-brand">03</span> &nbsp;—&nbsp; Manifeste
           </p>
-          <p className="mt-6 max-w-5xl font-sans text-display-xl font-semibold text-ink">
+          {/* Version lisible pour les lecteurs d'écran et les audits : texte complet, sans atténuation */}
+          <p className="sr-only">{sentence.map((w) => w.text).join(" ")}</p>
+          <p className="mt-6 max-w-5xl font-display text-display-xl font-bold text-ink" aria-hidden>
             {sentence.map((w, i) => {
               const start = i / sentence.length
               const end = start + 1 / sentence.length

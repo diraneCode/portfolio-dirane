@@ -413,7 +413,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           className="staggered-menu-header flex w-[calc(100%-2rem)] max-w-4xl items-center justify-between rounded-full border border-white/10 bg-night/75 px-4 py-2.5 shadow-lift backdrop-blur-xl md:px-6 md:py-3 z-50 transition-colors duration-300"
           aria-label="Main navigation header"
         >
-          <a href={brandHref} className="sm-logo flex items-center gap-3 select-none pointer-events-auto no-underline" aria-label="Retour à l'accueil">
+          <a href={brandHref} className="sm-logo flex items-center gap-3 select-none pointer-events-auto no-underline" aria-label={`${brandLabel ?? "Logo"}, retour à l'accueil`}>
             {logoUrl ? (
               <img src={logoUrl} alt="" className="sm-logo-img block h-8 w-8 rounded-full object-cover" draggable={false} />
             ) : null}
@@ -468,6 +468,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           className="staggered-menu-panel fixed top-0 right-0 h-full bg-night flex flex-col
              p-[6em_2em_2em_2em] overflow-y-auto z-40 shadow-2xl transition-colors duration-300 pointer-events-auto"
           aria-hidden={!open}
+          inert={!open}
         >
           <div className="sm-panel-inner flex-1 flex flex-col gap-5">
             <ul
@@ -503,7 +504,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
             {displaySocials && socialItems && socialItems.length > 0 && (
               <div className="sm-socials mt-auto pt-8 flex flex-col gap-3" aria-label="Social links">
-                <h3 className="sm-socials-title m-0 text-base font-medium text-primary">Réseaux</h3>
+                <p className="sm-socials-title m-0 text-base font-medium text-primary">Réseaux</p>
                 <ul
                   className="sm-socials-list list-none m-0 p-0 flex flex-row items-center gap-4 flex-wrap"
                   role="list"
@@ -562,7 +563,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 .sm-scope .sm-socials-link:hover { color: var(--sm-accent, #4169e1); }
 .sm-scope .sm-panel-title { margin: 0; font-size: 1rem; font-weight: 600; color: #fff; text-transform: uppercase; }
 .sm-scope .sm-panel-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
-.sm-scope .sm-panel-item { position: relative; color: #ffffff; font-weight: 500; font-size: clamp(2.25rem, 5vw, 3.5rem); cursor: pointer; line-height: 1.05; letter-spacing: -0.02em; text-transform: none; font-family: var(--font-brush), cursive; transition: color 0.15s ease-linear; display: inline-block; text-decoration: none; padding-right: 1.4em; }
+.sm-scope .sm-panel-item { position: relative; color: #ffffff; font-weight: 700; font-size: clamp(2.1rem, 4.6vw, 3.4rem); cursor: pointer; line-height: 1.05; letter-spacing: -0.03em; text-transform: none; font-family: var(--font-display), system-ui, sans-serif; transition: color 0.15s ease-linear; display: inline-block; text-decoration: none; padding-right: 1.4em; }
 .sm-scope .sm-panel-itemLabel { display: inline-block; will-change: transform; transform-origin: 50% 100%; }
 .sm-scope .sm-panel-item:hover { color: #3b6cff; }
 .sm-scope .sm-panel-list[data-numbering] { counter-reset: smItem; }

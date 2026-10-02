@@ -19,7 +19,7 @@
   }
 
   ::selection {
-    background: #3b6cff;
+    background: #2f5beb;
     color: #ffffff;
   }
 
@@ -61,7 +61,7 @@
   /* Lien avec soulignement orange qui s'étire au survol */
   .link-brush {
     @apply relative inline-block;
-    background-image: linear-gradient(#3b6cff, #3b6cff);
+    background-image: linear-gradient(#2f5beb, #2f5beb);
     background-size: 0% 2px;
     background-repeat: no-repeat;
     background-position: 0 100%;
@@ -97,22 +97,22 @@
 
 /* ───────── Staggered menu : thème nuit / orange ───────── */
 .sm-scope .sm-panel-item {
-  font-family: var(--font-brush), cursive;
-  font-weight: 400;
-  font-size: clamp(3rem, 7vw, 5.5rem);
-  letter-spacing: 0;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.1rem, 4.6vw, 3.4rem);
+  letter-spacing: -0.03em;
   text-transform: none;
   color: #ffffff;
 }
 .sm-scope .sm-panel-item:hover {
-  color: #3b6cff;
+  color: #7d9bff;
 }
 .sm-scope .sm-panel-list[data-numbering] .sm-panel-item::after {
-  color: #3b6cff;
+  color: #7d9bff;
   font-family: var(--font-mono), monospace;
 }
 .sm-scope .sm-socials-title {
-  color: #3b6cff;
+  color: #7d9bff;
   font-family: var(--font-mono), monospace;
   font-size: 0.7rem;
   letter-spacing: 0.2em;
@@ -135,30 +135,30 @@
 
 /* ───────── Article de blog (markdown) ───────── */
 .prose-blog {
-  color: #d6d6d6;
+  color: #d9d9d9;
   font-size: 1.05rem;
   line-height: 1.8;
 }
 .prose-blog > * + * { margin-top: 1.25em; }
 .prose-blog h2 {
   margin-top: 2.4em;
-  font-family: var(--font-brush), cursive;
+  font-family: var(--font-display), cursive;
   font-size: 2rem;
   line-height: 1.1;
   color: #ffffff;
 }
 .prose-blog h3 { margin-top: 1.8em; font-size: 1.25rem; font-weight: 600; color: #ffffff; }
 .prose-blog strong { color: #ffffff; font-weight: 600; }
-.prose-blog a { color: #3b6cff; text-decoration: underline; text-underline-offset: 3px; }
+.prose-blog a { color: #7d9bff; text-decoration: underline; text-underline-offset: 3px; }
 .prose-blog ul, .prose-blog ol { padding-left: 1.4em; }
 .prose-blog ul { list-style: disc; }
 .prose-blog ol { list-style: decimal; }
 .prose-blog li + li { margin-top: 0.5em; }
-.prose-blog li::marker { color: #3b6cff; }
+.prose-blog li::marker { color: #7d9bff; }
 .prose-blog blockquote {
-  border-left: 3px solid #3b6cff;
+  border-left: 3px solid #2f5beb;
   padding: 0.25em 0 0.25em 1.25em;
-  font-family: var(--font-brush), cursive;
+  font-family: var(--font-display), cursive;
   font-size: 1.6rem;
   line-height: 1.3;
   color: #ffffff;

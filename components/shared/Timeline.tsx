@@ -15,12 +15,12 @@ const AXIS_Y = TEXT_H + LONG / 2
 function OrgLogo({ name, logo }: { name: string; logo?: string }) {
   return (
     <div
-      className="flex h-20 w-44 items-center justify-center rounded-2xl border border-ink/10 bg-paper px-4 py-3 shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/40"
+      className="flex h-20 w-44 items-center justify-center  px-4 py-3 transition-all duration-300 hover:-translate-y-0.5"
       title={name}
     >
       {logo ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={logo} alt={name} className="max-h-full max-w-full object-contain" draggable={false} />
+        <img src={logo} alt={name} width={160} height={56} className="h-auto max-h-full w-auto max-w-full object-contain" draggable={false} />
       ) : (
         <span className="text-center text-sm font-semibold leading-tight text-ink">{name}</span>
       )}
@@ -46,7 +46,7 @@ export function Timeline({ items, className }: { items: TimelineEntry[]; classNa
     <div className={cn("w-full", className)}>
       {/* ───────── Desktop : frise horizontale ───────── */}
       <div className="hidden md:block">
-        <div className="overflow-x-auto pb-2">
+        <div className="pb-2">
           <div className="relative mx-auto" style={{ minWidth: Math.max(items.length * 230, 0) }}>
             {/* Axe en pointillés */}
             <div className="pointer-events-none absolute inset-x-0" style={{ top: AXIS_Y }} aria-hidden>

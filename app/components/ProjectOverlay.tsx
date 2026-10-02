@@ -63,7 +63,7 @@ export function ProjectOverlay({ project, index, total, onClose, onPrev, onNext 
           {/* Barre */}
           <div className="sticky top-0 z-10 flex items-center justify-between border-b border-white/10 bg-night/80 px-5 py-4 backdrop-blur md:px-10">
             <p className="font-mono text-[0.68rem] uppercase tracking-[0.2em] text-ash">
-              Projet <span className="text-brand">{String(index + 1).padStart(2, "0")}</span> / {String(total).padStart(2, "0")}
+              Projet <span className="text-brand-light">{String(index + 1).padStart(2, "0")}</span> / {String(total).padStart(2, "0")}
             </p>
             <button
               type="button"
@@ -76,7 +76,7 @@ export function ProjectOverlay({ project, index, total, onClose, onPrev, onNext 
           </div>
 
           <AnimatePresence mode="wait">
-            <motion.div key={project.name} initial="hidden" animate="show" exit={{ opacity: 0, transition: { duration: 0.2 } }}>
+            <motion.div key={project.slug} initial="hidden" animate="show" exit={{ opacity: 0, transition: { duration: 0.2 } }}>
               {/* Visuel principal */}
               <div className="relative h-[52vh] w-full overflow-hidden md:h-[62vh]">
                 <motion.div
@@ -89,7 +89,7 @@ export function ProjectOverlay({ project, index, total, onClose, onPrev, onNext 
                 </motion.div>
                 <div className="absolute inset-0 bg-gradient-to-t from-night via-night/30 to-transparent" />
                 <div className="container-x absolute inset-x-0 bottom-0 pb-8 md:pb-12">
-                  <motion.p variants={item} custom={0} className="font-brush text-2xl text-brand md:text-3xl">
+                  <motion.p variants={item} custom={0} className="font-display text-2xl text-brand-light md:text-3xl">
                     {project.category} · {project.year}
                   </motion.p>
                   <motion.h2 variants={item} custom={1} className="mt-2 font-sans text-display-xl font-semibold">
@@ -142,6 +142,12 @@ export function ProjectOverlay({ project, index, total, onClose, onPrev, onNext 
                     <p className="eyebrow text-ash">Catégorie</p>
                     <p className="mt-2 text-paper">{project.category}</p>
                   </div>
+                  {project.role && (
+                    <div>
+                      <p className="eyebrow text-ash">Rôle</p>
+                      <p className="mt-2 text-paper">{project.role}</p>
+                    </div>
+                  )}
                   <div>
                     <p className="eyebrow text-ash">Année</p>
                     <p className="mt-2 text-paper">{project.year}</p>
@@ -177,8 +183,8 @@ export function ProjectOverlay({ project, index, total, onClose, onPrev, onNext 
                   <button type="button" onClick={onPrev} className="group inline-flex items-center gap-3 text-sm font-medium text-ash transition-colors hover:text-paper">
                     <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" /> Précédent
                   </button>
-                  <button type="button" onClick={onNext} className="group inline-flex items-center gap-3 text-right font-semibold text-paper transition-colors hover:text-brand">
-                    <span className="hidden font-brush text-2xl md:inline">Projet suivant</span>
+                  <button type="button" onClick={onNext} className="group inline-flex items-center gap-3 text-right font-semibold text-paper transition-colors hover:text-brand-light">
+                    <span className="hidden font-display text-2xl md:inline">Projet suivant</span>
                     <span className="md:hidden">Suivant</span>
                     <span className="flex size-11 items-center justify-center rounded-full bg-brand text-white transition-transform group-hover:translate-x-1">
                       <ArrowRight className="size-4" />

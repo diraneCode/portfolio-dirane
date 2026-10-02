@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from "next"
-import { Poppins, Caveat_Brush, Geist_Mono } from "next/font/google"
+import { Poppins, Syne, Geist_Mono } from "next/font/google"
 import { Toaster } from "sonner"
 import "./globals.css"
 import { ReactQueryProvider } from "@/providers/ReactQueryProvider"
 import { Navbar } from "./components/Navbar"
 import { Footer } from "./components/Footer"
-import Chatbot from "./components/chatbot"
+import { ChatbotLoader } from "./components/ChatbotLoader"
 import { site } from "@/lib/site"
 
 const sans = Poppins({
@@ -15,10 +15,10 @@ const sans = Poppins({
   display: "swap",
 })
 
-const brush = Caveat_Brush({
+const display = Syne({
   subsets: ["latin"],
-  weight: "400",
-  variable: "--font-brush",
+  weight: ["600", "700", "800"],
+  variable: "--font-display",
   display: "swap",
 })
 
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   creator: site.name,
   publisher: site.name,
   category: "technology",
-  alternates: { canonical: "/" },
+  alternates: { canonical: "/", languages: { "fr-FR": "/", "x-default": "/" } },
   openGraph: {
     type: "profile",
     locale: site.locale,
@@ -80,6 +80,12 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.webmanifest",
   formatDetection: { telephone: false, address: false, email: false },
+  other: {
+    "geo.region": "CM-LT",
+    "geo.placename": "Douala",
+    "geo.position": "4.0511;9.7679",
+    ICBM: "4.0511, 9.7679",
+  },
 }
 
 export const viewport: Viewport = {
@@ -104,7 +110,8 @@ const jsonLd = {
       image: `${site.url}/dirane-square.png`,
       email: `mailto:${site.email}`,
       telephone: `+${site.phoneRaw}`,
-      address: { "@type": "PostalAddress", addressLocality: "Douala", addressCountry: "CM" },
+      address: { "@type": "PostalAddress", addressLocality: "Douala", addressRegion: "Littoral", addressCountry: "CM" },
+      nationality: { "@type": "Country", name: "Cameroun" },
       knowsAbout: ["React", "Next.js", "React Native", "TypeScript", "Supabase", "UI/UX Design", "Figma", "Automatisation", "Intelligence artificielle", "Création de contenu tech"],
       sameAs: Object.values(site.socials),
     },
@@ -126,7 +133,9 @@ const jsonLd = {
       telephone: `+${site.phoneRaw}`,
       email: site.email,
       areaServed: ["Cameroun", "Afrique", "À distance"],
-      address: { "@type": "PostalAddress", addressLocality: "Douala", addressCountry: "CM" },
+      address: { "@type": "PostalAddress", addressLocality: "Douala", addressRegion: "Littoral", addressCountry: "CM" },
+      geo: { "@type": "GeoCoordinates", latitude: 4.0511, longitude: 9.7679 },
+      priceRange: "$$",
       founder: { "@id": `${site.url}/#person` },
       makesOffer: [
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Développement web & mobile" } },
@@ -147,7 +156,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className={`${sans.variable} ${brush.variable} ${mono.variable}`}>
+    <html lang="fr" className={`${sans.variable} ${display.variable} ${mono.variable}`}>
       <body className="min-h-screen bg-night font-sans text-paper antialiased">
         <script
           type="application/ld+json"
@@ -160,7 +169,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Navbar />
           {children}
           <Footer />
-          <Chatbot />
+          <ChatbotLoader />
           <Toaster richColors position="top-center" closeButton />
         </ReactQueryProvider>
       </body>

@@ -35,7 +35,7 @@ const services = [
 export function Services() {
   return (
     <section id="services" className="section section-dark" aria-labelledby="services-title">
-      <BrushBlob className="-left-24 -top-10 w-[360px] rotate-12 opacity-80" />
+      <BrushBlob flip className="right-6 top-12 hidden text-brand-light md:block md:right-16" />
       <BrandPattern className="text-white" variant="arc" opacity={0.05} size={140} />
       <div className="container-x">
         <SectionHeading
@@ -51,17 +51,17 @@ export function Services() {
             <Reveal key={s.title} delay={i * 0.1} className="h-full">
               <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-night-2 p-7 transition-all duration-500 hover:-translate-y-2 hover:border-brand hover:bg-brand hover:text-white hover:shadow-glow md:p-8">
                 <div className="flex items-center justify-between">
-                  <span className="flex size-12 items-center justify-center rounded-2xl bg-white/5 text-brand transition-colors duration-500 group-hover:bg-white group-hover:text-brand">
+                  <span className="flex size-12 items-center justify-center rounded-2xl bg-white/5 text-brand-light transition-colors duration-500 group-hover:bg-white group-hover:text-brand-light">
                     <s.Icon className="size-5" />
                   </span>
-                  <span className="font-brush text-3xl text-white/25 transition-colors duration-500 group-hover:text-white/50">{s.index}</span>
+                  <span className="font-display text-3xl text-white/25 transition-colors duration-500 group-hover:text-white/50">{s.index}</span>
                 </div>
                 <h3 className="mt-8 text-2xl font-semibold leading-tight">{s.title}</h3>
                 <p className="mt-4 text-sm leading-relaxed text-ash transition-colors duration-500 group-hover:text-white/85">{s.description}</p>
                 <ul className="mt-6 space-y-2.5">
                   {s.features.map((f) => (
                     <li key={f} className="flex items-start gap-2.5 text-sm text-paper/85 transition-colors duration-500 group-hover:text-white">
-                      <Check className="mt-0.5 size-4 shrink-0 text-brand transition-colors duration-500 group-hover:text-white" />
+                      <Check className="mt-0.5 size-4 shrink-0 text-brand-light transition-colors duration-500 group-hover:text-white" />
                       {f}
                     </li>
                   ))}

@@ -50,8 +50,8 @@ export function DevisDrawer({ label = "Demander un devis gratuit", variant = "de
             </button>
           </DrawerClose>
 
-          <p className="eyebrow text-brand">Devis gratuit</p>
-          <DrawerTitle className="mt-3 font-brush text-4xl text-paper md:text-5xl">Parlez-moi de votre projet</DrawerTitle>
+          <p className="eyebrow text-brand-light">Devis gratuit</p>
+          <DrawerTitle className="mt-3 font-display text-4xl text-paper md:text-5xl">Parlez-moi de votre projet</DrawerTitle>
           <DrawerDescription className="mt-3 max-w-xl text-ash">
             Décrivez votre besoin en quelques lignes. Je reviens vers vous sous 48 h avec une première estimation et des
             recommandations.
@@ -91,7 +91,7 @@ export function DevisDrawer({ label = "Demander un devis gratuit", variant = "de
                     <FormItem>
                       <FormLabel>Nom & prénom</FormLabel>
                       <FormControl>
-                        <Input placeholder="Ex : Jean Dupont" autoComplete="name" {...field} />
+                        <Input placeholder="Ex : Votre nom" autoComplete="name" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

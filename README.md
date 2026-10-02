@@ -6,16 +6,16 @@ Site : https://www.dirane.me
 
 ## Direction artistique
 
-- **Palette** : nuit (`#121212`), blanc, bleu de marque (`#3B6CFF`, token `brand`), sections claires en alternance. Tokens dans `tailwind.config.ts` (`night`, `paper`, `brand`, `ash`, `ink`).
+- **Palette** : nuit (`#121212`), blanc, bleu de marque `#2F5BEB` (token `brand`, contraste ≥ 4.5:1 avec du blanc) et `brand-light` `#7D9BFF` pour le texte bleu sur fond sombre. Sections claires en alternance. Tokens dans `tailwind.config.ts`.
 - **Filigrane de marque** : `components/shared/BrandPattern.tsx` (monogramme D+M avec repère de maquette, variantes `mark`, `grid`, `arc`) et `BrandMark` (logo seul). Posé discrètement en fond du hero, de l'à-propos, des services, de la section Art, de la bande CTA et du blog.
-- **Typographie** : Poppins (texte et titres géants, `--font-sans`), Caveat Brush (titres de section façon "brush", `--font-brush`), Geist Mono (étiquettes, `--font-mono`). Chargées avec `next/font/google` dans `app/layout.tsx`.
-- **Animations** : nom géant lettre par lettre et parallaxe du portrait (hero), titres qui se dessinent avec trait de pinceau bleu (`SectionHeading` : entourez des mots d'`*astérisques*`), manifeste plein écran qui s'allume au scroll (`Manifesto.tsx`), ouverture plein écran d'un projet en rideau (`ProjectOverlay.tsx`), survols orange sur cartes et boutons, respect de `prefers-reduced-motion`.
+- **Typographie** : Poppins (texte et nom géant du hero, `--font-sans`), Syne (titres de section, menu, blog, `--font-display`), Geist Mono (étiquettes, `--font-mono`). Chargées avec `next/font/google` dans `app/layout.tsx`.
+- **Animations** : nom géant lettre par lettre et parallaxe du portrait (hero), titres qui montent mot à mot avec un trait bleu sous les mots entre `*astérisques*` (`SectionHeading`), signe de marque minimal : une courbe fine qui se trace au scroll (`BrushBlob`), manifeste plein écran qui s'allume au scroll (`Manifesto.tsx`), ouverture plein écran d'un projet en rideau (`ProjectOverlay.tsx`), survols orange sur cartes et boutons, respect de `prefers-reduced-motion`.
 
 ## Sections
 
 Hero (style image de référence : nom géant sur portrait, pastille disponibilité, CTA orange, défilé d'outils) → À propos (+ statistiques) → Manifeste (plein écran, scroll) → Parcours (frise Expérience / Formation) → Services → Projets (bento / grille sur desktop, vertical / 2×2 sur mobile, présentation plein écran) → Art & création « Mes activités » (grille uniforme de photos portrait 3:4, légende au survol, lightbox, lien créateur de contenu) → Outils → Témoignages → Galerie → Bande CTA (devis, CV, WhatsApp) → Contact → Footer.
 
-Pages : `/blog` (liste) et `/blog/[slug]` (article), générées statiquement à partir de `content/blog/*.md`.
+Pages : `/blog` (liste minimaliste : date, titre, résumé) et `/blog/[slug]` (article sur une colonne), générées statiquement à partir de `content/blog/*.md`.
 
 ## Structure
 
@@ -44,7 +44,7 @@ services/, hooks/       # envoi contact / devis vers Supabase (React Query)
 ## Modifier le contenu
 
 - Coordonnées, réseaux, disponibilité : `lib/site.ts`
-- Projets : `lib/projectData.ts`
+- Projets : `lib/projectData.ts` ; visuels dans `public/projets/<slug>/`. Les dossiers vides affichent une couverture provisoire `cover.svg` : déposez vos captures (`<slug>-1.png`, `<slug>-2.png`…) puis remplacez `placeholder(...)` par `shots(...)` dans le fichier.
 - Parcours : `lib/experienceData.ts` ; les logos sont dans `public/logos/` (les fichiers `.svg` 2tcorp, cinaf et iut sont des **placeholders** à remplacer par les vrais logos)
 - Galerie photo : `lib/artData.ts` + fichiers dans `public/art/` (les images actuelles sont des **placeholders** à remplacer par vos photos, format portrait conseillé)
 - Articles de blog : un fichier `.md` par article dans `content/blog/` avec un frontmatter `title`, `description`, `date`, `tags`, `cover`, `readingTime`
@@ -69,3 +69,10 @@ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
 ```
 
 Le client Supabase est créé à la demande : le build fonctionne sans ces variables, seuls les envois de formulaire en ont besoin.
+
+## Qualité et SEO
+
+- Métadonnées complètes (titre, description, canonical, hreflang, Open Graph `profile`, Twitter `summary_large_image`, géolocalisation Douala), images OG/Twitter générées, `robots.ts`, `sitemap.ts` (accueil, blog, articles), `manifest.ts`.
+- Données structurées JSON-LD : `Person`, `WebSite`, `ProfessionalService` (avec `GeoCoordinates`), `Blog`, et `BlogPosting` sur chaque article.
+- Chatbot local (sans API) dans `app/components/chatbot.tsx` : réponses sur les services, tarifs, projets, parcours, disponibilité, contact, blog et contenu, construites à partir de `lib/site.ts`, `lib/projectData.ts` et `lib/experienceData.ts`.
+- Audit Lighthouse (build de production, page d'accueil) : SEO 100, bonnes pratiques 100, accessibilité ≥ 97. La galerie 3D et le chatbot sont chargés à la demande.

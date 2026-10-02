@@ -47,10 +47,10 @@ export function Projects() {
 
   // Disposition bento (reprend l'agencement d'origine : 3 cartes, puis une grande + une large + deux petites)
   const bento = {
-    top: [projectData[6], projectData[2], projectData[1]],
+    top: [projectData[0], projectData[1], projectData[2]],
     big: projectData[3],
     wide: projectData[4],
-    small: [projectData[0], projectData[7]],
+    small: [projectData[5], projectData[6]],
   }
 
   return (
@@ -62,7 +62,7 @@ export function Projects() {
             eyebrow="Projets"
             id="projets-title"
             title="Une sélection de *réalisations*"
-            lede="Sites vitrines, e-commerce, outils métier et maquettes : des projets livrés pour des clients ou menés à titre personnel. Cliquez pour ouvrir la présentation."
+            lede="Sites vitrines, applications, outils métier (CRM, ERP) et maquettes : des projets livrés pour des clients ou menés à titre personnel. Cliquez pour ouvrir la présentation."
           />
           <Reveal delay={0.1}>
             <div className="hidden md:block">
@@ -93,7 +93,7 @@ export function Projects() {
           {desktop === "bento" ? (
             <div className="grid grid-cols-6 gap-5">
               {bento.top.map((p, i) => (
-                <Reveal key={p.name} delay={i * 0.08} className="col-span-2">
+                <Reveal key={p.slug} delay={i * 0.08} className="col-span-2">
                   <ProjectCard project={p} onOpen={open} imageHeight="h-72 lg:h-80" />
                 </Reveal>
               ))}
@@ -106,7 +106,7 @@ export function Projects() {
                 </Reveal>
                 <div className="grid grid-cols-2 gap-5">
                   {bento.small.map((p, i) => (
-                    <Reveal key={p.name} delay={0.2 + i * 0.08}>
+                    <Reveal key={p.slug} delay={0.2 + i * 0.08}>
                       <ProjectCard project={p} onOpen={open} imageHeight="h-[15.4rem] lg:h-[17.4rem]" />
                     </Reveal>
                   ))}
@@ -116,7 +116,7 @@ export function Projects() {
           ) : (
             <div className="grid grid-cols-2 gap-5 lg:grid-cols-3">
               {projectData.map((p, i) => (
-                <Reveal key={p.name} delay={Math.min(i * 0.06, 0.3)}>
+                <Reveal key={p.slug} delay={Math.min(i * 0.06, 0.3)}>
                   <ProjectCard project={p} onOpen={open} imageHeight="h-64" />
                 </Reveal>
               ))}
@@ -129,7 +129,7 @@ export function Projects() {
           {mobile === "vertical" ? (
             <div className="space-y-5">
               {projectData.map((p, i) => (
-                <Reveal key={p.name} delay={Math.min(i * 0.05, 0.2)}>
+                <Reveal key={p.slug} delay={Math.min(i * 0.05, 0.2)}>
                   <ProjectCard project={p} onOpen={open} imageHeight="h-60" />
                 </Reveal>
               ))}
@@ -137,7 +137,7 @@ export function Projects() {
           ) : (
             <div className="grid grid-cols-2 gap-3">
               {projectData.map((p) => (
-                <ProjectCard key={p.name} project={p} onOpen={open} imageHeight="h-44" />
+                <ProjectCard key={p.slug} project={p} onOpen={open} imageHeight="h-44" />
               ))}
             </div>
           )}

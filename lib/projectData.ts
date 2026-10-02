@@ -1,4 +1,5 @@
 export type Project = {
+  slug: string
   name: string
   description: string
   fullDescription: string
@@ -9,184 +10,176 @@ export type Project = {
   tech: string[]
   year: string
   category: string
+  /** Rôle tenu sur le projet. */
+  role?: string
 }
+
+const shots = (dir: string, prefix: string, n: number, alt: string) =>
+  Array.from({ length: n }, (_, i) => ({ src: `/projets/${dir}/${prefix}-${i + 1}.png`, alt: `${alt} — écran ${i + 1}` }))
+
+/** Projets dont les visuels ne sont pas encore déposés : une couverture provisoire est affichée. */
+const placeholder = (dir: string, alt: string) => [{ src: `/projets/${dir}/cover.svg`, alt }]
 
 export const projectData: Project[] = [
   {
-    name: "Promo Store",
-    description:
-      "Boutique e-commerce moderne avec design responsive et paiement sécurisé",
+    slug: "cortex-agency",
+    name: "Cortex Agency",
+    description: "Site vitrine d'une agence créative : identité forte, animations soignées et parcours de conversion clair.",
     fullDescription:
-      "Promo Store est une plateforme e-commerce complète offrant une expérience utilisateur fluide : interface intuitive, panier avancé, intégration de paiements sécurisés et tableau de bord d’administration pour gérer produits et commandes.",
-    image: [
-      { src: "/projets/promo-1.png", alt: "Promo Store" },
-      { src: "/projets/promo-2.png", alt: "Promo Store" },
-      { src: "/projets/promo-3.png", alt: "Promo Store" },
-    ],
-    link: "https://promo-store.vercel.app",
-    github: "https://github.com/diranecode/promo-store",
-    tech: ["React", "Tailwind", "Shadcn UI", "Framer Motion"],
-    year: "2024",
-    category: "E-commerce",
+      "Conception et développement du site de Cortex Agency. L'objectif : traduire l'univers créatif de l'agence en une expérience web immersive, avec des animations fluides, une typographie affirmée et des pages services pensées pour convertir. Le site est responsive, optimisé pour le référencement et déployé en continu.",
+    image: placeholder("cortex-agency", "Cortex Agency"),
+    tech: ["Next.js", "Tailwind CSS", "Motion", "Figma"],
+    year: "2025",
+    category: "Agence",
+    role: "Design & développement",
   },
-
   {
-    name: "Typer Speed",
-    description:
-      "Jeu de dactylographie interactif pour tester et améliorer ta vitesse de frappe",
+    slug: "crm-bt",
+    name: "CRM Build Together",
+    description: "Plateforme de gestion intégrée pour centraliser les opérations commerciales et administratives.",
     fullDescription:
-      "Typer Speed est un jeu de dactylographie qui aide les utilisateurs à améliorer leur vitesse de saisie. Il propose plusieurs modes de jeu, des statistiques détaillées de performance et un système de progression motivant.",
-    image: [
-      { src: "/projets/typed-1.png", alt: "Typer Speed" },
-      { src: "/projets/typed-2.png", alt: "Typer Speed 2" },
-      { src: "/projets/typed-3.png", alt: "Typer Speed 3" },
-      { src: "/projets/typed-4.png", alt: "Typer Speed 4" },
-      { src: "/projets/typed-5.png", alt: "Typer Speed 5" },
-    ],
-    link: "https://dirane-speed-typer.vercel.app",
-    github: "https://github.com/diranecode/typer-speed",
-    tech: ["NextJS", "TailwindCSS", "TypeScript"],
-    year: "2024",
-    category: "Jeu",
-  },
-
-  {
-    name: "CRM",
-    description:
-      "Plateforme de gestion intégrée pour centraliser les opérations commerciales et administratives",
-    fullDescription:
-      "Un CRM moderne conçu pour optimiser la gestion d’entreprise : marketing (prospects, clients, dashboard), ressources humaines, comptabilité (ventes, finances, salaires), topographie et recouvrement. La solution améliore la productivité, facilite le suivi des activités et renforce la relation client.",
-    image: [
-      { src: "/projets/crm-1.png", alt: "CRM Screenshot 1" },
-      { src: "/projets/crm-2.png", alt: "CRM Screenshot 2" },
-      { src: "/projets/crm-3.png", alt: "CRM Screenshot 3" },
-      { src: "/projets/crm-4.png", alt: "CRM Screenshot 4" },
-      { src: "/projets/crm-5.png", alt: "CRM Screenshot 5" },
-      { src: "/projets/crm-6.png", alt: "CRM Screenshot 6" },
-    ],
+      "Un CRM moderne conçu pour optimiser la gestion d'entreprise : marketing (prospects, clients, tableau de bord), ressources humaines, comptabilité (ventes, finances, salaires), topographie et recouvrement. La solution améliore la productivité, facilite le suivi des activités et renforce la relation client.",
+    image: shots("crm-bt", "crm", 6, "CRM Build Together"),
     link: "https://crm.buildtogethers.com/",
-    github: "",
-    tech: ["NextJS", "Supabase"],
+    tech: ["Next.js", "Supabase", "React Query", "Tailwind CSS"],
     year: "2025",
-    category: "Entreprise",
+    category: "Outil métier",
+    role: "Fullstack & UI/UX",
   },
   {
-    name: "Landing Page PS5",
-    description:
-      "Landing page moderne et immersive pour mettre en avant les manettes PlayStation 5",
+    slug: "website-bt",
+    name: "Build Together Group",
+    description: "Site institutionnel pour présenter l'entreprise Build Together et ses services.",
     fullDescription:
-      "Concept de landing page valorisant les manettes PS5 avec un design élégant, animations fluides et expérience utilisateur immersive pour séduire les gamers.",
-    image: [
-      { src: "/projets/ps5-1.png", alt: "PS5 Landing Page" },
-      { src: "/projets/ps5-2.png", alt: "PS5 Landing Page 2" },
-      { src: "/projets/ps5-3.png", alt: "PS5 Landing Page 3" },
-      { src: "/projets/ps5-4.png", alt: "PS5 Landing Page 4" },
-    ],
-    Figma: "https://www.figma.com/design/0pqD9RyPMi9ydD9uVd29wP/Untitled?node-id=0-1&t=SDhzwOalVRSIKQ9T-1",
-    tech: ["Design", "Figma", "UI/UX"],
-    year: "2023",
-    category: "Design",
+      "Vitrine digitale de Build Together Group : présentation des services (développement web et mobile, solutions cloud, infrastructure, consulting), mise en avant de l'équipe et des réalisations, interface moderne et responsive, optimisée pour le référencement afin de renforcer la présence en ligne de l'entreprise.",
+    image: shots("website-bt", "bt", 5, "Build Together Group"),
+    link: "https://buildtogethers.com",
+    tech: ["Next.js", "Tailwind CSS", "Supabase"],
+    year: "2025",
+    category: "Site vitrine",
+    role: "Design & développement",
   },
   {
+    slug: "caline-house",
     name: "Caline House",
-    description:
-      "Application Web & mobile innovante pour simplifier la recherche et la réservation de logements.",
+    description: "Application web & mobile pour simplifier la recherche et la réservation de logements.",
     fullDescription:
-      "Caline House est une plateforme moderne dédiée à la recherche immobilière. Elle permet aux utilisateurs de découvrir facilement des logements adaptés à leurs besoins, de réserver des visites, de payer en toute sécurité grâce à l’intégration NotchPay, et de gérer leurs favoris. L’application intègre également un système de portefeuille numérique, un profil utilisateur personnalisé, ainsi qu’une interface intuitive et responsive pensée pour offrir une excellente expérience utilisateur.",
-    image: [
-      { src: "/projets/calinehouse-1.png", alt: "Caline House - Écran accueil",},
-      { src: "/projets/calinehouse-2.png", alt: "Caline House - Liste de logements", },
-      { src: "/projets/calinehouse-3.png", alt: "Caline House - Détail logement", },
-      { src: "/projets/calinehouse-7.png", alt: "Caline House - Profil utilisateur", },
-      { src: "/projets/calinehouse-4.png", alt: "Caline House - Paiement sécurisé", },
-      { src: "/projets/calinehouse-5.png", alt: "Caline House - Wallet utilisateur", },
-      { src: "/projets/calinehouse-6.png", alt: "Caline House - Profil utilisateur", },
-    ],
-    link: "https://calinehouse.com", // ou ton futur domaine
-    github: "", // repo GitHub si public
-    tech: ["React Native", "Expo", "NextJS", "Supabase", "NotchPay"],
+      "Plateforme immobilière moderne : découverte de logements adaptés à ses besoins, réservation de visites, paiement sécurisé via NotchPay, favoris, portefeuille numérique et profil personnalisé. Interface intuitive et responsive, déclinée en application mobile.",
+    image: shots("caline-house", "calinehouse", 7, "Caline House"),
+    link: "https://calinehouse.com",
+    tech: ["React Native", "Expo", "Next.js", "Supabase", "NotchPay"],
     year: "2025",
-    category: "Entreprise",
+    category: "Application",
+    role: "Fullstack & mobile",
   },
   {
-    name: "Clinique Sainte Monique",
-    description:
-      "Site vitrine médical professionnel dédié à la Clinique Sainte Monique.",
+    slug: "erp-lavish",
+    name: "ERP Lavish",
+    description: "Progiciel de gestion sur mesure : stocks, ventes, facturation et tableaux de bord.",
     fullDescription:
-      "Le site web de la Clinique Sainte Monique a été conçu pour offrir une plateforme claire et moderne permettant aux patients de découvrir les services de santé proposés, les spécialités médicales disponibles, ainsi que les informations pratiques (contacts, localisation, horaires). Il met en avant la mission de la clinique : offrir des soins de qualité avec une approche humaine et personnalisée. Le site est responsive, optimisé pour le SEO et propose une navigation simple pour une expérience utilisateur optimale.",
-    image: [
-      { src: "/projets/clinique-1.png", alt: "Clinique Sainte Monique - Page d'accueil", },
-      {
-        src: "/projets/clinique-3.png",
-        alt: "Clinique Sainte Monique - Équipe médicale",
-      },
-      {
-        src: "/projets/clinique-2.png",
-        alt: "Clinique Sainte Monique - Services médicaux",
-      },
-      {
-        src: "/projets/clinique-4.png",
-        alt: "Clinique Sainte Monique - Contact et localisation",
-      },
-    ],
-    link: "https://cliniquesaintemonique.com",
-    tech: ["NextJS", "Tailwind CSS", "Supabase"], // adapte selon ton stack
+      "Conception d'un ERP pour centraliser les opérations de Lavish : gestion des stocks et des achats, ventes et facturation, suivi des équipes et tableaux de bord décisionnels. Rôles et permissions, exports et automatisations réduisent les tâches répétitives et fiabilisent les données.",
+    image: placeholder("erp-lavish", "ERP Lavish"),
+    tech: ["Next.js", "Supabase", "PostgreSQL", "React Query"],
     year: "2025",
-    category: "Santé",
+    category: "Outil métier",
+    role: "Fullstack & UI/UX",
   },
   {
+    slug: "kmc",
     name: "KMC Restaurant",
-    description:
-      "Conception UI/UX sur Figma pour le site vitrine d’un restaurant moderne.",
+    description: "Conception UI/UX sur Figma pour le site vitrine d'un restaurant moderne.",
     fullDescription:
-      "Le projet KMC Restaurant est une maquette UI/UX conçue sur Figma afin de mettre en valeur l’identité et les services d’un restaurant moderne. L’objectif était de créer une interface visuelle élégante et conviviale qui reflète l’univers culinaire de KMC. Le design inclut une page d’accueil immersive, une carte des menus interactive, une section réservations, ainsi qu’une version mobile optimisée. Ce prototype offre une expérience utilisateur fluide et constitue une base solide pour un futur développement web.",
-    image: [
-      {
-        src: "/projets/kmc-1.png",
-        alt: "KMC Restaurant - Page d'accueil (Figma)",
-      },
-      {
-        src: "/projets/kmc-2.png",
-        alt: "KMC Restaurant - Menu digital (Figma)",
-      },
-      {
-        src: "/projets/kmc-3.png",
-        alt: "KMC Restaurant - Réservations (Figma)",
-      },
-      {
-        src: "/projets/kmc-4.png",
-        alt: "KMC Restaurant - Version mobile (Figma)",
-      },
-      {
-        src: "/projets/kmc-5.png",
-        alt: "KMC Restaurant - Version mobile (Figma)",
-      },
-      {
-        src: "/projets/kmc-6.png",
-        alt: "KMC Restaurant - Version mobile (Figma)",
-      },
-    ],
-    Figma: "https://www.figma.com/design/TCugtAxhhVAUKikIZOt4vc/KMC-website?node-id=26-620&t=XLtDSzqPb2z8mTHm-1", 
+      "Maquette UI/UX conçue sur Figma pour mettre en valeur l'identité et les services de KMC : page d'accueil immersive, carte des menus interactive, section réservations et version mobile optimisée. Un prototype fluide qui sert de base au développement du site.",
+    image: shots("kmc", "kmc", 6, "KMC Restaurant"),
+    Figma: "https://www.figma.com/design/TCugtAxhhVAUKikIZOt4vc/KMC-website?node-id=26-620&t=XLtDSzqPb2z8mTHm-1",
     tech: ["Figma", "UI/UX Design"],
     year: "2025",
     category: "Design",
+    role: "UI/UX Designer",
   },
   {
-  name: "Build Together Group",
-  description:
-    "Site institutionnel pour présenter l’entreprise Build Together et ses services.",
-  fullDescription:
-    "Le site buildtogether-group.com est la vitrine digitale de l’entreprise Build Together Group. Conçu pour refléter la vision et les valeurs de l’entreprise, il présente ses différents services (développement web et mobile, solutions cloud, gestion d’infrastructure, consulting). Le site met en avant l’expertise de l’équipe, les projets réalisés et offre une expérience utilisateur fluide grâce à une interface moderne et responsive. Il a également été optimisé pour le référencement afin de renforcer la présence en ligne de l’entreprise.",
-  image: [
-    { src: "/projets/bt-1.png", alt: "Build Together Group - Nos services" },
-    { src: "/projets/bt-2.png", alt: "Build Together Group - Page d'accueil" },
-    { src: "/projets/bt-3.png", alt: "Build Together Group - Réalisations" },
-    { src: "/projets/bt-4.png", alt: "Build Together Group - Contact" },
-  ],
-  link: "https://buildtogethers.com",
-  tech: ["NextJS", "Tailwind CSS", "Supabase"], 
-  year: "2025",
-  category: "Entreprise",
-}
-
-];
+    slug: "crm-powerlink",
+    name: "CRM PowerLink",
+    description: "CRM léger pour suivre prospects, relances et opportunités commerciales.",
+    fullDescription:
+      "Un CRM pensé pour une équipe commerciale : pipeline d'opportunités, fiches prospects, rappels de relance, historique des échanges et statistiques de conversion. Interface rapide, filtres puissants et notifications pour ne manquer aucune opportunité.",
+    image: placeholder("crm-powerlink", "CRM PowerLink"),
+    tech: ["Next.js", "Supabase", "Tailwind CSS"],
+    year: "2025",
+    category: "Outil métier",
+    role: "Fullstack",
+  },
+  {
+    slug: "website-lavish",
+    name: "Site Lavish",
+    description: "Site vitrine élégant pour présenter la marque Lavish et ses produits.",
+    fullDescription:
+      "Site vitrine conçu pour refléter le positionnement premium de Lavish : direction artistique épurée, mise en avant des produits, pages optimisées pour le référencement et formulaire de contact. Responsive et rapide.",
+    image: placeholder("website-lavish", "Site Lavish"),
+    tech: ["Next.js", "Tailwind CSS", "Figma"],
+    year: "2025",
+    category: "Site vitrine",
+    role: "Design & développement",
+  },
+  {
+    slug: "fjoe-construction",
+    name: "FJOE Construction",
+    description: "Site vitrine d'une entreprise de construction : réalisations, services et demande de devis.",
+    fullDescription:
+      "Site institutionnel pour FJOE Construction : présentation des services (gros œuvre, rénovation, aménagement), galerie de réalisations, équipe et formulaire de demande de devis. Structure claire et référencement local pour générer des contacts qualifiés.",
+    image: placeholder("fjoe-construction", "FJOE Construction"),
+    tech: ["Next.js", "Tailwind CSS", "Supabase"],
+    year: "2025",
+    category: "Site vitrine",
+    role: "Design & développement",
+  },
+  {
+    slug: "tara-card",
+    name: "Tara Card",
+    description: "Carte de visite digitale : profil partageable par QR code et lien unique.",
+    fullDescription:
+      "Tara Card permet de créer une carte de visite numérique partageable en un scan : coordonnées, réseaux, liens et bouton d'enregistrement du contact. Génération de QR code, page personnalisable et statistiques de consultation.",
+    image: placeholder("tara-card", "Tara Card"),
+    tech: ["Next.js", "Supabase", "Tailwind CSS"],
+    year: "2025",
+    category: "Application",
+    role: "Fullstack & UI/UX",
+  },
+  {
+    slug: "magic-booster",
+    name: "Magic Booster",
+    description: "Landing page produit orientée conversion, avec animations et preuve sociale.",
+    fullDescription:
+      "Page de présentation de Magic Booster : proposition de valeur claire, sections bénéfices, témoignages, FAQ et appels à l'action optimisés. Animations légères, chargement rapide et suivi des conversions.",
+    image: placeholder("magic-booster", "Magic Booster"),
+    tech: ["Next.js", "Motion", "Tailwind CSS"],
+    year: "2025",
+    category: "Landing page",
+    role: "Design & développement",
+  },
+  {
+    slug: "cortex-art-deco",
+    name: "Cortex Art Déco",
+    description: "Direction artistique et maquettes Figma dans un style Art déco contemporain.",
+    fullDescription:
+      "Exploration visuelle pour Cortex : système de design inspiré de l'Art déco (géométries, dorures, typographies à fort contraste) décliné en maquettes d'écrans, composants et déclinaisons mobiles.",
+    image: placeholder("cortex-art-deco", "Cortex Art Déco"),
+    tech: ["Figma", "UI/UX Design", "Branding"],
+    year: "2025",
+    category: "Design",
+    role: "UI/UX Designer",
+  },
+  {
+    slug: "ps5",
+    name: "Landing Page PS5",
+    description: "Landing page immersive pour mettre en avant les manettes PlayStation 5.",
+    fullDescription:
+      "Concept de landing page valorisant les manettes PS5 : design élégant, animations fluides et expérience immersive pensée pour les gamers.",
+    image: shots("ps5", "ps5", 4, "Landing page PS5"),
+    Figma: "https://www.figma.com/design/0pqD9RyPMi9ydD9uVd29wP/Untitled?node-id=0-1&t=SDhzwOalVRSIKQ9T-1",
+    tech: ["Figma", "UI/UX Design"],
+    year: "2023",
+    category: "Design",
+    role: "UI/UX Designer",
+  },
+]

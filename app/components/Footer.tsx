@@ -9,12 +9,12 @@ export function Footer() {
     <footer className="border-t border-white/10 bg-night">
       <div className="container-x grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <BrandMark className="h-9 text-brand" />
-          <p className="mt-4 font-brush text-4xl text-paper">{site.name}</p>
-          <p className="mt-1 text-sm text-brand">{site.role}</p>
+          <BrandMark className="h-9 text-brand-light" />
+          <p className="mt-4 font-display text-4xl text-paper">{site.name}</p>
+          <p className="mt-1 text-sm text-brand-light">{site.role}</p>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-ash">
-            Conception et développement d&apos;applications web et mobiles, design d&apos;interfaces, automatisation et
-            contenu tech, depuis Douala et à distance.
+            Conception et développement d&apos;applications web et mobiles, design d&apos;interfaces, IA & Automatisation et
+            Contenu tech.
           </p>
         </div>
 
@@ -50,21 +50,20 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="relative overflow-hidden border-t border-white/10">
+      <div className="relative overflow-hidden ">
         <div className="container-x flex flex-col items-start justify-between gap-3 py-5 text-xs text-ash sm:flex-row sm:items-center">
           <p>
-            © {new Date().getFullYear()} {site.name}. Conçu et développé à Douala.
+            © {new Date().getFullYear()} {site.name}.
           </p>
-          <a href="#home" className="inline-flex items-center gap-1.5 font-mono uppercase tracking-[0.18em] transition-colors hover:text-brand">
+          <a href="#home" className="inline-flex items-center gap-1.5 font-mono uppercase tracking-[0.18em] transition-colors hover:text-brand-light">
             Haut de page <ArrowUp className="size-3.5" />
           </a>
         </div>
-        <p
+        <div
           aria-hidden
-          className="pointer-events-none select-none whitespace-nowrap text-center font-sans text-[clamp(3rem,13.6vw,13rem)] font-bold leading-[0.8] tracking-[-0.04em] text-white/[0.045]"
-        >
-          Dirane Code
-        </p>
+          data-text="Dirane Code"
+          className="pointer-events-none select-none whitespace-nowrap text-center font-display text-[clamp(3rem,13.6vw,13rem)] font-bold leading-[0.8] tracking-[-0.04em] text-white/[0.045] before:content-[attr(data-text)]"
+        />
       </div>
     </footer>
   )

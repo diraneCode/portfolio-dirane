@@ -13,8 +13,10 @@ const EASE = [0.22, 1, 0.36, 1] as const
 const marqueeTools = [
   { name: "React", src: "/logo/react.png" },
   { name: "Next.js", src: "/logo/nextjs.png" },
+  { name: "Claude", src: "/logo/claude.jpeg" },
   { name: "TypeScript", src: "/logo/typescript.png" },
   { name: "Figma", src: "/logo/figma.png" },
+  { name: "n8n", src: "/logo/n8n.png" },
   { name: "Supabase", src: "/logo/supabase.png" },
   { name: "Tailwind", src: "/logo/tailwind.png" },
   { name: "Expo", src: "/logo/expo.png" },
@@ -50,14 +52,13 @@ export function Hero() {
             </motion.p>
           )}
           <motion.p {...fadeUp(0.35)} className="mt-5 max-w-xs text-[1.5rem] font-semibold leading-[1.15] text-paper md:text-[1.9rem]">
-            Software Engineer, UI/UX Designer &amp; créateur de contenu tech
+            CEO Cortex Agency Software Engineer UI/UX Designer &amp; créateur de contenu tech
           </motion.p>
         </div>
 
         <motion.div {...fadeUp(0.5)} className="hidden max-w-xs md:block md:justify-self-end md:pt-10">
           <p className="text-sm leading-relaxed text-ash">
-            Salut, je suis Dirane Mekem, développeur et designer basé à Douala. Je conçois des expériences numériques
-            fluides qui connectent et convertissent, et je partage mes coulisses en vidéo.
+            Salut, je suis Dirane Mekem, CEO de Cortex Agency, développeur et designer basé à Douala. J&apos;aide les entreprises et les particuliers à automatiser leur business avec l&apos;IA, l&apos;automatisation et les solutions digitales.
           </p>
           <Button asChild size="lg" className="mt-5 pl-2">
             <Link href="#projets">
@@ -71,11 +72,11 @@ export function Hero() {
       <div className="group/portrait relative z-[1] mx-auto mt-4 h-[52vh] w-full md:h-[58vh] lg:absolute lg:inset-x-0 lg:bottom-[8%] lg:top-[7%] lg:mt-0 lg:flex lg:h-auto lg:justify-center">
         <div className="relative h-full w-full max-w-[1100px] [mask-image:linear-gradient(to_bottom,black_72%,transparent_100%)]">
           <Image
-            src="/dirane-hero.png"
+            src="/art/dirane-hero.webp"
             alt="Portrait de Dirane Mekem"
             fill
             priority
-            sizes="100vw"
+            sizes="(max-width: 1024px) 100vw, 1100px"
             className="object-contain object-bottom grayscale transition-[filter] duration-700 ease-out group-hover/portrait:grayscale-0"
           />
         </div>
@@ -113,9 +114,9 @@ export function Hero() {
           speed="slow"
           itemClassName="px-8"
           items={marqueeTools.map((t) => (
-            <span key={t.name} className="group/tool flex items-center gap-3 text-xl font-semibold text-white/30 transition-colors duration-300 hover:text-white md:text-2xl">
+            <span key={t.name} className="group/tool flex items-center gap-3 text-xl font-semibold text-white/55 transition-colors duration-300 hover:text-white md:text-2xl">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={t.src} alt="" className="h-7 w-auto opacity-40 grayscale transition-all duration-300 group-hover/tool:opacity-100 group-hover/tool:grayscale-0 md:h-8" draggable={false} />
+              <img src={t.src} alt="" width={32} height={32} className="h-7 w-auto opacity-60 grayscale transition-all duration-300 group-hover/tool:opacity-100 group-hover/tool:grayscale-0 md:h-8" draggable={false} />
               {t.name}
             </span>
           ))}
