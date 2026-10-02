@@ -13,9 +13,9 @@ Site : https://www.dirane.me
 
 ## Sections
 
-Hero (style image de référence : nom géant sur portrait, pastille disponibilité, CTA orange, défilé d'outils) → À propos (+ statistiques) → Manifeste (plein écran, scroll) → Parcours (frise Expérience / Formation) → Services → Projets (bento / grille sur desktop, vertical / 2×2 sur mobile, présentation plein écran) → Art & création « Mes activités » (grille uniforme de photos portrait 3:4, légende au survol, lightbox, lien créateur de contenu) → Outils → Témoignages → Galerie → Bande CTA (devis, CV, WhatsApp) → Contact → Footer.
+Hero (style image de référence : nom géant sur portrait, pastille disponibilité, CTA orange, défilé d'outils) → À propos (+ statistiques) → Manifeste (plein écran, scroll) → Parcours (frise Expérience / Formation) → Services → Projets (bento / grille sur desktop, vertical / 2×2 sur mobile, présentation plein écran) → Art & création « Mes activités » (grille uniforme de photos portrait 3:4, légende au survol, lightbox, lien créateur de contenu) → Outils → Témoignages → Galerie → Bande CTA (devis, CV, WhatsApp) → Contact (carte en deux panneaux : coordonnées sur fond crème avec motif de courbes de niveau `TopoPattern`, formulaire sur fond blanc) → Footer.
 
-Pages : `/blog` (liste minimaliste : date, titre, résumé) et `/blog/[slug]` (article sur une colonne), générées statiquement à partir de `content/blog/*.md`.
+Pages : `/blog` (liste : vignette, date, titre, résumé) et `/blog/[slug]` (article sur une colonne avec image de couverture, barre de partage — copie du lien, X, LinkedIn, WhatsApp, Facebook — et bloc d'abonnement à la newsletter), générées statiquement à partir de `content/blog/*.md`.
 
 ## Structure
 
@@ -69,6 +69,19 @@ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
 ```
 
 Le client Supabase est créé à la demande : le build fonctionne sans ces variables, seuls les envois de formulaire en ont besoin.
+
+Tables attendues côté Supabase : `contact`, `devis` et `newsletter`. Pour la newsletter :
+
+```sql
+create table if not exists public.newsletter (
+  id uuid primary key default gen_random_uuid(),
+  email text not null unique,
+  source text default 'blog',
+  created_at timestamptz default now()
+);
+alter table public.newsletter enable row level security;
+create policy "insertion publique" on public.newsletter for insert to anon with check (true);
+```
 
 ## Qualité et SEO
 

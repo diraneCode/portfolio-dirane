@@ -1,11 +1,14 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import Image from "next/image"
 import { notFound } from "next/navigation"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import { getAllPosts, getPost, formatDate } from "@/lib/blog"
 import { site } from "@/lib/site"
+import { ShareBar } from "@/app/components/ShareBar"
+import { Newsletter } from "@/app/components/Newsletter"
 
 type Params = { slug: string }
 
@@ -40,6 +43,7 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
   const post = getPost(slug)
   if (!post) notFound()
 
+  const url = `${site.url}/blog/${post.slug}`
   const all = getAllPosts()
   const index = all.findIndex((p) => p.slug === post.slug)
   const next = all[(index + 1) % all.length]
@@ -83,12 +87,21 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
           </ul>
         </header>
 
+        {post.cover && (
+          <figure className="relative mt-10 aspect-[16/9] overflow-hidden rounded-2xl border border-white/10 bg-night-2">
+            <Image src={post.cover} alt="" fill priority sizes="(max-width: 768px) 100vw, 672px" className="object-cover object-top" />
+          </figure>
+        )}
+
+        <ShareBar url={url} title={post.title} className="mt-8" />
+
         <div className="prose-blog mt-12">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.content}</ReactMarkdown>
         </div>
 
         <footer className="mt-16 border-t border-white/10 pt-8">
-          <p className="text-sm text-ash">
+          <ShareBar url={url} title={post.title} />
+          <p className="mt-8 text-sm text-ash">
             Écrit par <span className="text-paper">{site.name}</span>. Une question sur cet article ?{" "}
             <Link href="/#contact" className="link-brush text-paper">
               Écrivez-moi
@@ -106,6 +119,8 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
           )}
         </footer>
       </article>
+
+      <Newsletter compact className="mt-16" />
     </main>
   )
 }

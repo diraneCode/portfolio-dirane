@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowUpRight } from "lucide-react"
+import { Newsletter } from "@/app/components/Newsletter"
 import { getAllPosts, formatDate } from "@/lib/blog"
 import { site } from "@/lib/site"
 
@@ -20,7 +22,7 @@ export default function BlogPage() {
   const posts = getAllPosts()
 
   return (
-    <main id="contenu" className="container-x max-w-3xl pb-24 pt-32 md:pb-32 md:pt-40">
+    <main id="contenu" className="container-x max-w-4xl pb-24 pt-32 md:pb-32 md:pt-40">
       <header>
         <p className="eyebrow text-ash">Blog</p>
         <h1 className="mt-4 font-display text-brush-lg font-bold text-paper">Je partage ce que j&apos;apprends.</h1>
@@ -35,13 +37,24 @@ export default function BlogPage() {
           <li key={post.slug}>
             <Link
               href={`/blog/${post.slug}`}
-              className="group grid gap-2 py-7 transition-colors md:grid-cols-[9rem_1fr_auto] md:items-baseline md:gap-6"
+              className="group grid gap-4 py-7 transition-colors md:grid-cols-[11rem_1fr_auto] md:items-start md:gap-7"
             >
-              <time dateTime={post.date} className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-ash">
-                {formatDate(post.date)}
-              </time>
+              <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-white/10 bg-night-2">
+                {post.cover && (
+                  <Image
+                    src={post.cover}
+                    alt=""
+                    fill
+                    sizes="(max-width: 768px) 100vw, 176px"
+                    className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  />
+                )}
+              </div>
               <div>
-                <h2 className="text-xl font-semibold leading-snug text-paper transition-colors group-hover:text-brand-light md:text-2xl">
+                <time dateTime={post.date} className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-ash">
+                  {formatDate(post.date)}
+                </time>
+                <h2 className="mt-2 text-xl font-semibold leading-snug text-paper transition-colors group-hover:text-brand-light md:text-2xl">
                   {post.title}
                 </h2>
                 <p className="mt-2 max-w-xl text-sm leading-relaxed text-ash">{post.description}</p>
@@ -54,6 +67,8 @@ export default function BlogPage() {
           </li>
         ))}
       </ol>
+
+      <Newsletter className="mt-16" />
     </main>
   )
 }

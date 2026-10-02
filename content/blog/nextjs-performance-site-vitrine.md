@@ -3,7 +3,7 @@ title: "Next.js : 7 réglages pour un site vitrine qui charge vite"
 description: "Les optimisations concrètes que j'applique sur chaque site client pour obtenir un score Lighthouse élevé sans sacrifier le design."
 date: "2026-09-12"
 tags: ["Next.js", "Performance", "SEO"]
-cover: "/projets/clinique-1.png"
+cover: "/projets/website-bt/bt-1.png"
 readingTime: 6
 ---
 

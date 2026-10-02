@@ -55,3 +55,9 @@ export const devisSchema = z.object({
 });
 
 export type DevisInput = z.infer<typeof devisSchema>;
+
+export const newsletterSchema = z.object({
+  email: z.string().trim().email({ message: "Veuillez entrer une adresse e-mail valide." }),
+})
+
+export type NewsletterInput = z.infer<typeof newsletterSchema>
