@@ -2,9 +2,9 @@
 
 import { useRef } from "react"
 import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react"
-import { BrushBlob } from "@/components/shared/BrushStroke"
+import { ScrollBurst } from "@/components/shared/ScrollBurst"
 
-// Mot = texte, accent = en orange
+// Mot = texte, accent = en bleu
 const sentence: { text: string; accent?: boolean }[] = [
   ..."J'aide les entreprises et les particuliers à".split(" ").map((t) => ({ text: t })),
   { text: "automatiser,", accent: true },
@@ -35,8 +35,13 @@ export function Manifesto() {
   return (
     <section ref={ref} className="section-light relative h-[240vh]" aria-label="Manifeste">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        <BrushBlob className="right-8 top-10 hidden lg:block" />
-        <div className="container-x">
+        {/* Filigrane : l'étoile se reconstitue rayon par rayon, au même rythme que le texte */}
+        <ScrollBurst
+          progress={scrollYProgress}
+          still={!!reduce}
+          className="right-[-18vmin] top-1/2 w-[82vmin] -translate-y-1/2 text-brand opacity-[0.11] md:right-[-6vmin] md:w-[70vmin] lg:right-[3vw] lg:w-[62vmin]"
+        />
+        <div className="container-x relative">
           <p className="eyebrow text-ink-subtle">
             <span className="text-brand">03</span> &nbsp;—&nbsp; Manifeste
           </p>
