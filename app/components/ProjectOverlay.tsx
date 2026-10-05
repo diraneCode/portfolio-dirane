@@ -85,7 +85,7 @@ export function ProjectOverlay({ project, index, total, onClose, onPrev, onNext 
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 1.2, ease: OUT, delay: 0.3 }}
                 >
-                  <Image src={project.image[0].src} alt={project.image[0].alt} fill priority sizes="100vw" className="object-cover object-top" />
+                  <Image src={project.image[0].src} alt={project.image[0].alt} fill priority sizes="100vw" className="object-cover" />
                 </motion.div>
                 <div className="absolute inset-0 bg-gradient-to-t from-night via-night/30 to-transparent" />
                 <div className="container-x absolute inset-x-0 bottom-0 pb-8 md:pb-12">
@@ -168,9 +168,9 @@ export function ProjectOverlay({ project, index, total, onClose, onPrev, onNext 
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-5% 0px" }}
                         transition={{ duration: 0.8, ease: OUT }}
-                        className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-white/10 bg-night-2"
+                        className="relative aspect-video overflow-hidden rounded-2xl border border-white/10 bg-night-2"
                       >
-                        <Image src={img.src} alt={img.alt} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover object-top transition-transform duration-700 hover:scale-105" />
+                        <Image src={img.src} alt={img.alt} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform duration-700 hover:scale-105" />
                       </motion.div>
                     ))}
                   </div>

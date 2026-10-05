@@ -3,7 +3,7 @@ title: "Next.js : 7 réglages pour un site vitrine qui charge vite"
 description: "Les optimisations concrètes que j'applique sur chaque site client pour obtenir un score Lighthouse élevé sans sacrifier le design."
 date: "2026-09-12"
 tags: ["Next.js", "Performance", "SEO"]
-cover: "/projets/website-bt/bt-1.png"
+cover: "/projets/website-bt/cover.webp"
 readingTime: 6
 ---
 
@@ -19,8 +19,8 @@ C'est le levier numéro un. Le composant `Image` redimensionne, convertit en Web
 
 ```tsx
 <Image
-  src="/projets/clinique-1.png"
-  alt="Page d'accueil de la clinique"
+  src="/projets/website-bt/cover.webp"
+  alt="Page d'accueil du site Build Together"
   fill
   sizes="(max-width: 768px) 100vw, 50vw"
   priority

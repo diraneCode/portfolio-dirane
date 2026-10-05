@@ -37,7 +37,7 @@ export function ProjectCard({ project, onOpen, className, imageHeight = "h-64" }
           alt={project.image[0].alt}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-          className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-night via-night/40 to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-95" />
         <div className="absolute inset-0 bg-brand/0 transition-colors duration-500 group-hover:bg-brand/10" />

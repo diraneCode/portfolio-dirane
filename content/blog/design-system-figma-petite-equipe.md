@@ -3,7 +3,7 @@ title: "Construire un design system Figma pour une petite équipe"
 description: "Comment je structure un design system léger (couleurs, typographie, composants) qui accélère la production sans devenir une usine à gaz."
 date: "2026-08-04"
 tags: ["UI/UX", "Figma", "Design system"]
-cover: "/projets/kmc/kmc-1.png"
+cover: "/projets/kmc/cover.webp"
 readingTime: 5
 ---
 

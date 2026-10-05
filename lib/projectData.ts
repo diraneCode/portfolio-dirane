@@ -14,20 +14,24 @@ export type Project = {
   role?: string
 }
 
-const shots = (dir: string, prefix: string, n: number, alt: string) =>
-  Array.from({ length: n }, (_, i) => ({ src: `/projets/${dir}/${prefix}-${i + 1}.png`, alt: `${alt} — écran ${i + 1}` }))
-
-/** Projets dont les visuels ne sont pas encore déposés : une couverture provisoire est affichée. */
-const placeholder = (dir: string, alt: string) => [{ src: `/projets/${dir}/cover.svg`, alt }]
+/**
+ * Visuels générés par `scripts/project-visuals.py` à partir des captures brutes
+ * (`public/projets/<slug>/<slug>-N.png`) : une couverture inclinée, puis un visuel par écran.
+ */
+const visuals = (slug: string, n: number, alt: string) => [
+  { src: `/projets/${slug}/cover.webp`, alt: `${alt} — aperçu du projet` },
+  ...Array.from({ length: n }, (_, i) => ({ src: `/projets/${slug}/visuel-${i + 1}.webp`, alt: `${alt} — écran ${i + 1}` })),
+]
 
 export const projectData: Project[] = [
   {
     slug: "cortex-agency",
     name: "Cortex Agency",
-    description: "Site vitrine d'une agence créative : identité forte, animations soignées et parcours de conversion clair.",
+    description: "Site de Cortex Agency, agence digitale et communication 360 basée à Douala : dix expertises, une seule équipe.",
     fullDescription:
-      "Conception et développement du site de Cortex Agency. L'objectif : traduire l'univers créatif de l'agence en une expérience web immersive, avec des animations fluides, une typographie affirmée et des pages services pensées pour convertir. Le site est responsive, optimisé pour le référencement et déployé en continu.",
-    image: placeholder("cortex-agency", "Cortex Agency"),
+      
+      "Conception et développement du site de Cortex Agency. Le site présente les dix expertises de l'agence (IA et automatisation, développement web et mobile, sécurité informatique, marketing digital, design…), ses outils connectés et son équipe basée à Douala. Interface claire, animations fluides, parcours pensés pour convertir : démarrer un projet ou demander un audit gratuit.",
+    image: visuals("cortex-agency", 4, "Cortex Agency"),
     tech: ["Next.js", "Tailwind CSS", "Motion", "Figma"],
     year: "2025",
     category: "Agence",
@@ -39,7 +43,7 @@ export const projectData: Project[] = [
     description: "Plateforme de gestion intégrée pour centraliser les opérations commerciales et administratives.",
     fullDescription:
       "Un CRM moderne conçu pour optimiser la gestion d'entreprise : marketing (prospects, clients, tableau de bord), ressources humaines, comptabilité (ventes, finances, salaires), topographie et recouvrement. La solution améliore la productivité, facilite le suivi des activités et renforce la relation client.",
-    image: shots("crm-bt", "crm", 6, "CRM Build Together"),
+    image: visuals("crm-bt", 4, "CRM Build Together"),
     link: "https://crm.buildtogethers.com/",
     tech: ["Next.js", "Supabase", "React Query", "Tailwind CSS"],
     year: "2025",
@@ -52,7 +56,7 @@ export const projectData: Project[] = [
     description: "Site institutionnel pour présenter l'entreprise Build Together et ses services.",
     fullDescription:
       "Vitrine digitale de Build Together Group : présentation des services (développement web et mobile, solutions cloud, infrastructure, consulting), mise en avant de l'équipe et des réalisations, interface moderne et responsive, optimisée pour le référencement afin de renforcer la présence en ligne de l'entreprise.",
-    image: shots("website-bt", "bt", 5, "Build Together Group"),
+    image: visuals("website-bt", 4, "Build Together Group"),
     link: "https://buildtogethers.com",
     tech: ["Next.js", "Tailwind CSS", "Supabase"],
     year: "2025",
@@ -65,7 +69,10 @@ export const projectData: Project[] = [
     description: "Application web & mobile pour simplifier la recherche et la réservation de logements.",
     fullDescription:
       "Plateforme immobilière moderne : découverte de logements adaptés à ses besoins, réservation de visites, paiement sécurisé via NotchPay, favoris, portefeuille numérique et profil personnalisé. Interface intuitive et responsive, déclinée en application mobile.",
-    image: shots("caline-house", "calinehouse", 7, "Caline House"),
+    image: [
+      ...visuals("caline-house", 5, "Caline House"),
+      { src: "/projets/caline-house/mockup.webp", alt: "Caline House — maquette sur ordinateur portable" },
+    ],
     link: "https://calinehouse.com",
     tech: ["React Native", "Expo", "Next.js", "Supabase", "NotchPay"],
     year: "2025",
@@ -73,24 +80,12 @@ export const projectData: Project[] = [
     role: "Fullstack & mobile",
   },
   {
-    slug: "erp-lavish",
-    name: "ERP Lavish",
-    description: "Progiciel de gestion sur mesure : stocks, ventes, facturation et tableaux de bord.",
-    fullDescription:
-      "Conception d'un ERP pour centraliser les opérations de Lavish : gestion des stocks et des achats, ventes et facturation, suivi des équipes et tableaux de bord décisionnels. Rôles et permissions, exports et automatisations réduisent les tâches répétitives et fiabilisent les données.",
-    image: placeholder("erp-lavish", "ERP Lavish"),
-    tech: ["Next.js", "Supabase", "PostgreSQL", "React Query"],
-    year: "2025",
-    category: "Outil métier",
-    role: "Fullstack & UI/UX",
-  },
-  {
     slug: "kmc",
     name: "KMC Restaurant",
     description: "Conception UI/UX sur Figma pour le site vitrine d'un restaurant moderne.",
     fullDescription:
       "Maquette UI/UX conçue sur Figma pour mettre en valeur l'identité et les services de KMC : page d'accueil immersive, carte des menus interactive, section réservations et version mobile optimisée. Un prototype fluide qui sert de base au développement du site.",
-    image: shots("kmc", "kmc", 6, "KMC Restaurant"),
+    image: visuals("kmc", 4, "KMC Restaurant"),
     Figma: "https://www.figma.com/design/TCugtAxhhVAUKikIZOt4vc/KMC-website?node-id=26-620&t=XLtDSzqPb2z8mTHm-1",
     tech: ["Figma", "UI/UX Design"],
     year: "2025",
@@ -100,34 +95,24 @@ export const projectData: Project[] = [
   {
     slug: "crm-powerlink",
     name: "CRM PowerLink",
-    description: "CRM léger pour suivre prospects, relances et opportunités commerciales.",
+    description: "Plateforme de gestion pour PowerLink : relances commerciales, finances, stock et pointage des équipes.",
     fullDescription:
-      "Un CRM pensé pour une équipe commerciale : pipeline d'opportunités, fiches prospects, rappels de relance, historique des échanges et statistiques de conversion. Interface rapide, filtres puissants et notifications pour ne manquer aucune opportunité.",
-    image: placeholder("crm-powerlink", "CRM PowerLink"),
-    tech: ["Next.js", "Supabase", "Tailwind CSS"],
+      
+      "Un outil métier qui centralise l'activité de PowerLink : suivi des prospects, relances et actions commerciales, tableau de bord financier (trésorerie, créances, ventes par produit), gestion du stock avec alertes de rupture, et ressources humaines avec fiche de pointage et statistiques de présence. Rôles, agences et filtres par période.",
+    image: visuals("crm-powerlink", 4, "CRM PowerLink"),
+    tech: ["Next.js", "Supabase", "React Query", "Tailwind CSS"],
     year: "2025",
     category: "Outil métier",
     role: "Fullstack",
   },
   {
-    slug: "website-lavish",
-    name: "Site Lavish",
-    description: "Site vitrine élégant pour présenter la marque Lavish et ses produits.",
-    fullDescription:
-      "Site vitrine conçu pour refléter le positionnement premium de Lavish : direction artistique épurée, mise en avant des produits, pages optimisées pour le référencement et formulaire de contact. Responsive et rapide.",
-    image: placeholder("website-lavish", "Site Lavish"),
-    tech: ["Next.js", "Tailwind CSS", "Figma"],
-    year: "2025",
-    category: "Site vitrine",
-    role: "Design & développement",
-  },
-  {
     slug: "fjoe-construction",
     name: "FJOE Construction",
-    description: "Site vitrine d'une entreprise de construction : réalisations, services et demande de devis.",
+    description: "Site vitrine d'une entreprise générale de bâtiment : services, réalisations et devis gratuit sous 24 h.",
     fullDescription:
-      "Site institutionnel pour FJOE Construction : présentation des services (gros œuvre, rénovation, aménagement), galerie de réalisations, équipe et formulaire de demande de devis. Structure claire et référencement local pour générer des contacts qualifiés.",
-    image: placeholder("fjoe-construction", "FJOE Construction"),
+      
+      "Site institutionnel pour FJOE Construction : présentation des services (construction neuve, gros œuvre, second œuvre et finitions), réalisations, histoire de l'entreprise et formulaire de demande de devis avec pièces jointes. Direction artistique sobre, structure claire et référencement local pour générer des contacts qualifiés.",
+    image: visuals("fjoe-construction", 4, "FJOE Construction"),
     tech: ["Next.js", "Tailwind CSS", "Supabase"],
     year: "2025",
     category: "Site vitrine",
@@ -136,10 +121,11 @@ export const projectData: Project[] = [
   {
     slug: "tara-card",
     name: "Tara Card",
-    description: "Carte de visite digitale : profil partageable par QR code et lien unique.",
+    description: "Carte de visite NFC : une seule carte pour tout partager, en un tap.",
     fullDescription:
-      "Tara Card permet de créer une carte de visite numérique partageable en un scan : coordonnées, réseaux, liens et bouton d'enregistrement du contact. Génération de QR code, page personnalisable et statistiques de consultation.",
-    image: placeholder("tara-card", "Tara Card"),
+      
+      "Tara Card permet de partager ses coordonnées, ses réseaux et son site d'un simple tap, sans application. Le site présente le produit, les offres Solo, Pro et Business, et donne accès à un tableau de bord pour modifier sa carte, suivre son activité et gérer sa page personnelle.",
+    image: visuals("tara-card", 4, "Tara Card"),
     tech: ["Next.js", "Supabase", "Tailwind CSS"],
     year: "2025",
     category: "Application",
@@ -148,26 +134,28 @@ export const projectData: Project[] = [
   {
     slug: "magic-booster",
     name: "Magic Booster",
-    description: "Landing page produit orientée conversion, avec animations et preuve sociale.",
+    description: "Plateforme de vente de numéros virtuels, e-SIM, VPN et comptes réseaux sociaux.",
     fullDescription:
-      "Page de présentation de Magic Booster : proposition de valeur claire, sections bénéfices, témoignages, FAQ et appels à l'action optimisés. Animations légères, chargement rapide et suivi des conversions.",
-    image: placeholder("magic-booster", "Magic Booster"),
-    tech: ["Next.js", "Motion", "Tailwind CSS"],
+      
+      "Magic Booster réunit sur une seule plateforme les numéros virtuels pour la réception de SMS, les e-SIM de voyage, les VPN et les comptes réseaux sociaux. Portefeuille rechargeable par mobile money, historique des transactions, livraison instantanée des codes et identité visuelle affirmée, en noir et vert acide.",
+    image: visuals("magic-booster", 4, "Magic Booster"),
+    tech: ["Next.js", "Supabase", "Tailwind CSS"],
     year: "2025",
-    category: "Landing page",
-    role: "Design & développement",
+    category: "Plateforme",
+    role: "Fullstack & UI/UX",
   },
   {
     slug: "cortex-art-deco",
     name: "Cortex Art Déco",
-    description: "Direction artistique et maquettes Figma dans un style Art déco contemporain.",
+    description: "Site vitrine d'un studio de décoration et d'aménagement intérieur : univers, services et réalisations.",
     fullDescription:
-      "Exploration visuelle pour Cortex : système de design inspiré de l'Art déco (géométries, dorures, typographies à fort contraste) décliné en maquettes d'écrans, composants et déclinaisons mobiles.",
-    image: placeholder("cortex-art-deco", "Cortex Art Déco"),
-    tech: ["Figma", "UI/UX Design", "Branding"],
+      
+      "Site de Cortex Art & Déco, studio de décoration et d'aménagement intérieur. Typographie élégante, palette chaleureuse et grandes images mettent en valeur les univers (salons, chambres, cuisines, salles de bain), les services et la galerie de réalisations, avec une demande de devis accessible à chaque étape.",
+    image: visuals("cortex-art-deco", 4, "Cortex Art Déco"),
+    tech: ["Next.js", "Tailwind CSS", "Motion"],
     year: "2025",
-    category: "Design",
-    role: "UI/UX Designer",
+    category: "Site vitrine",
+    role: "Design & développement",
   },
   {
     slug: "ps5",
@@ -175,7 +163,7 @@ export const projectData: Project[] = [
     description: "Landing page immersive pour mettre en avant les manettes PlayStation 5.",
     fullDescription:
       "Concept de landing page valorisant les manettes PS5 : design élégant, animations fluides et expérience immersive pensée pour les gamers.",
-    image: shots("ps5", "ps5", 4, "Landing page PS5"),
+    image: visuals("ps5", 4, "Landing page PS5"),
     Figma: "https://www.figma.com/design/0pqD9RyPMi9ydD9uVd29wP/Untitled?node-id=0-1&t=SDhzwOalVRSIKQ9T-1",
     tech: ["Figma", "UI/UX Design"],
     year: "2023",

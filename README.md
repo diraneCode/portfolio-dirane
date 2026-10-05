@@ -44,7 +44,7 @@ services/, hooks/       # envoi contact / devis vers Supabase (React Query)
 ## Modifier le contenu
 
 - Coordonnées, réseaux, disponibilité : `lib/site.ts`
-- Projets : `lib/projectData.ts` ; visuels dans `public/projets/<slug>/`. Les dossiers vides affichent une couverture provisoire `cover.svg` : déposez vos captures (`<slug>-1.png`, `<slug>-2.png`…) puis remplacez `placeholder(...)` par `shots(...)` dans le fichier.
+- Projets : `lib/projectData.ts` ; captures brutes dans `public/projets/<slug>/<slug>-N.png`. Lancez `python3 scripts/project-visuals.py` (ou `… <slug>` pour un seul projet) pour générer `cover.webp` et `visuel-N.webp`, puis déclarez-les avec `visuals("<slug>", N, "Nom")`. Couleurs du dégradé et recadrages par projet : dictionnaire `PROJECTS` en tête du script (Pillow et numpy requis).
 - Parcours : `lib/experienceData.ts` ; les logos sont dans `public/logos/` (les fichiers `.svg` 2tcorp, cinaf et iut sont des **placeholders** à remplacer par les vrais logos)
 - Galerie photo : `lib/artData.ts` + fichiers dans `public/art/` (les images actuelles sont des **placeholders** à remplacer par vos photos, format portrait conseillé)
 - Articles de blog : un fichier `.md` par article dans `content/blog/` avec un frontmatter `title`, `description`, `date`, `tags`, `cover`, `readingTime`

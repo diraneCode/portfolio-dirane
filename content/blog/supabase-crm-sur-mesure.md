@@ -3,7 +3,7 @@ title: "Supabase pour un CRM sur mesure : ce que j'ai appris"
 description: "Retour d'expérience sur la construction d'un CRM d'entreprise avec Next.js et Supabase : schéma, sécurité par lignes, temps réel et pièges à éviter."
 date: "2026-06-20"
 tags: ["Supabase", "Next.js", "Back-end"]
-cover: "/projets/crm-bt/crm-1.png"
+cover: "/projets/crm-bt/cover.webp"
 readingTime: 7
 ---
 
